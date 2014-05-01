@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		119EF66E1912B28200A3DCCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF66D1912B28200A3DCCB /* Foundation.framework */; };
+		119EF6701912B28200A3DCCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF66F1912B28200A3DCCB /* CoreGraphics.framework */; };
+		119EF6721912B28200A3DCCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF6711912B28200A3DCCB /* UIKit.framework */; };
+		119EF6781912B28200A3DCCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 119EF6761912B28200A3DCCB /* InfoPlist.strings */; };
+		119EF67A1912B28200A3DCCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6791912B28200A3DCCB /* main.m */; };
+		119EF67E1912B28200A3DCCB /* ladAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF67D1912B28200A3DCCB /* ladAppDelegate.m */; };
+		119EF6811912B28200A3DCCB /* ladRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6801912B28200A3DCCB /* ladRootViewController.m */; };
+		119EF6841912B28200A3DCCB /* ladDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6831912B28200A3DCCB /* ladDataViewController.m */; };
+		119EF6871912B28200A3DCCB /* ladModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6861912B28200A3DCCB /* ladModelController.m */; };
+		119EF68A1912B28200A3DCCB /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119EF6881912B28200A3DCCB /* Main_iPhone.storyboard */; };
+		119EF68D1912B28200A3DCCB /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119EF68B1912B28200A3DCCB /* Main_iPad.storyboard */; };
+		119EF68F1912B28200A3DCCB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119EF68E1912B28200A3DCCB /* Images.xcassets */; };
+		119EF6961912B28200A3DCCB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF6951912B28200A3DCCB /* XCTest.framework */; };
+		119EF6971912B28200A3DCCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF66D1912B28200A3DCCB /* Foundation.framework */; };
+		119EF6981912B28200A3DCCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF6711912B28200A3DCCB /* UIKit.framework */; };
+		119EF6A01912B28200A3DCCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 119EF69E1912B28200A3DCCB /* InfoPlist.strings */; };
+		119EF6A21912B28200A3DCCB /* LadenburgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6A11912B28200A3DCCB /* LadenburgTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		119EF6991912B28200A3DCCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 119EF6621912B28200A3DCCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 119EF6691912B28200A3DCCB;
+			remoteInfo = Ladenburg;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		119EF66A1912B28200A3DCCB /* Ladenburg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ladenburg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		119EF66D1912B28200A3DCCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		119EF66F1912B28200A3DCCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		119EF6711912B28200A3DCCB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		119EF6751912B28200A3DCCB /* Ladenburg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ladenburg-Info.plist"; sourceTree = "<group>"; };
+		119EF6771912B28200A3DCCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		119EF6791912B28200A3DCCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		119EF67B1912B28200A3DCCB /* Ladenburg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ladenburg-Prefix.pch"; sourceTree = "<group>"; };
+		119EF67C1912B28200A3DCCB /* ladAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ladAppDelegate.h; sourceTree = "<group>"; };
+		119EF67D1912B28200A3DCCB /* ladAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ladAppDelegate.m; sourceTree = "<group>"; };
+		119EF67F1912B28200A3DCCB /* ladRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ladRootViewController.h; sourceTree = "<group>"; };
+		119EF6801912B28200A3DCCB /* ladRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ladRootViewController.m; sourceTree = "<group>"; };
+		119EF6821912B28200A3DCCB /* ladDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ladDataViewController.h; sourceTree = "<group>"; };
+		119EF6831912B28200A3DCCB /* ladDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ladDataViewController.m; sourceTree = "<group>"; };
+		119EF6851912B28200A3DCCB /* ladModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ladModelController.h; sourceTree = "<group>"; };
+		119EF6861912B28200A3DCCB /* ladModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ladModelController.m; sourceTree = "<group>"; };
+		119EF6891912B28200A3DCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		119EF68C1912B28200A3DCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		119EF68E1912B28200A3DCCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		119EF6941912B28200A3DCCB /* LadenburgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LadenburgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		119EF6951912B28200A3DCCB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		119EF69D1912B28200A3DCCB /* LadenburgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LadenburgTests-Info.plist"; sourceTree = "<group>"; };
+		119EF69F1912B28200A3DCCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		119EF6A11912B28200A3DCCB /* LadenburgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LadenburgTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		119EF6671912B28200A3DCCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119EF6701912B28200A3DCCB /* CoreGraphics.framework in Frameworks */,
+				119EF6721912B28200A3DCCB /* UIKit.framework in Frameworks */,
+				119EF66E1912B28200A3DCCB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119EF6911912B28200A3DCCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119EF6961912B28200A3DCCB /* XCTest.framework in Frameworks */,
+				119EF6981912B28200A3DCCB /* UIKit.framework in Frameworks */,
+				119EF6971912B28200A3DCCB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		119EF6611912B28200A3DCCB = {
+			isa = PBXGroup;
+			children = (
+				119EF6731912B28200A3DCCB /* Ladenburg */,
+				119EF69B1912B28200A3DCCB /* LadenburgTests */,
+				119EF66C1912B28200A3DCCB /* Frameworks */,
+				119EF66B1912B28200A3DCCB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		119EF66B1912B28200A3DCCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				119EF66A1912B28200A3DCCB /* Ladenburg.app */,
+				119EF6941912B28200A3DCCB /* LadenburgTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		119EF66C1912B28200A3DCCB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				119EF66D1912B28200A3DCCB /* Foundation.framework */,
+				119EF66F1912B28200A3DCCB /* CoreGraphics.framework */,
+				119EF6711912B28200A3DCCB /* UIKit.framework */,
+				119EF6951912B28200A3DCCB /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		119EF6731912B28200A3DCCB /* Ladenburg */ = {
+			isa = PBXGroup;
+			children = (
+				119EF67C1912B28200A3DCCB /* ladAppDelegate.h */,
+				119EF67D1912B28200A3DCCB /* ladAppDelegate.m */,
+				119EF67F1912B28200A3DCCB /* ladRootViewController.h */,
+				119EF6801912B28200A3DCCB /* ladRootViewController.m */,
+				119EF6821912B28200A3DCCB /* ladDataViewController.h */,
+				119EF6831912B28200A3DCCB /* ladDataViewController.m */,
+				119EF6851912B28200A3DCCB /* ladModelController.h */,
+				119EF6861912B28200A3DCCB /* ladModelController.m */,
+				119EF6881912B28200A3DCCB /* Main_iPhone.storyboard */,
+				119EF68B1912B28200A3DCCB /* Main_iPad.storyboard */,
+				119EF68E1912B28200A3DCCB /* Images.xcassets */,
+				119EF6741912B28200A3DCCB /* Supporting Files */,
+			);
+			path = Ladenburg;
+			sourceTree = "<group>";
+		};
+		119EF6741912B28200A3DCCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				119EF6751912B28200A3DCCB /* Ladenburg-Info.plist */,
+				119EF6761912B28200A3DCCB /* InfoPlist.strings */,
+				119EF6791912B28200A3DCCB /* main.m */,
+				119EF67B1912B28200A3DCCB /* Ladenburg-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		119EF69B1912B28200A3DCCB /* LadenburgTests */ = {
+			isa = PBXGroup;
+			children = (
+				119EF6A11912B28200A3DCCB /* LadenburgTests.m */,
+				119EF69C1912B28200A3DCCB /* Supporting Files */,
+			);
+			path = LadenburgTests;
+			sourceTree = "<group>";
+		};
+		119EF69C1912B28200A3DCCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				119EF69D1912B28200A3DCCB /* LadenburgTests-Info.plist */,
+				119EF69E1912B28200A3DCCB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		119EF6691912B28200A3DCCB /* Ladenburg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119EF6A51912B28200A3DCCB /* Build configuration list for PBXNativeTarget "Ladenburg" */;
+			buildPhases = (
+				119EF6661912B28200A3DCCB /* Sources */,
+				119EF6671912B28200A3DCCB /* Frameworks */,
+				119EF6681912B28200A3DCCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ladenburg;
+			productName = Ladenburg;
+			productReference = 119EF66A1912B28200A3DCCB /* Ladenburg.app */;
+			productType = "com.apple.product-type.application";
+		};
+		119EF6931912B28200A3DCCB /* LadenburgTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "LadenburgTests" */;
+			buildPhases = (
+				119EF6901912B28200A3DCCB /* Sources */,
+				119EF6911912B28200A3DCCB /* Frameworks */,
+				119EF6921912B28200A3DCCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				119EF69A1912B28200A3DCCB /* PBXTargetDependency */,
+			);
+			name = LadenburgTests;
+			productName = LadenburgTests;
+			productReference = 119EF6941912B28200A3DCCB /* LadenburgTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		119EF6621912B28200A3DCCB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = lad;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "DHBW Mannheim";
+				TargetAttributes = {
+					119EF6931912B28200A3DCCB = {
+						TestTargetID = 119EF6691912B28200A3DCCB;
+					};
+				};
+			};
+			buildConfigurationList = 119EF6651912B28200A3DCCB /* Build configuration list for PBXProject "Ladenburg" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 119EF6611912B28200A3DCCB;
+			productRefGroup = 119EF66B1912B28200A3DCCB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				119EF6691912B28200A3DCCB /* Ladenburg */,
+				119EF6931912B28200A3DCCB /* LadenburgTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		119EF6681912B28200A3DCCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119EF68D1912B28200A3DCCB /* Main_iPad.storyboard in Resources */,
+				119EF68F1912B28200A3DCCB /* Images.xcassets in Resources */,
+				119EF68A1912B28200A3DCCB /* Main_iPhone.storyboard in Resources */,
+				119EF6781912B28200A3DCCB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119EF6921912B28200A3DCCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119EF6A01912B28200A3DCCB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		119EF6661912B28200A3DCCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119EF6841912B28200A3DCCB /* ladDataViewController.m in Sources */,
+				119EF6871912B28200A3DCCB /* ladModelController.m in Sources */,
+				119EF6811912B28200A3DCCB /* ladRootViewController.m in Sources */,
+				119EF67E1912B28200A3DCCB /* ladAppDelegate.m in Sources */,
+				119EF67A1912B28200A3DCCB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119EF6901912B28200A3DCCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119EF6A21912B28200A3DCCB /* LadenburgTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		119EF69A1912B28200A3DCCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 119EF6691912B28200A3DCCB /* Ladenburg */;
+			targetProxy = 119EF6991912B28200A3DCCB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		119EF6761912B28200A3DCCB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119EF6771912B28200A3DCCB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		119EF6881912B28200A3DCCB /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119EF6891912B28200A3DCCB /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		119EF68B1912B28200A3DCCB /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119EF68C1912B28200A3DCCB /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		119EF69E1912B28200A3DCCB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119EF69F1912B28200A3DCCB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		119EF6A31912B28200A3DCCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		119EF6A41912B28200A3DCCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		119EF6A61912B28200A3DCCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
+				INFOPLIST_FILE = "Ladenburg/Ladenburg-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		119EF6A71912B28200A3DCCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
+				INFOPLIST_FILE = "Ladenburg/Ladenburg-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		119EF6A91912B28200A3DCCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Ladenburg.app/Ladenburg";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LadenburgTests/LadenburgTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		119EF6AA1912B28200A3DCCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Ladenburg.app/Ladenburg";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
+				INFOPLIST_FILE = "LadenburgTests/LadenburgTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		119EF6651912B28200A3DCCB /* Build configuration list for PBXProject "Ladenburg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119EF6A31912B28200A3DCCB /* Debug */,
+				119EF6A41912B28200A3DCCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		119EF6A51912B28200A3DCCB /* Build configuration list for PBXNativeTarget "Ladenburg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119EF6A61912B28200A3DCCB /* Debug */,
+				119EF6A71912B28200A3DCCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "LadenburgTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119EF6A91912B28200A3DCCB /* Debug */,
+				119EF6AA1912B28200A3DCCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 119EF6621912B28200A3DCCB /* Project object */;
+}
