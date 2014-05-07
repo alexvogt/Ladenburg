@@ -1,3 +1,4 @@
-Ladenburg
+App Ensemble Ladenburg
 =========
-DHBW Mannheim Project
+Projekt des Kurses Digitale Medien - WMPG11
+Betreuende Dozenten: Prof. Dr. Jürgen Redelius, Prof. Peter Mayr
