@@ -24,6 +24,8 @@
 		119EF6981912B28200A3DCCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119EF6711912B28200A3DCCB /* UIKit.framework */; };
 		119EF6A01912B28200A3DCCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 119EF69E1912B28200A3DCCB /* InfoPlist.strings */; };
 		119EF6A21912B28200A3DCCB /* LadenburgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6A11912B28200A3DCCB /* LadenburgTests.m */; };
+		639620241922717100D8E31C /* ladMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620231922717100D8E31C /* ladMainViewController.m */; };
+		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		119EF69D1912B28200A3DCCB /* LadenburgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LadenburgTests-Info.plist"; sourceTree = "<group>"; };
 		119EF69F1912B28200A3DCCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		119EF6A11912B28200A3DCCB /* LadenburgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LadenburgTests.m; sourceTree = "<group>"; };
+		639620221922717100D8E31C /* ladMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladMainViewController.h; sourceTree = "<group>"; };
+		639620231922717100D8E31C /* ladMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladMainViewController.m; sourceTree = "<group>"; };
+		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
+		639620261922C40C00D8E31C /* ladBeaconTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladBeaconTracker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,15 +128,14 @@
 			children = (
 				119EF67C1912B28200A3DCCB /* ladAppDelegate.h */,
 				119EF67D1912B28200A3DCCB /* ladAppDelegate.m */,
-				119EF67F1912B28200A3DCCB /* ladRootViewController.h */,
-				119EF6801912B28200A3DCCB /* ladRootViewController.m */,
-				119EF6821912B28200A3DCCB /* ladDataViewController.h */,
-				119EF6831912B28200A3DCCB /* ladDataViewController.m */,
-				119EF6851912B28200A3DCCB /* ladModelController.h */,
-				119EF6861912B28200A3DCCB /* ladModelController.m */,
 				119EF6881912B28200A3DCCB /* Main_iPhone.storyboard */,
+				639620221922717100D8E31C /* ladMainViewController.h */,
+				639620251922C40C00D8E31C /* ladBeaconTracker.h */,
+				639620261922C40C00D8E31C /* ladBeaconTracker.m */,
+				639620231922717100D8E31C /* ladMainViewController.m */,
 				119EF68B1912B28200A3DCCB /* Main_iPad.storyboard */,
 				119EF68E1912B28200A3DCCB /* Images.xcassets */,
+				63962021192262D700D8E31C /* Demo Classes */,
 				119EF6741912B28200A3DCCB /* Supporting Files */,
 			);
 			path = Ladenburg;
@@ -163,6 +168,19 @@
 				119EF69E1912B28200A3DCCB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63962021192262D700D8E31C /* Demo Classes */ = {
+			isa = PBXGroup;
+			children = (
+				119EF6821912B28200A3DCCB /* ladDataViewController.h */,
+				119EF6831912B28200A3DCCB /* ladDataViewController.m */,
+				119EF6851912B28200A3DCCB /* ladModelController.h */,
+				119EF6861912B28200A3DCCB /* ladModelController.m */,
+				119EF67F1912B28200A3DCCB /* ladRootViewController.h */,
+				119EF6801912B28200A3DCCB /* ladRootViewController.m */,
+			);
+			name = "Demo Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +286,9 @@
 				119EF6871912B28200A3DCCB /* ladModelController.m in Sources */,
 				119EF6811912B28200A3DCCB /* ladRootViewController.m in Sources */,
 				119EF67E1912B28200A3DCCB /* ladAppDelegate.m in Sources */,
+				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,
 				119EF67A1912B28200A3DCCB /* main.m in Sources */,
+				639620241922717100D8E31C /* ladMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +503,7 @@
 				119EF6A71912B28200A3DCCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "LadenburgTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +512,7 @@
 				119EF6AA1912B28200A3DCCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

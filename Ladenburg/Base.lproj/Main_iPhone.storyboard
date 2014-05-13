@@ -25,7 +25,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="Blh-r4-yyK"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="Blh-r4-yyK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOS-BP-qmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,14 +64,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="anE-B6-tNW" id="vZ4-Hk-0Zn">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgv-DZ-jkb">
-                                            <rect key="frame" x="139" y="11" width="63" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -80,7 +72,7 @@
                             <outlet property="delegate" destination="B9I-Ny-nEh" id="OYO-49-Efn"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="v9G-cB-KJA"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="v9G-cB-KJA"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hT3-Ea-qji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,7 +82,7 @@
         <scene sceneID="VHz-wF-hk7">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="T91-x1-9Dc" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xqZ-PM-u7d">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -128,7 +120,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="t2Q-Bf-930"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="t2Q-Bf-930"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAp-hW-dpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,14 +141,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SRZ-hk-whX" id="TtX-KT-400">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sights" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aE-sh-ZuL">
-                                            <rect key="frame" x="139" y="11" width="49" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -165,7 +149,7 @@
                             <outlet property="delegate" destination="CHB-g7-Liy" id="juo-XQ-7jv"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="dhg-KS-ZSB"/>
+                    <tabBarItem key="tabBarItem" title="Sights" id="dhg-KS-ZSB"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TYP-CD-Bgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
