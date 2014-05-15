@@ -26,6 +26,7 @@
 		119EF6A21912B28200A3DCCB /* LadenburgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6A11912B28200A3DCCB /* LadenburgTests.m */; };
 		639620241922717100D8E31C /* ladMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620231922717100D8E31C /* ladMainViewController.m */; };
 		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
+		6396202A1923DD0F00D8E31C /* ladBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620291923DD0F00D8E31C /* ladBeacon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +58,7 @@
 		119EF6861912B28200A3DCCB /* ladModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ladModelController.m; sourceTree = "<group>"; };
 		119EF6891912B28200A3DCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		119EF68C1912B28200A3DCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		119EF68E1912B28200A3DCCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		119EF68E1912B28200A3DCCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Ladenburg/Images.xcassets; sourceTree = "<group>"; };
 		119EF6941912B28200A3DCCB /* LadenburgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LadenburgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		119EF6951912B28200A3DCCB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		119EF69D1912B28200A3DCCB /* LadenburgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LadenburgTests-Info.plist"; sourceTree = "<group>"; };
@@ -67,6 +68,8 @@
 		639620231922717100D8E31C /* ladMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladMainViewController.m; sourceTree = "<group>"; };
 		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
 		639620261922C40C00D8E31C /* ladBeaconTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladBeaconTracker.m; sourceTree = "<group>"; };
+		639620281923DD0F00D8E31C /* ladBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeacon.h; sourceTree = "<group>"; };
+		639620291923DD0F00D8E31C /* ladBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladBeacon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,7 @@
 		119EF6611912B28200A3DCCB = {
 			isa = PBXGroup;
 			children = (
+				119EF68E1912B28200A3DCCB /* Images.xcassets */,
 				119EF6731912B28200A3DCCB /* Ladenburg */,
 				119EF69B1912B28200A3DCCB /* LadenburgTests */,
 				119EF66C1912B28200A3DCCB /* Frameworks */,
@@ -130,11 +134,9 @@
 				119EF67D1912B28200A3DCCB /* ladAppDelegate.m */,
 				119EF6881912B28200A3DCCB /* Main_iPhone.storyboard */,
 				639620221922717100D8E31C /* ladMainViewController.h */,
-				639620251922C40C00D8E31C /* ladBeaconTracker.h */,
-				639620261922C40C00D8E31C /* ladBeaconTracker.m */,
 				639620231922717100D8E31C /* ladMainViewController.m */,
+				6396202C1924849200D8E31C /* Beacon Functionality */,
 				119EF68B1912B28200A3DCCB /* Main_iPad.storyboard */,
-				119EF68E1912B28200A3DCCB /* Images.xcassets */,
 				63962021192262D700D8E31C /* Demo Classes */,
 				119EF6741912B28200A3DCCB /* Supporting Files */,
 			);
@@ -181,6 +183,17 @@
 				119EF6801912B28200A3DCCB /* ladRootViewController.m */,
 			);
 			name = "Demo Classes";
+			sourceTree = "<group>";
+		};
+		6396202C1924849200D8E31C /* Beacon Functionality */ = {
+			isa = PBXGroup;
+			children = (
+				639620281923DD0F00D8E31C /* ladBeacon.h */,
+				639620291923DD0F00D8E31C /* ladBeacon.m */,
+				639620251922C40C00D8E31C /* ladBeaconTracker.h */,
+				639620261922C40C00D8E31C /* ladBeaconTracker.m */,
+			);
+			name = "Beacon Functionality";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +302,7 @@
 				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,
 				119EF67A1912B28200A3DCCB /* main.m in Sources */,
 				639620241922717100D8E31C /* ladMainViewController.m in Sources */,
+				6396202A1923DD0F00D8E31C /* ladBeacon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

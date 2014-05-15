@@ -7,8 +7,10 @@
 //
 
 #import "ladBeaconTracker.h"
+#import "ladBeacon.h"
 
 @interface ladBeaconTracker ()
+
 
 @end
 
@@ -30,21 +32,38 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    [self initRegion];
+    
+    ladBeacon *beaconForum = [[ladBeacon alloc] initWithUUID:@"LADENBURG" andMajor:1 andMinor:1 andIdentifier:@"ladenburg"];
+    ladBeacon *beaconMuseum = [[ladBeacon alloc] initWithUUID:@"LADENBURG" andMajor:2 andMinor:12 andIdentifier:@"lobdengaumuseum"];
+    
+    NSMutableArray *beacons = [NSMutableArray arrayWithObjects:(id)beaconForum, (id)beaconMuseum, nil];
+    
+    NSLog(@"Beacon 1 is %@", beacons[0]);
+    NSLog(@"Beacon 2 is %@", beacons[1]);
+    
+    
+    [self initRegions];
 }
 
 
-- (void)initRegion {
+- (void)initRegions {
     //Check for all Beacons in Region using the following attributes
+    
+    //needed: Array for different Majors (since these define the regions)
+    //for (
     
     // !!! CHANGE ATTRIBUTES ACCORDING TO BEACONS!!!
     
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"XXXXXXX"];
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"LADENBURG"];
     NSString *regionIdentifier = @"xxx";
     
     //Init Region with the attributes defined above
     self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:uuid identifier:regionIdentifier];
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
+    
+    [self.beaconRegions addObject:_beaconRegion];
+    
+    
     
 }
 

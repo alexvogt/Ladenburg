@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="1170" y="478"/>
         </scene>
-        <!--View Controller - Home-->
+        <!--Lad Beacon Tracker - Home-->
         <scene sceneID="Yre-WX-7JH">
             <objects>
-                <viewController title="Home" id="5Km-Z0-pvG" sceneMemberID="viewController">
+                <viewController title="Home" id="5Km-Z0-pvG" customClass="ladBeaconTracker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Ip-bO-Fb7"/>
                         <viewControllerLayoutGuide type="bottom" id="VuI-bj-31b"/>
