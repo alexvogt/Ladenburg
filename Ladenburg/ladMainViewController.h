@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ladMainViewController : UIViewController
+
+@interface ladMainViewController : UIViewController <UIPageViewControllerDataSource>
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+
+@property (strong, nonatomic) NSArray *tutorialPageTitles;
+// @property (strong, nonatomic) NSArray *tutorialPageImages;
+
 
 @end
