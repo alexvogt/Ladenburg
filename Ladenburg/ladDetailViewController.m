@@ -8,6 +8,7 @@
 
 #import "ladDetailViewController.h"
 
+
 @interface ladDetailViewController ()
 
 @end
@@ -27,6 +28,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.detailTextView.text = _selectedLocation.text;
 }
 
 - (void)didReceiveMemoryWarning

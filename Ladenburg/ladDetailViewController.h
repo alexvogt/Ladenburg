@@ -12,6 +12,7 @@
 @interface ladDetailViewController : UIViewController
 
 @property (strong, nonatomic) Location *selectedLocation;
-@property (strong, nonatomic) IBOutlet UILabel *detailText;
+@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+
 
 @end

@@ -39,25 +39,6 @@
             </objects>
             <point key="canvasLocation" x="2126" y="115"/>
         </scene>
-        <!--Lad Detail View Controller - Detail-->
-        <scene sceneID="qAr-Qg-CgB">
-            <objects>
-                <viewController title="Detail" id="QEQ-ZX-Ccc" customClass="ladDetailViewController" sceneMemberID="viewController">
-                    <label key="view" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mhc-wj-p3d">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <navigationItem key="navigationItem" id="F8u-KE-hfn"/>
-                    <connections>
-                        <outlet property="detailText" destination="mhc-wj-p3d" id="ktE-en-haM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YK4-Op-aQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3705" y="503"/>
-        </scene>
         <!--Table View Controller - Settings-->
         <scene sceneID="vfr-ln-uko">
             <objects>
@@ -168,12 +149,49 @@
                     <navigationItem key="navigationItem" id="1QS-aH-G5F"/>
                     <connections>
                         <outlet property="sightListView" destination="9Yr-y1-C5o" id="n2f-Zl-8hF"/>
-                        <segue destination="QEQ-ZX-Ccc" kind="push" identifier="detailSegue" id="sBD-Oy-bT7"/>
+                        <segue destination="buz-qi-qqg" kind="push" identifier="detailSegue" id="acH-JY-26F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLu-3h-jM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2504" y="815"/>
+        </scene>
+        <!--Lad Detail View Controller-->
+        <scene sceneID="EZ3-6y-X3E">
+            <objects>
+                <viewController id="buz-qi-qqg" customClass="ladDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ePj-1T-2xu"/>
+                        <viewControllerLayoutGuide type="bottom" id="P4H-fP-ntT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NXD-YE-Eub">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-Bx-t0S">
+                                <rect key="frame" x="15" y="193" width="285" height="325"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h15-gF-l8R">
+                                <rect key="frame" x="0.0" y="65" width="320" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.80583441190000005" blue="0.205753246" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LVc-IT-KZl"/>
+                    <connections>
+                        <outlet property="detailTextView" destination="Lof-Bx-t0S" id="z74-Rn-gP9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hQn-Vh-t5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3064" y="656"/>
         </scene>
         <!--Navigation Controller - Item-->
         <scene sceneID="vQP-Ti-RKw">

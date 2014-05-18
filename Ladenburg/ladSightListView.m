@@ -89,7 +89,7 @@
     Location *item = _feedItems[indexPath.row];
     
     // Get references to labels of cell
-    myCell.textLabel.text = item.name;
+    myCell.textLabel.text = [item.name stringByAppendingString:item.identifier];
     
     return myCell;
 }
