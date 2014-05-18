@@ -16,6 +16,6 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UILabel *beaconFoundLabel;
 
-// - (void) startTrackingBeacons;
+ - (void) startTrackingBeacons;
 
 @end

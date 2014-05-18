@@ -16,7 +16,7 @@
 @property NSUUID *uuid;
 
 //Utility-Methods
-//- (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
+- (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
 
 @end
 
@@ -41,25 +41,13 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    [self initRegion];
+    //[self initRegion];
     
-   // [self startTrackingBeacons];
+    [self startTrackingBeacons];
 
     
 }
 
-
-- (void)initRegion {
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A"];
-    self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:uuid identifier:@"Museum"];
-    
-    [self.locationManager startMonitoringForRegion:self.beaconRegion];
-    
-    //Debugging Logging
-    NSLog(@"Region %@ initated", _beaconRegion.identifier);
-}
-
-/*
 - (void) startTrackingBeacons{
     //Init different regions --> change UUID in accordance with Beacons
     
@@ -67,22 +55,22 @@
     
     [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Stadt"];
     
-    
+    //Debugging Log
+    NSLog(@"Finished call to startTrackingBeacons");
 }
 
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier:(NSString *)identifier{
     
     _uuid = [[NSUUID alloc]initWithUUIDString:uuid];
     
-    //Debugging Log
-    NSLog(@"UUID: %@", _uuid);
     
     self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:_uuid identifier:identifier];
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
     
+    //Debugging Log
+    NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
 }
- 
- */
+
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     
@@ -95,18 +83,36 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+    //[self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
     NSLog(@"Region %@ exit", _beaconRegion.identifier);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
+    
+    switch (state) {
+        case CLRegionStateInside:
+            NSLog(@"Inside");
+            self.beaconFoundLabel.text =@"Yes";
+            break;
+        case CLRegionStateOutside:
+            NSLog(@"Outside");
+            self.beaconFoundLabel.text =@"No";
+            break;
+        case CLRegionStateUnknown:
+            NSLog(@"Unknown");
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
     CLBeacon *beacon = [[CLBeacon alloc] init];
     beacon= [beacons lastObject];
     
-    
     self.beaconFoundLabel.text =@"Yes";
     
-    NSLog(@"Ranged Region %@", _beaconRegion.identifier );
+    NSLog(@"Ranged Beacon %@", beacon);
 }
 
 
