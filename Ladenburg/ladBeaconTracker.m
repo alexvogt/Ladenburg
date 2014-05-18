@@ -6,13 +6,21 @@
 //  Copyright (c) 2014 DHBW Mannheim. All rights reserved.
 //
 
+// TEST UUID 1 : A5456D78-C85B-44C6-9F20-8268FD25EF8A
+
 #import "ladBeaconTracker.h"
-#import "ladBeacon.h"
 
 @interface ladBeaconTracker ()
 
+//Properties
+@property NSUUID *uuid;
+
+//Utility-Methods
+- (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
 
 @end
+
+
 
 @implementation ladBeaconTracker
 
@@ -33,54 +41,78 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    ladBeacon *beaconForum = [[ladBeacon alloc] initWithUUID:@"LADENBURG" andMajor:1 andMinor:1 andIdentifier:@"ladenburg"];
-    ladBeacon *beaconMuseum = [[ladBeacon alloc] initWithUUID:@"LADENBURG" andMajor:2 andMinor:12 andIdentifier:@"lobdengaumuseum"];
+    //[self initRegion];
     
-    NSMutableArray *beacons = [NSMutableArray arrayWithObjects:(id)beaconForum, (id)beaconMuseum, nil];
+    [self startTrackingBeacons];
+
     
-    NSLog(@"Beacon 1 is %@", beacons[0]);
-    NSLog(@"Beacon 2 is %@", beacons[1]);
-    
-    
-    [self initRegions];
 }
 
+- (void) startTrackingBeacons{
+    //Init different regions --> change UUID in accordance with Beacons
+    
+    [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
+    
+    [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Stadt"];
+    
+    //Debugging Log
+    NSLog(@"Finished call to startTrackingBeacons");
+}
 
-- (void)initRegions {
-    //Check for all Beacons in Region using the following attributes
+- (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier:(NSString *)identifier{
     
-    //needed: Array for different Majors (since these define the regions)
-    //for (
+    _uuid = [[NSUUID alloc]initWithUUIDString:uuid];
     
-    // !!! CHANGE ATTRIBUTES ACCORDING TO BEACONS!!!
     
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"LADENBURG"];
-    NSString *regionIdentifier = @"xxx";
-    
-    //Init Region with the attributes defined above
-    self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:uuid identifier:regionIdentifier];
+    self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:_uuid identifier:identifier];
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
     
-    [self.beaconRegions addObject:_beaconRegion];
-    
-    
-    
+    //Debugging Log
+    NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
 }
 
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+    
+    self.beaconRegion.notifyEntryStateOnDisplay = YES;
+    
+    //Debugging Log
+    NSLog(@"Region %@ entered", _beaconRegion.identifier);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+    //[self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+    NSLog(@"Region %@ exit", _beaconRegion.identifier);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
+    
+    switch (state) {
+        case CLRegionStateInside:
+            NSLog(@"Inside");
+            self.beaconFoundLabel.text =@"Yes";
+            break;
+        case CLRegionStateOutside:
+            NSLog(@"Outside");
+            self.beaconFoundLabel.text =@"No";
+            break;
+        case CLRegionStateUnknown:
+            NSLog(@"Unknown");
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
     CLBeacon *beacon = [[CLBeacon alloc] init];
     beacon= [beacons lastObject];
     
-    //Do something
-    //e.g. change labels depending on beacon properties etc.
+    self.beaconFoundLabel.text =@"Yes";
+    
+    NSLog(@"Ranged Beacon %@", beacon);
 }
 
 
