@@ -164,7 +164,7 @@
                         <segue destination="5Km-Z0-pvG" kind="relationship" relationship="viewControllers" id="DRb-kZ-RjO"/>
                         <segue destination="B9I-Ny-nEh" kind="relationship" relationship="viewControllers" id="Yg8-19-rIS"/>
                         <segue destination="ZPn-gu-ePd" kind="relationship" relationship="viewControllers" id="5qh-ep-OZX"/>
-                        <segue destination="gBt-Nk-SOL" kind="relationship" relationship="viewControllers" id="N99-UA-vYB"/>
+                        <segue destination="gBt-Nk-SOL" kind="relationship" relationship="viewControllers" id="a7d-ll-bwD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rzt-RS-j81" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,10 +213,10 @@
             </objects>
             <point key="canvasLocation" x="1704" y="115"/>
         </scene>
-        <!--Lad Sight List View - Sights-->
+        <!--Lad Sight List View-->
         <scene sceneID="Pcx-uv-wsW">
             <objects>
-                <viewController title="Sights" id="qr1-jh-S9C" customClass="ladSightListView" sceneMemberID="viewController">
+                <viewController id="qr1-jh-S9C" customClass="ladSightListView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="34b-3R-Bp7"/>
                         <viewControllerLayoutGuide type="bottom" id="a0t-Z7-KTx"/>
@@ -251,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLu-3h-jM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504" y="815"/>
+            <point key="canvasLocation" x="2662" y="811"/>
         </scene>
         <!--Lad Detail View Controller-->
         <scene sceneID="EZ3-6y-X3E">
@@ -265,11 +265,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-Bx-t0S">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-Bx-t0S">
                                 <rect key="frame" x="15" y="193" width="285" height="325"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -290,10 +290,10 @@
             </objects>
             <point key="canvasLocation" x="3064" y="656"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Sights-->
         <scene sceneID="vQP-Ti-RKw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
+                <navigationController title="Sights" automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="6I9-Z7-eKa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="990-9m-Wfn">
@@ -301,13 +301,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Zug-Cc-7eW">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="qr1-jh-S9C" kind="relationship" relationship="rootViewController" id="SDK-Zw-PUG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9O-k6-iPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2126" y="815"/>
+            <point key="canvasLocation" x="2126" y="811"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -98,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */,
 				2235B3591924F4920081ED14 /* MapKit.framework in Frameworks */,
 				119EF6701912B28200A3DCCB /* CoreGraphics.framework in Frameworks */,
 				119EF6721912B28200A3DCCB /* UIKit.framework in Frameworks */,
@@ -141,6 +142,7 @@
 		119EF66C1912B28200A3DCCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				639620621924DC2A00D8E31C /* MessageUI.framework */,
 				2235B3581924F4920081ED14 /* MapKit.framework */,
 				119EF66D1912B28200A3DCCB /* Foundation.framework */,
 				119EF66F1912B28200A3DCCB /* CoreGraphics.framework */,
