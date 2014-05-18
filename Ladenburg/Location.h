@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *imageUrl;
 
 @end

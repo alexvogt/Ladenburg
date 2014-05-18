@@ -65,6 +65,7 @@
         newLocation.latitude = jsonElement[@"LOC_LATITUDE"];
         newLocation.longitude = jsonElement[@"LOC_LONGITUDE"];
         newLocation.text = jsonElement[@"Kurzbeschreibung"];
+        newLocation.imageUrl = jsonElement[@"bild_url"];
         
         
         // Add this question to the locations array

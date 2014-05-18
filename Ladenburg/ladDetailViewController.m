@@ -11,6 +11,15 @@
 
 @interface ladDetailViewController ()
 
+@property NSString *baseURL;
+@property NSString *originalImageURL;
+@property NSString *shortenedImageURL;
+@property NSString *fullURL;
+@property NSURL *url;
+@property UIImage *selectedSightImage;
+
+
+
 @end
 
 @implementation ladDetailViewController
@@ -29,6 +38,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    _baseURL = @"http://ladenburg.timhartl.de";
+    //Debugging Log
+    NSLog(@"%@",_baseURL);
+
+    _originalImageURL = _selectedLocation.imageUrl;
+    _shortenedImageURL = [_originalImageURL substringFromIndex:2];
+    
+    _fullURL = [_baseURL stringByAppendingString:_shortenedImageURL];
+    
+    //Debugging Log
+    NSLog(@"%@", _fullURL);
+    
+    _url = [NSURL URLWithString:_fullURL];
+    NSData *data = [NSData dataWithContentsOfURL:_url];
+    
+    _selectedSightImage = [[UIImage alloc] initWithData:data];
+    
+    
+    self.detailImageView.image = _selectedSightImage;
     self.detailTextView.text = _selectedLocation.text;
 }
 
