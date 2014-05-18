@@ -1,0 +1,17 @@
+//
+//  ladDetailViewController.h
+//  Ladenburg
+//
+//  Created by Tim Hartl on 17.05.14.
+//  Copyright (c) 2014 DHBW Mannheim. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Location.h"
+
+@interface ladDetailViewController : UIViewController
+
+@property (strong, nonatomic) Location *selectedLocation;
+@property (strong, nonatomic) IBOutlet UILabel *detailText;
+
+@end

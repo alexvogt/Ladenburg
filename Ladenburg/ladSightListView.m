@@ -9,6 +9,7 @@
 #import "ladSightListView.h"
 #import "Location.h"
 #import "MapViewController.h"
+#import "ladDetailViewController.h"
 
 @interface ladSightListView ()
 {
@@ -99,7 +100,7 @@
     _selectedLocation = _feedItems[indexPath.row];
     
     // Manually call segue to detail view controller
-    [self performSegueWithIdentifier:@"mapSegue" sender:self];
+    [self performSegueWithIdentifier:@"detailSegue" sender:self];
 }
 
 #pragma mark Segue
@@ -107,11 +108,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get reference to the destination view controller
-    MapViewController *mapVC = segue.destinationViewController;
+    ladDetailViewController *ladVC = segue.destinationViewController;
     
     // Set the property to the selected location so when the view for
     // detail view controller loads, it can access that property to get the feeditem obj
-    mapVC.selectedLocation = _selectedLocation;
+    ladVC.selectedLocation = _selectedLocation;
 }
 
 /*

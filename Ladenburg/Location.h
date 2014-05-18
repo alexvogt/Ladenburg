@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *longitude;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *text;
 
 @end

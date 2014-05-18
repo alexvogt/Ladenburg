@@ -29,6 +29,7 @@
 		2235B3541924EF390081ED14 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3531924EF390081ED14 /* Location.m */; };
 		2235B3571924F3B10081ED14 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3561924F3B10081ED14 /* MapViewController.m */; };
 		2235B3591924F4920081ED14 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235B3581924F4920081ED14 /* MapKit.framework */; };
+		2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */; };
 		639620241922717100D8E31C /* ladMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620231922717100D8E31C /* ladMainViewController.m */; };
 		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
 		6396202A1923DD0F00D8E31C /* ladBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620291923DD0F00D8E31C /* ladBeacon.m */; };
@@ -78,6 +79,8 @@
 		2235B3551924F3B10081ED14 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		2235B3561924F3B10081ED14 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2235B3581924F4920081ED14 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2275F3DE1927A8F70067AA62 /* ladDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladDetailViewController.h; sourceTree = "<group>"; };
+		2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladDetailViewController.m; sourceTree = "<group>"; };
 		639620221922717100D8E31C /* ladMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladMainViewController.h; sourceTree = "<group>"; };
 		639620231922717100D8E31C /* ladMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladMainViewController.m; sourceTree = "<group>"; };
 		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				2235B3531924EF390081ED14 /* Location.m */,
 				2235B3551924F3B10081ED14 /* MapViewController.h */,
 				2235B3561924F3B10081ED14 /* MapViewController.m */,
+				2275F3DE1927A8F70067AA62 /* ladDetailViewController.h */,
+				2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */,
 			);
 			name = SightList;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				119EF6871912B28200A3DCCB /* ladModelController.m in Sources */,
 				2235B3571924F3B10081ED14 /* MapViewController.m in Sources */,
 				119EF6811912B28200A3DCCB /* ladRootViewController.m in Sources */,
+				2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */,
 				2235B3541924EF390081ED14 /* Location.m in Sources */,
 				119EF67E1912B28200A3DCCB /* ladAppDelegate.m in Sources */,
 				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,
