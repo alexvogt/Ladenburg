@@ -78,7 +78,7 @@
     
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
     
-    //Debugging Logging
+    //Debugging Log
     NSLog(@"Region %@ entered", _beaconRegion.identifier);
 }
 
