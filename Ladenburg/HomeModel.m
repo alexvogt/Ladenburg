@@ -20,7 +20,7 @@
 - (void)downloadItems
 {
     // Download the json file
-    NSURL *jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/service-lb.php"];
+    NSURL *jsonFileUrl = [NSURL URLWithString:@"http://ladenburg.timhartl.de/service-lb-th.php"];
     
     // Create the request
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
