@@ -12,5 +12,10 @@
 
 @interface ladBeaconTracker : UIViewController <CLLocationManagerDelegate>
 
+@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UILabel *beaconFoundLabel;
+
+// - (void) startTrackingBeacons;
 
 @end

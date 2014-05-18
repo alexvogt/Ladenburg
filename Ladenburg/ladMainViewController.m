@@ -37,7 +37,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _tutorialPageTitles = @[@"Tutorial Page 1", @"More Tutorial", @"And still more"];
+    _tutorialPageTitles = @[@"Tutorial Page 1",
+                            @"More Tutorial",
+                            @"And still more"];
+    _tutorialPageTexts = @[
+                          @"Um die App optimal zu nutzen muss Bluetooth angeschaltet sein - dafür musst du dann nichts weiter tun. Dein iPhone wird dich informieren, sobald du dich in die Nähe (ca. 50-70m) einer Sehenswürdigkeit begibst!",
+                          @"Wenn du einfach nur sehen willst, was Ladenburg so bietet, kannst du dir eine Liste oder Karte der Sehenswürdigkeiten anzeigen lassen und dich von deinem iPhone zu ihnen führen lassen",
+                          @"Text kommt später"];
    // _tutorialPageImages = @[@"xxx.png", @"xxx2.png", @"xxx3.png"];
     
     
@@ -67,8 +73,13 @@
     
     // Create a new view controller and pass suitable data.
     ladPageContentViewController * pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    
+    //set Content
     // pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.tutorialTitleText = self.tutorialPageTitles[index];
+    pageContentViewController.tutorialPageText = self.tutorialPageTexts[index];
+    
+    //set pageIndex
     pageContentViewController.pageIndex = index;
     
     return pageContentViewController;

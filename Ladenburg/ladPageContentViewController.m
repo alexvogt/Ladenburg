@@ -30,7 +30,10 @@
     
     // uncomment once image is implemented
     // self.backgroundImageView.image = [UIImage imageNamed:self.tutorialImageFile];
+    
     self.tutorialTitleLabel.text = self.tutorialTitleText;
+    
+    self.tutorialTextView.text = self.tutorialPageText;
     
 }
 

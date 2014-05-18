@@ -14,6 +14,8 @@
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
 @property (strong, nonatomic) NSArray *tutorialPageTitles;
+@property (strong, nonatomic) NSArray *tutorialPageTexts;
+
 // @property (strong, nonatomic) NSArray *tutorialPageImages;
 
 

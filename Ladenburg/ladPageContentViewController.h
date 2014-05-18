@@ -11,10 +11,14 @@
 @interface ladPageContentViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *tutorialTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *tutorialTextView;
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property NSUInteger pageIndex;
+
 @property NSString *tutorialTitleText;
+@property NSString *tutorialPageText;
+
 
 // later on implement background image
 // add outlet for image and uncomment the following
