@@ -58,6 +58,7 @@
     
     self.detailImageView.image = _selectedSightImage;
     self.detailTextView.text = _selectedLocation.text;
+    self.detailSightNameLabel.text = _selectedLocation.name;
 }
 
 - (void)didReceiveMemoryWarning

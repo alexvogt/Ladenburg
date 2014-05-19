@@ -14,6 +14,7 @@
 @property (strong, nonatomic) Location *selectedLocation;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
+@property (weak, nonatomic) IBOutlet UILabel *detailSightNameLabel;
 
 
 @end
