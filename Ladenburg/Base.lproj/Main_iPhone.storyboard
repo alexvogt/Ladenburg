@@ -207,7 +207,7 @@
                     <tabBarItem key="tabBarItem" title="Home" id="t2Q-Bf-930"/>
                     <connections>
                         <outlet property="beaconFoundLabel" destination="ssB-9X-hHW" id="VhN-Sd-thH"/>
-                        <segue destination="buz-qi-qqg" kind="push" identifier="alertToDetail" id="gf3-CB-dIq"/>
+                        <segue destination="buz-qi-qqg" kind="modal" identifier="alertToDetail" id="gf3-CB-dIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAp-hW-dpW" userLabel="First Responder" sceneMemberID="firstResponder"/>

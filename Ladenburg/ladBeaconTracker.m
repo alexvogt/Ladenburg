@@ -7,7 +7,9 @@
 //
 
 // TEST UUID 1 : A5456D78-C85B-44C6-9F20-8268FD25EF8A
-// TEST MINOR: 156 - BISCHOFSHOF
+// TEST MINORS: 156 - BISCHOFSHOF ( "Cocktail Mint" )
+//              97 - BURGUS ("Icy Marshmallow")
+//              163 - CARL-BENZ-HAUS ("Blueberry Pie")
 
 #import "ladBeaconTracker.h"
 #import "ladDetailViewController.h"
@@ -18,7 +20,8 @@
 //Properties
 @property (nonatomic, strong) NSUUID *uuid;
 @property (nonatomic) NSInteger *countRangedBeacon;
-@property (nonatomic, strong)Location *selectedLocation;
+@property (nonatomic) HomeModel *homeModel;
+
 
 //Utility-Methods
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
@@ -48,17 +51,43 @@
     
     //[self initRegion];
     
+    
+    
+    // Create dictionary object and assign it to _sightsDict variable
+    _sightsDict = [[NSMutableDictionary alloc] init];
+    
+    // Create new HomeModel object and assign it to _homeModel variable
+    _homeModel = [[HomeModel alloc] init];
+    
+    // Set this view controller object as the delegate for the home model object
+    _homeModel.delegate = self;
+    
+    // Call the download items method of the home model object
+    [_homeModel downloadItems];
+    
     [self startTrackingBeacons];
 
+    
+}
+
+-(void)itemsDownloaded:(NSArray *)items
+{
+    // This delegate method will get called when the items are finished downloading
+    for (Location* currentLocation in items)
+    {
+        [_sightsDict setObject:currentLocation forKey:currentLocation.identifier];
+        NSLog(@"Current Location: %@", currentLocation);
+        NSLog(@"Current Location.identifier: %@", currentLocation.identifier);
+    }
     
 }
 
 - (void) startTrackingBeacons{
     //Init different regions --> change UUID in accordance with Beacons
     
-    [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
+    [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
     
-    [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Stadt"];
+    [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
     
     //Debugging Log
     NSLog(@"Finished call to startTrackingBeacons");
@@ -102,6 +131,7 @@
         case CLRegionStateInside:
             NSLog(@"Inside");
             self.beaconFoundLabel.text =@"Yes";
+            
             break;
         case CLRegionStateOutside:
             NSLog(@"Outside");
@@ -121,12 +151,17 @@
     
     self.beaconFoundLabel.text =@"Yes";
     
-    NSNumber *beaconMajor = beacon.major;
-    NSNumber *beaconMinor = beacon.major;
+    NSNumber *beaconMinor = beacon.minor;
+    NSString *beaconMinorString = [beaconMinor stringValue];
+    
+    //NSNumber *beaconMinor = beacon.minor;
     
     //Figure out which beacon you found
-    
     NSLog(@"Ranged Beacon %@", beacon);
+    NSLog(@"Ranged Beacon has Major: %@", beaconMinorString );
+    
+    _selectedSight=[_sightsDict objectForKey:beaconMinorString];
+    NSLog(@"Selected Sight ist %@", _selectedSight.name);
     
     //Implement code for notification and opening DetailView here
     
@@ -135,8 +170,9 @@
     if (!_countRangedBeacon) {
         
         //NSString *rangedBeaconSightName = @"Implement Name here";
+        NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight];
         
-        UIAlertView *rangedBeaconNotification = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:@"You're close to a beacon, do you want to see further information to this Sight?"
+        UIAlertView *rangedBeaconNotification = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:message
             delegate:self
             cancelButtonTitle:@"No"
             otherButtonTitles:@"Yes",
@@ -145,12 +181,7 @@
     
     }
     _countRangedBeacon ++;
-    
-    
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -168,7 +199,7 @@
     }
 }
 
-/*
+
 #pragma mark Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -181,9 +212,9 @@
     // toDo: SET UP _SELECTEDLOCATION
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
-    ladVC.selectedLocation = _selectedLocation;
+    ladVC.selectedLocation = _selectedSight;
 }
-*/
+
 
 
 /*
