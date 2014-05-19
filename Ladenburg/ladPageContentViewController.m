@@ -28,8 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // uncomment once image is implemented
-    // self.backgroundImageView.image = [UIImage imageNamed:self.tutorialImageFile];
+
+    self.tutorialImageView.image = [UIImage imageNamed:self.tutorialImageFile];
     
     self.tutorialTitleLabel.text = self.tutorialTitleText;
     

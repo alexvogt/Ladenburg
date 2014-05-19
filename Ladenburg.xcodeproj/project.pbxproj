@@ -155,6 +155,8 @@
 		119EF6731912B28200A3DCCB /* Ladenburg */ = {
 			isa = PBXGroup;
 			children = (
+				2275F3DE1927A8F70067AA62 /* ladDetailViewController.h */,
+				2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */,
 				119EF67C1912B28200A3DCCB /* ladAppDelegate.h */,
 				119EF67D1912B28200A3DCCB /* ladAppDelegate.m */,
 				119EF6881912B28200A3DCCB /* Main_iPhone.storyboard */,
@@ -209,8 +211,6 @@
 				2235B3531924EF390081ED14 /* Location.m */,
 				2235B3551924F3B10081ED14 /* MapViewController.h */,
 				2235B3561924F3B10081ED14 /* MapViewController.m */,
-				2275F3DE1927A8F70067AA62 /* ladDetailViewController.h */,
-				2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */,
 			);
 			name = SightList;
 			sourceTree = "<group>";

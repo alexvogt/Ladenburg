@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSArray *tutorialPageTitles;
 @property (strong, nonatomic) NSArray *tutorialPageTexts;
 
-// @property (strong, nonatomic) NSArray *tutorialPageImages;
+@property (strong, nonatomic) NSArray *tutorialPageImages;
 
 
 @end

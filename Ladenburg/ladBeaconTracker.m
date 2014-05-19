@@ -22,6 +22,7 @@
 @property (nonatomic) NSInteger *countRangedBeacon;
 @property (nonatomic) HomeModel *homeModel;
 @property (nonatomic, strong)CLBeacon *beacon;
+@property (nonatomic, strong)CLBeacon *nearestBeacon;
 
 
 //Utility-Methods
@@ -53,8 +54,6 @@
     self.locationManager.delegate = self;
     
     //[self initRegion];
-    
-    
     
     // Create dictionary object and assign it to _sightsDict variable
     _sightsDict = [[NSMutableDictionary alloc] init];
@@ -135,7 +134,7 @@
 
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-    //[self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
     NSLog(@"Region %@ exit", _beaconRegion.identifier);
 }
 
@@ -160,15 +159,22 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
     _beacon = [[CLBeacon alloc] init];
-    _beacon= [beacons lastObject];
-    [self identifyDetectedBeacon:_beacon];
+    _nearestBeacon = [[CLBeacon alloc]init];
     
+    beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
+    _nearestBeacon = [beacons firstObject];
+    
+    //_beacon= [beacons lastObject];
+    //[self identifyDetectedBeacon:_beacon];
+
+    [self identifyDetectedBeacon:_nearestBeacon];
 }
 
 - (void)identifyDetectedBeacon:beacon{
     self.beaconFoundLabel.text =@"Yes";
     
-    NSNumber *beaconMinor = _beacon.minor;
+    //NSNumber *beaconMinor = _beacon.minor;
+    NSNumber *beaconMinor = _nearestBeacon.minor;
     NSString *beaconMinorString = [beaconMinor stringValue];
     
     //NSNumber *beaconMinor = beacon.minor;
@@ -183,11 +189,16 @@
     //Implement code for notification and opening DetailView here
     
     NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
-    
+    /*
     if (_beacon.minor != NULL) {
+        [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+        [self sendNotification];
+    }; */
+    
+    if (_nearestBeacon.minor != NULL) {
+        [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
         [self sendNotification];
     };
-    
 }
 
 - (void)sendNotification {
@@ -195,7 +206,7 @@
     if (!_countRangedBeacon) {
         
         //NSString *rangedBeaconSightName = @"Implement Name here";
-        NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight];
+        NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight.name];
         
         UIAlertView *rangedBeaconNotification = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:message
                                                                           delegate:self
@@ -203,7 +214,6 @@
                                                                  otherButtonTitles:@"Yes",
                                                  nil];
         [rangedBeaconNotification show];
-        
     }
     _countRangedBeacon ++;
 }
@@ -220,7 +230,6 @@
 {
     if (buttonIndex != alertView.cancelButtonIndex)
     {
-        
         [self performSegueWithIdentifier:@"alertToDetail" sender:self];
     }
 }
@@ -233,14 +242,8 @@
     // Get reference to the destination view controller
     ladDetailViewController *ladVC = segue.destinationViewController;
     
-    
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // toDo: SET UP _SELECTEDLOCATION
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
     ladVC.selectedLocation = _selectedSight;
 }
-
 
 
 /*

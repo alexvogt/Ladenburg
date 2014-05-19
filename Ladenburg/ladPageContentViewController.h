@@ -19,9 +19,7 @@
 @property NSString *tutorialTitleText;
 @property NSString *tutorialPageText;
 
-
-// later on implement background image
-// add outlet for image and uncomment the following
-// @property NSString *tutorialImageFile;
+@property (weak, nonatomic) IBOutlet UIImageView *tutorialImageView;
+@property NSString *tutorialImageFile;
 
 @end
