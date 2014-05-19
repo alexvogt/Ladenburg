@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Location.h"
+#import "Sight.h"
 
 @interface ladDetailViewController : UIViewController
 
-@property (strong, nonatomic) Location *selectedLocation;
+@property (strong, nonatomic) Sight *selectedSight;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailSightNameLabel;

@@ -42,7 +42,7 @@
     //Debugging Log
     NSLog(@"%@",_baseURL);
 
-    _originalImageURL = _selectedLocation.imageUrl;
+    _originalImageURL = _selectedSight.imageUrl;
     _shortenedImageURL = [_originalImageURL substringFromIndex:2];
     
     _fullURL = [_baseURL stringByAppendingString:_shortenedImageURL];
@@ -57,8 +57,8 @@
     
     
     self.detailImageView.image = _selectedSightImage;
-    self.detailTextView.text = _selectedLocation.text;
-    self.detailSightNameLabel.text = _selectedLocation.name;
+    self.detailTextView.text = _selectedSight.text;
+    self.detailSightNameLabel.text = _selectedSight.name;
 }
 
 - (void)didReceiveMemoryWarning

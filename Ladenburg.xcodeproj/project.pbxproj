@@ -26,7 +26,7 @@
 		119EF6A21912B28200A3DCCB /* LadenburgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 119EF6A11912B28200A3DCCB /* LadenburgTests.m */; };
 		2235B34D1924EE530081ED14 /* ladSightListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B34C1924EE530081ED14 /* ladSightListView.m */; };
 		2235B3501924EEFF0081ED14 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B34F1924EEFF0081ED14 /* HomeModel.m */; };
-		2235B3541924EF390081ED14 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3531924EF390081ED14 /* Location.m */; };
+		2235B3541924EF390081ED14 /* Sight.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3531924EF390081ED14 /* Sight.m */; };
 		2235B3571924F3B10081ED14 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3561924F3B10081ED14 /* MapViewController.m */; };
 		2235B3591924F4920081ED14 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235B3581924F4920081ED14 /* MapKit.framework */; };
 		2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */; };
@@ -76,8 +76,8 @@
 		2235B34C1924EE530081ED14 /* ladSightListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladSightListView.m; sourceTree = "<group>"; };
 		2235B34E1924EEFF0081ED14 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		2235B34F1924EEFF0081ED14 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
-		2235B3521924EF390081ED14 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
-		2235B3531924EF390081ED14 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		2235B3521924EF390081ED14 /* Sight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sight.h; sourceTree = "<group>"; };
+		2235B3531924EF390081ED14 /* Sight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sight.m; sourceTree = "<group>"; };
 		2235B3551924F3B10081ED14 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		2235B3561924F3B10081ED14 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2235B3581924F4920081ED14 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -207,8 +207,8 @@
 				2235B34C1924EE530081ED14 /* ladSightListView.m */,
 				2235B34E1924EEFF0081ED14 /* HomeModel.h */,
 				2235B34F1924EEFF0081ED14 /* HomeModel.m */,
-				2235B3521924EF390081ED14 /* Location.h */,
-				2235B3531924EF390081ED14 /* Location.m */,
+				2235B3521924EF390081ED14 /* Sight.h */,
+				2235B3531924EF390081ED14 /* Sight.m */,
 				2235B3551924F3B10081ED14 /* MapViewController.h */,
 				2235B3561924F3B10081ED14 /* MapViewController.m */,
 			);
@@ -357,7 +357,7 @@
 				2235B3571924F3B10081ED14 /* MapViewController.m in Sources */,
 				119EF6811912B28200A3DCCB /* ladRootViewController.m in Sources */,
 				2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */,
-				2235B3541924EF390081ED14 /* Location.m in Sources */,
+				2235B3541924EF390081ED14 /* Sight.m in Sources */,
 				119EF67E1912B28200A3DCCB /* ladAppDelegate.m in Sources */,
 				6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */,
 				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,

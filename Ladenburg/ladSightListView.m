@@ -7,7 +7,7 @@
 //
 
 #import "ladSightListView.h"
-#import "Location.h"
+#import "Sight.h"
 #import "MapViewController.h"
 #import "ladDetailViewController.h"
 
@@ -15,7 +15,7 @@
 {
     HomeModel *_homeModel;
     NSArray *_feedItems;
-    Location *_selectedLocation;
+    Sight *_selectedSight;
 
 }
 
@@ -85,8 +85,8 @@
     NSString *cellIdentifier = @"SightCell";
     UITableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    // Get the location to be shown
-    Location *item = _feedItems[indexPath.row];
+    // Get the sight to be shown
+    Sight *item = _feedItems[indexPath.row];
     
     // Get references to labels of cell
     myCell.textLabel.text = [item.name stringByAppendingString:item.identifier];
@@ -96,8 +96,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Set selected location to var
-    _selectedLocation = _feedItems[indexPath.row];
+    // Set selected sight to var
+    _selectedSight = _feedItems[indexPath.row];
     
     // Manually call segue to detail view controller
     [self performSegueWithIdentifier:@"detailSegue" sender:self];
@@ -110,9 +110,9 @@
     // Get reference to the destination view controller
     ladDetailViewController *ladVC = segue.destinationViewController;
     
-    // Set the property to the selected location so when the view for
+    // Set the property to the selected sight so when the view for
     // detail view controller loads, it can access that property to get the feeditem obj
-    ladVC.selectedLocation = _selectedLocation;
+    ladVC.selectedSight = _selectedSight;
 }
 
 /*

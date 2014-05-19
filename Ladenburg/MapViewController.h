@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "Location.h"
+#import "Sight.h"
 
 @interface MapViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-@property (strong, nonatomic) Location *selectedLocation;
+@property (strong, nonatomic) Sight *selectedSight;
 
 
 @end

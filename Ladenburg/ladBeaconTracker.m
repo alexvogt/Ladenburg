@@ -13,7 +13,7 @@
 
 #import "ladBeaconTracker.h"
 #import "ladDetailViewController.h"
-#import "Location.h"
+#import "Sight.h"
 
 @interface ladBeaconTracker ()
 
@@ -75,11 +75,11 @@
 -(void)itemsDownloaded:(NSArray *)items
 {
     // This delegate method will get called when the items are finished downloading
-    for (Location* currentLocation in items)
+    for (Sight* currentSight in items)
     {
-        [_sightsDict setObject:currentLocation forKey:currentLocation.identifier];
-        NSLog(@"Current Location: %@", currentLocation);
-        NSLog(@"Current Location.identifier: %@", currentLocation.identifier);
+        [_sightsDict setObject:currentSight forKey:currentSight.identifier];
+        NSLog(@"Current Sight: %@", currentSight);
+        NSLog(@"Current Sight.identifier: %@", currentSight.identifier);
     }
     
 }
@@ -242,7 +242,7 @@
     // Get reference to the destination view controller
     ladDetailViewController *ladVC = segue.destinationViewController;
     
-    ladVC.selectedLocation = _selectedSight;
+    ladVC.selectedSight = _selectedSight;
 }
 
 

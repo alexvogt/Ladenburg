@@ -7,7 +7,7 @@
 //
 
 #import "HomeModel.h"
-#import "Location.h"
+#import "Sight.h"
 
 @interface HomeModel()
 {
@@ -45,8 +45,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    // Create an array to store the locations
-    NSMutableArray *_locations = [[NSMutableArray alloc] init];
+    // Create an array to store the sights
+    NSMutableArray *_sights = [[NSMutableArray alloc] init];
     
     // Parse the JSON that came in
     NSError *error;
@@ -57,25 +57,25 @@
     {
         NSDictionary *jsonElement = jsonArray[i];
         
-        // Create a new location object and set its props to JsonElement properties
-        Location *newLocation = [[Location alloc] init];
-        newLocation.identifier = jsonElement[@"ID"];
-        newLocation.name = jsonElement[@"Name"];
-        newLocation.address = jsonElement[@"Address"];
-        newLocation.latitude = jsonElement[@"LOC_LATITUDE"];
-        newLocation.longitude = jsonElement[@"LOC_LONGITUDE"];
-        newLocation.text = jsonElement[@"Kurzbeschreibung"];
-        newLocation.imageUrl = jsonElement[@"bild_url"];
+        // Create a new sight object and set its props to JsonElement properties
+        Sight *newSight = [[Sight alloc] init];
+        newSight.identifier = jsonElement[@"ID"];
+        newSight.name = jsonElement[@"Name"];
+        newSight.address = jsonElement[@"Address"];
+        newSight.latitude = jsonElement[@"LOC_LATITUDE"];
+        newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
+        newSight.text = jsonElement[@"Kurzbeschreibung"];
+        newSight.imageUrl = jsonElement[@"bild_url"];
         
         
-        // Add this question to the locations array
-        [_locations addObject:newLocation];
+        // Add this question to the sights array
+        [_sights addObject:newSight];
     }
     
     // Ready to notify delegate that data is ready and pass back items
     if (self.delegate)
     {
-        [self.delegate itemsDownloaded:_locations];
+        [self.delegate itemsDownloaded:_sights];
     }
 }
 
