@@ -7,13 +7,18 @@
 //
 
 // TEST UUID 1 : A5456D78-C85B-44C6-9F20-8268FD25EF8A
+// TEST MINOR: 156 - BISCHOFSHOF
 
 #import "ladBeaconTracker.h"
+#import "ladDetailViewController.h"
+#import "Location.h"
 
 @interface ladBeaconTracker ()
 
 //Properties
-@property NSUUID *uuid;
+@property (nonatomic, strong) NSUUID *uuid;
+@property (nonatomic) NSInteger *countRangedBeacon;
+@property (nonatomic, strong)Location *selectedLocation;
 
 //Utility-Methods
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
@@ -80,7 +85,11 @@
     
     //Debugging Log
     NSLog(@"Region %@ entered", _beaconRegion.identifier);
+    
+    _countRangedBeacon = 0;
+    NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     //[self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
@@ -112,8 +121,35 @@
     
     self.beaconFoundLabel.text =@"Yes";
     
+    NSNumber *beaconMajor = beacon.major;
+    NSNumber *beaconMinor = beacon.major;
+    
+    //Figure out which beacon you found
+    
     NSLog(@"Ranged Beacon %@", beacon);
+    
+    //Implement code for notification and opening DetailView here
+    
+    NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
+    
+    if (!_countRangedBeacon) {
+        
+        //NSString *rangedBeaconSightName = @"Implement Name here";
+        
+        UIAlertView *rangedBeaconNotification = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:@"You're close to a beacon, do you want to see further information to this Sight?"
+            delegate:self
+            cancelButtonTitle:@"No"
+            otherButtonTitles:@"Yes",
+            nil];
+        [rangedBeaconNotification show];
+    
+    }
+    _countRangedBeacon ++;
+    
+    
 }
+
+
 
 
 - (void)didReceiveMemoryWarning
@@ -121,6 +157,34 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark AlertView Delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        
+        [self performSegueWithIdentifier:@"alertToDetail" sender:self];
+    }
+}
+
+/*
+#pragma mark Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get reference to the destination view controller
+    ladDetailViewController *ladVC = segue.destinationViewController;
+    
+    
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // toDo: SET UP _SELECTEDLOCATION
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    ladVC.selectedLocation = _selectedLocation;
+}
+*/
+
 
 /*
 #pragma mark - Navigation

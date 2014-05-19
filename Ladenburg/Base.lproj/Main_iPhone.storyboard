@@ -207,6 +207,7 @@
                     <tabBarItem key="tabBarItem" title="Home" id="t2Q-Bf-930"/>
                     <connections>
                         <outlet property="beaconFoundLabel" destination="ssB-9X-hHW" id="VhN-Sd-thH"/>
+                        <segue destination="buz-qi-qqg" kind="push" identifier="alertToDetail" id="gf3-CB-dIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAp-hW-dpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,7 +304,7 @@
         <scene sceneID="vQP-Ti-RKw">
             <objects>
                 <navigationController title="Sights" automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="6I9-Z7-eKa"/>
+                    <tabBarItem key="tabBarItem" title="Sights" id="6I9-Z7-eKa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="990-9m-Wfn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -328,4 +329,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="gf3-CB-dIq"/>
+    </inferredMetricsTieBreakers>
 </document>

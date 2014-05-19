@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ladBeaconTracker : UIViewController <CLLocationManagerDelegate>
+@interface ladBeaconTracker : UIViewController <CLLocationManagerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 @property (strong, nonatomic) CLLocationManager *locationManager;
