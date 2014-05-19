@@ -21,10 +21,13 @@
 @property (nonatomic, strong) NSUUID *uuid;
 @property (nonatomic) NSInteger *countRangedBeacon;
 @property (nonatomic) HomeModel *homeModel;
+@property (nonatomic, strong)CLBeacon *beacon;
 
 
 //Utility-Methods
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
+- (void) identifyDetectedBeacon: (CLBeacon *)beacon;
+- (void) sendNotification;
 
 @end
 
@@ -99,13 +102,23 @@
     
     
     self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:_uuid identifier:identifier];
-    [self.locationManager startMonitoringForRegion:self.beaconRegion];
     
-    //Debugging Log
-    NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
+    // Check if beacon monitoring is available for this device
+    
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
+    }
+    
+    else {
+        [self.locationManager startMonitoringForRegion:self.beaconRegion];
+        [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+        //Debugging Log
+        NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
+    }
 }
 
-
+/*
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
@@ -118,6 +131,7 @@
     _countRangedBeacon = 0;
     NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
 }
+ */
 
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
@@ -131,7 +145,6 @@
         case CLRegionStateInside:
             NSLog(@"Inside");
             self.beaconFoundLabel.text =@"Yes";
-            
             break;
         case CLRegionStateOutside:
             NSLog(@"Outside");
@@ -146,19 +159,23 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
-    CLBeacon *beacon = [[CLBeacon alloc] init];
-    beacon= [beacons lastObject];
+    _beacon = [[CLBeacon alloc] init];
+    _beacon= [beacons lastObject];
+    [self identifyDetectedBeacon:_beacon];
     
+}
+
+- (void)identifyDetectedBeacon:beacon{
     self.beaconFoundLabel.text =@"Yes";
     
-    NSNumber *beaconMinor = beacon.minor;
+    NSNumber *beaconMinor = _beacon.minor;
     NSString *beaconMinorString = [beaconMinor stringValue];
     
     //NSNumber *beaconMinor = beacon.minor;
     
     //Figure out which beacon you found
     NSLog(@"Ranged Beacon %@", beacon);
-    NSLog(@"Ranged Beacon has Major: %@", beaconMinorString );
+    NSLog(@"Ranged Beacon has Minor: %@", beaconMinorString );
     
     _selectedSight=[_sightsDict objectForKey:beaconMinorString];
     NSLog(@"Selected Sight ist %@", _selectedSight.name);
@@ -166,6 +183,10 @@
     //Implement code for notification and opening DetailView here
     
     NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
+    [self sendNotification];
+}
+
+- (void)sendNotification {
     
     if (!_countRangedBeacon) {
         
@@ -173,15 +194,16 @@
         NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight];
         
         UIAlertView *rangedBeaconNotification = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:message
-            delegate:self
-            cancelButtonTitle:@"No"
-            otherButtonTitles:@"Yes",
-            nil];
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"No"
+                                                                 otherButtonTitles:@"Yes",
+                                                 nil];
         [rangedBeaconNotification show];
-    
+        
     }
     _countRangedBeacon ++;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
