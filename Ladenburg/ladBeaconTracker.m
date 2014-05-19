@@ -183,7 +183,11 @@
     //Implement code for notification and opening DetailView here
     
     NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
-    [self sendNotification];
+    
+    if (_beacon.minor != NULL) {
+        [self sendNotification];
+    };
+    
 }
 
 - (void)sendNotification {
