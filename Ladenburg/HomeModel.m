@@ -64,7 +64,10 @@
         newSight.address = jsonElement[@"Address"];
         newSight.latitude = jsonElement[@"LOC_LATITUDE"];
         newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
-        newSight.text = jsonElement[@"Kurzbeschreibung"];
+        newSight.kurzbeschreibung = jsonElement[@"Kurzbeschreibung"];
+        newSight.geschichte = jsonElement[@"Geschichte"];
+        newSight.besonderheiten = jsonElement[@"Besonderheiten"];
+        newSight.sonstiges = jsonElement[@"Oeffnungszeiten"];
         newSight.imageUrl = jsonElement[@"bild_url"];
         
         

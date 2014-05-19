@@ -57,7 +57,7 @@
     
     
     self.detailImageView.image = _selectedSightImage;
-    self.detailTextView.text = _selectedSight.text;
+    self.detailTextView.text = _selectedSight.kurzbeschreibung;
     self.detailSightNameLabel.text = _selectedSight.name;
 }
 
