@@ -1,4 +1,4 @@
-App Ensemble Ladenburg
+App "Ensemble Ladenburg"
 =========
-Projekt des Kurses Digitale Medien - WMPG11  
-Betreuende Dozenten: Prof. Dr. Jürgen Redelius, Prof. Peter Mayr
+A project of course WMPG11 - Digital Media at DHBW Mannheim (Cooperative State University Baden-Württemberg Mannheim)
+Supervising professors: Prof. Dr. Jürgen Redelius, Prof. Peter Mayr
