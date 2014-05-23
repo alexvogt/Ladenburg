@@ -217,17 +217,32 @@
     
     if (!_countRangedBeacon) {
         
-        //NSString *rangedBeaconSightName = @"Implement Name here";
+        //Send Alert
         NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight.name];
         
-        UIAlertView *rangedBeaconNotification = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:message
+        UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:message
                                                                           delegate:self
                                                                  cancelButtonTitle:@"No"
                                                                  otherButtonTitles:@"Yes",
                                                  nil];
-        [rangedBeaconNotification show];
+        [rangedBeaconAlert show];
+      
+        //Send Notification
+        UILocalNotification *rangedBeaconNotification = [[UILocalNotification alloc] init];
+        rangedBeaconNotification.alertAction = @"View";
+        rangedBeaconNotification.alertBody = message;
+        rangedBeaconNotification.fireDate = nil;
+        rangedBeaconNotification.applicationIconBadgeNumber ++;
+        [[UIApplication sharedApplication] scheduleLocalNotification:rangedBeaconNotification];
+        
     }
     _countRangedBeacon ++;
+}
+
+//Make sure notifications are only shown when App is running in the background
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    
 }
 
 
