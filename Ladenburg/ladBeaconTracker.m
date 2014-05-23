@@ -45,6 +45,11 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];   //it hides
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,8 +83,6 @@
     for (Sight* currentSight in items)
     {
         [_sightsDict setObject:currentSight forKey:currentSight.identifier];
-        NSLog(@"Current Sight: %@", currentSight);
-        NSLog(@"Current Sight.identifier: %@", currentSight.identifier);
     }
     
 }
@@ -166,8 +169,12 @@
     
     //_beacon= [beacons lastObject];
     //[self identifyDetectedBeacon:_beacon];
-
+    
+    // Figure out which beacon you found
     [self identifyDetectedBeacon:_nearestBeacon];
+    
+    //Stop ranging for now so you don't use to many notifications
+    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
 - (void)identifyDetectedBeacon:beacon{
@@ -180,25 +187,30 @@
     //NSNumber *beaconMinor = beacon.minor;
     
     //Figure out which beacon you found
-    NSLog(@"Ranged Beacon %@", beacon);
-    NSLog(@"Ranged Beacon has Minor: %@", beaconMinorString );
+    NSLog(@"Ranged Beacon Minor: %@", beaconMinorString );
     
-    _selectedSight=[_sightsDict objectForKey:beaconMinorString];
-    NSLog(@"Selected Sight ist %@", _selectedSight.name);
+    if ([_sightsDict objectForKey:beaconMinorString]) {
+        
+        //There is an Object stored for this id, set currentSight to this Object
+        _selectedSight=[_sightsDict objectForKey:beaconMinorString];
+        NSLog(@"Selected Sight ist %@", _selectedSight.name);
+        
+        // Send Notification
+        [self sendNotification];
+        
+    } else {
+        NSLog(@"No object set for key @\"b\"");
+    }
     
-    //Implement code for notification and opening DetailView here
+    //_selectedSight=[_sightsDict objectForKey:beaconMinorString];
+    //NSLog(@"Selected Sight ist %@", _selectedSight.name);
     
-    NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
-    /*
-    if (_beacon.minor != NULL) {
+    // TO DO: NCHT DER MINOR IST 0 SONDERN DER DICTIONARY-EINTRAG
+    // IF-ANFRAGE VERSCHIEBEN NACH OBEN ZU SELECTED SIGHT
+    /* if (_nearestBeacon.minor != NULL) {
         [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
         [self sendNotification];
     }; */
-    
-    if (_nearestBeacon.minor != NULL) {
-        [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
-        [self sendNotification];
-    };
 }
 
 - (void)sendNotification {
@@ -241,6 +253,7 @@
 {
     // Get reference to the destination view controller
     ladDetailViewController *ladVC = segue.destinationViewController;
+    
     
     ladVC.selectedSight = _selectedSight;
 }

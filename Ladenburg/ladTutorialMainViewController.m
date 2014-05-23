@@ -1,21 +1,20 @@
 //
-//  ladMainViewController.m
+//  ladTutorialMainViewController.m
 //  Ladenburg
 //
-//  Created by Sonja on 13.05.14.
+//  Created by Sonja on 23.05.14.
 //  Copyright (c) 2014 DHBW Mannheim. All rights reserved.
 //
-//
 
-#import "ladMainViewController.h"
+#import "ladTutorialMainViewController.h"
 #import "ladBeaconTracker.h"
 #import "ladPageContentViewController.h"
 
-@interface ladMainViewController ()
+@interface ladTutorialMainViewController ()
 
 @end
 
-@implementation ladMainViewController
+@implementation ladTutorialMainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,10 +40,10 @@
                             @"More Tutorial",
                             @"And still more"];
     _tutorialPageTexts = @[
-                          @"Um die App optimal zu nutzen muss Bluetooth angeschaltet sein - dafür musst du dann nichts weiter tun. Dein iPhone wird dich informieren, sobald du dich in die Nähe (ca. 50-70m) einer Sehenswürdigkeit begibst!",
-                          @"Wenn du einfach nur sehen willst, was Ladenburg so bietet, kannst du dir eine Liste oder Karte der Sehenswürdigkeiten anzeigen lassen und dich von deinem iPhone zu ihnen führen lassen",
-                          @"Text kommt später"];
-   _tutorialPageImages = @[@"bluetooth-icon.png", @"bluetooth-icon.png", @"bluetooth-icon.png"];
+                           @"Um die App optimal zu nutzen muss Bluetooth angeschaltet sein - dafür musst du dann nichts weiter tun. Dein iPhone wird dich informieren, sobald du dich in die Nähe (ca. 50-70m) einer Sehenswürdigkeit begibst!",
+                           @"Wenn du einfach nur sehen willst, was Ladenburg so bietet, kannst du dir eine Liste oder Karte der Sehenswürdigkeiten anzeigen lassen und dich von deinem iPhone zu ihnen führen lassen",
+                           @"Text kommt später"];
+    _tutorialPageImages = @[@"bluetooth-icon.png", @"bluetooth-icon.png", @"bluetooth-icon.png"];
     
     
     // Create page view controller
@@ -62,6 +61,11 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
+    
+    // AM BESTEN HIER DATEN LADEN LASSEN - IM HINTERGRUND
+    // WENN IM ARRAY BEREITS WAS STEHT NUR DIE GEÄNDERTEN DATEN ZIEHEN
+    
+    // WENN ARRAY LEER UND KEIN INTERET HINWEIS
     
 }
 
@@ -131,14 +135,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

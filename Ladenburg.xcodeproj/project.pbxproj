@@ -30,7 +30,7 @@
 		2235B3571924F3B10081ED14 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3561924F3B10081ED14 /* MapViewController.m */; };
 		2235B3591924F4920081ED14 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235B3581924F4920081ED14 /* MapKit.framework */; };
 		2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */; };
-		639620241922717100D8E31C /* ladMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620231922717100D8E31C /* ladMainViewController.m */; };
+		63014EAA192FB09D0008C4D1 /* ladTutorialMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */; };
 		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
 		6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6396202E1924C22D00D8E31C /* ladPageContentViewController.m */; };
 		639620321924D64C00D8E31C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 639620311924D64C00D8E31C /* Settings.bundle */; };
@@ -83,8 +83,8 @@
 		2235B3581924F4920081ED14 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2275F3DE1927A8F70067AA62 /* ladDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladDetailViewController.h; sourceTree = "<group>"; };
 		2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladDetailViewController.m; sourceTree = "<group>"; };
-		639620221922717100D8E31C /* ladMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladMainViewController.h; sourceTree = "<group>"; };
-		639620231922717100D8E31C /* ladMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladMainViewController.m; sourceTree = "<group>"; };
+		63014EA8192FB09D0008C4D1 /* ladTutorialMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladTutorialMainViewController.h; sourceTree = "<group>"; };
+		63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladTutorialMainViewController.m; sourceTree = "<group>"; };
 		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
 		639620261922C40C00D8E31C /* ladBeaconTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladBeaconTracker.m; sourceTree = "<group>"; };
 		6396202D1924C22D00D8E31C /* ladPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladPageContentViewController.h; sourceTree = "<group>"; };
@@ -240,8 +240,8 @@
 		639620301924C23100D8E31C /* Tutorial Functionality */ = {
 			isa = PBXGroup;
 			children = (
-				639620221922717100D8E31C /* ladMainViewController.h */,
-				639620231922717100D8E31C /* ladMainViewController.m */,
+				63014EA8192FB09D0008C4D1 /* ladTutorialMainViewController.h */,
+				63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */,
 				6396202D1924C22D00D8E31C /* ladPageContentViewController.h */,
 				6396202E1924C22D00D8E31C /* ladPageContentViewController.m */,
 			);
@@ -363,7 +363,7 @@
 				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,
 				119EF67A1912B28200A3DCCB /* main.m in Sources */,
 				2235B34D1924EE530081ED14 /* ladSightListView.m in Sources */,
-				639620241922717100D8E31C /* ladMainViewController.m in Sources */,
+				63014EAA192FB09D0008C4D1 /* ladTutorialMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

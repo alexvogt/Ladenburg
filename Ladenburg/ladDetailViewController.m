@@ -18,8 +18,6 @@
 @property NSURL *url;
 @property UIImage *selectedSightImage;
 
-
-
 @end
 
 @implementation ladDetailViewController
@@ -31,6 +29,11 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidLoad

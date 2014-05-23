@@ -16,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailSightNameLabel;
 
+//Property to check wheter to add back button manually
+@property NSString *recentSegue;
+
 
 @end
