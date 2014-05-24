@@ -12,6 +12,10 @@
 @interface HomeModel()
 {
     NSMutableData *_downloadedData;
+    NSString *baseURL;
+    NSString *shortenedImageURL;
+    NSString *fullURL;
+    NSURL *url;
 }
 @end
 
@@ -70,6 +74,13 @@
         newSight.sonstiges = jsonElement[@"Oeffnungszeiten"];
         newSight.imageUrl = jsonElement[@"bild_url"];
         
+        //set image property of newSight to image
+        baseURL = @"http://ladenburg.timhartl.de";
+        shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
+        fullURL = [baseURL stringByAppendingString:shortenedImageURL];
+        url = [NSURL URLWithString:fullURL];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        newSight.image = [[UIImage alloc] initWithData:data];
         
         // Add this question to the sights array
         [_sights addObject:newSight];

@@ -23,6 +23,7 @@
 @property (nonatomic) HomeModel *homeModel;
 @property (nonatomic, strong)CLBeacon *beacon;
 @property (nonatomic, strong)CLBeacon *nearestBeacon;
+@property (nonatomic, strong)CLBeacon *lastIdentifiedBeacon;
 
 
 //Utility-Methods
@@ -73,7 +74,6 @@
     [_homeModel downloadItems];
     
     [self startTrackingBeacons];
-
     
 }
 
@@ -106,7 +106,6 @@
     self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:_uuid identifier:identifier];
     
     // Check if beacon monitoring is available for this device
-    
     if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
@@ -133,7 +132,7 @@
     _countRangedBeacon = 0;
     NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
 }
- */
+*/
 
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
@@ -161,56 +160,56 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
-    _beacon = [[CLBeacon alloc] init];
+    //_beacon = [[CLBeacon alloc] init];
     _nearestBeacon = [[CLBeacon alloc]init];
     
     beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
     _nearestBeacon = [beacons firstObject];
     
-    //_beacon= [beacons lastObject];
-    //[self identifyDetectedBeacon:_beacon];
-    
     // Figure out which beacon you found
     [self identifyDetectedBeacon:_nearestBeacon];
-    
-    //Stop ranging for now so you don't use to many notifications
-    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
 - (void)identifyDetectedBeacon:beacon{
-    self.beaconFoundLabel.text =@"Yes";
     
-    //NSNumber *beaconMinor = _beacon.minor;
-    NSNumber *beaconMinor = _nearestBeacon.minor;
-    NSString *beaconMinorString = [beaconMinor stringValue];
+    _lastIdentifiedBeacon = [[CLBeacon alloc] init];
     
-    //NSNumber *beaconMinor = beacon.minor;
-    
-    //Figure out which beacon you found
-    NSLog(@"Ranged Beacon Minor: %@", beaconMinorString );
-    
-    if ([_sightsDict objectForKey:beaconMinorString]) {
+    if (_nearestBeacon == _lastIdentifiedBeacon && _lastIdentifiedBeacon != NULL){
         
-        //There is an Object stored for this id, set currentSight to this Object
-        _selectedSight=[_sightsDict objectForKey:beaconMinorString];
-        NSLog(@"Selected Sight ist %@", _selectedSight.name);
+        NSLog(@"User has seen and dismissed this sight: %@!", _lastIdentifiedBeacon.minor);
         
-        // Send Notification
-        [self sendNotification];
-        
-    } else {
-        NSLog(@"No object set for key @\"b\"");
+        [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+        NSLog(@"Dismissed. Continue Ranging");
     }
     
-    //_selectedSight=[_sightsDict objectForKey:beaconMinorString];
-    //NSLog(@"Selected Sight ist %@", _selectedSight.name);
+    else{
     
-    // TO DO: NCHT DER MINOR IST 0 SONDERN DER DICTIONARY-EINTRAG
-    // IF-ANFRAGE VERSCHIEBEN NACH OBEN ZU SELECTED SIGHT
-    /* if (_nearestBeacon.minor != NULL) {
-        [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
-        [self sendNotification];
-    }; */
+        self.beaconFoundLabel.text =@"Yes";
+    
+        NSNumber *beaconMinor = _nearestBeacon.minor;
+        NSString *beaconMinorString = [beaconMinor stringValue];
+    
+        //Figure out which beacon was found by attributing Minor to Object-ID
+        if ([_sightsDict objectForKey:beaconMinorString]) {
+        
+            //There is an Object stored for this id, set currentSight to this Object
+            _selectedSight=[_sightsDict objectForKey:beaconMinorString];
+            NSLog(@"Selected Sight ist %@", _selectedSight.name);
+        
+            //set lastIdentifiedBeacon to _nearestBeacon so alert is only sent on first encounter
+            _lastIdentifiedBeacon = _nearestBeacon;
+        
+            //sent Notification
+            [self sendNotification];
+            
+            [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+            NSLog(@"Continue Ranging");
+        
+        } else {
+        NSLog(@"No object set for key @\"b\"");
+        }
+    }
+    
 }
 
 - (void)sendNotification {
@@ -218,9 +217,11 @@
     if (!_countRangedBeacon) {
         
         //Send Alert
+        
+        NSString *beaconAlertTitle = _selectedSight.name;
         NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight.name];
         
-        UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Beacon Ranged!" message:message
+        UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle message:message
                                                                           delegate:self
                                                                  cancelButtonTitle:@"No"
                                                                  otherButtonTitles:@"Yes",
@@ -258,6 +259,12 @@
     if (buttonIndex != alertView.cancelButtonIndex)
     {
         [self performSegueWithIdentifier:@"alertToDetail" sender:self];
+    }
+    
+    //If View is cancelled go back to ranging beacons
+    else
+    {
+        [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     }
 }
 

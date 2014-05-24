@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSString *besonderheiten;
 @property (nonatomic, strong) NSString *sonstiges;
 @property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) UIImage *image;
 
 @end

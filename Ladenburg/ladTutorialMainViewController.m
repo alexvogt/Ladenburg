@@ -40,10 +40,10 @@
                             @"More Tutorial",
                             @"And still more"];
     _tutorialPageTexts = @[
-                           @"Um die App optimal zu nutzen muss Bluetooth angeschaltet sein - dafür musst du dann nichts weiter tun. Dein iPhone wird dich informieren, sobald du dich in die Nähe (ca. 50-70m) einer Sehenswürdigkeit begibst!",
-                           @"Wenn du einfach nur sehen willst, was Ladenburg so bietet, kannst du dir eine Liste oder Karte der Sehenswürdigkeiten anzeigen lassen und dich von deinem iPhone zu ihnen führen lassen",
-                           @"Text kommt später"];
-    _tutorialPageImages = @[@"bluetooth-icon.png", @"bluetooth-icon.png", @"bluetooth-icon.png"];
+                           @"Sobald du in der Nähe einer Sehenswürdigkeit in Ladenburg bist, benachrichtigt dich dein iPhone. Damit das funktioniert, musst du Bluetooth anschalten und den Zugriff auf deine Standortinformationen erlauben.",
+                           @"Wenn du wissen willst was es um dich herum zu sehen gibt, kannst du dir eine Liste oder Karte aller Sehenswürdigkeiten anzeigen lassen. Auf Wunsch kann dich dein iPhone dann sogar zu ihnen führen.",
+                           @"Text"];
+    _tutorialPageImages = @[@"Tut_1", @"Tut_2", @"bluetooth-icon.png"];
     
     
     // Create page view controller
