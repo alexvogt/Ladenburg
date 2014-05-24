@@ -11,14 +11,6 @@
 
 @interface ladDetailViewController ()
 
-/*
-@property NSString *baseURL;
-@property NSString *originalImageURL;
-@property NSString *shortenedImageURL;
-@property NSString *fullURL;
-@property NSURL *url;
-@property UIImage *selectedSightImage; */
-
 @end
 
 @implementation ladDetailViewController
@@ -42,28 +34,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    /*
-    _baseURL = @"http://ladenburg.timhartl.de";
-    //Debugging Log
-    NSLog(@"%@",_baseURL);
-
-    _originalImageURL = _selectedSight.imageUrl;
-    _shortenedImageURL = [_originalImageURL substringFromIndex:2];
-    
-    _fullURL = [_baseURL stringByAppendingString:_shortenedImageURL];
-    
-    //Debugging Log
-    NSLog(@"%@", _fullURL);
-    
-    _url = [NSURL URLWithString:_fullURL];
-    NSData *data = [NSData dataWithContentsOfURL:_url];
-    
-    _selectedSightImage = [[UIImage alloc] initWithData:data];
-    */
-    
     self.detailImageView.image = _selectedSight.image;
     self.detailTextView.text = _selectedSight.kurzbeschreibung;
     self.detailSightNameLabel.text = _selectedSight.name;
+    
+    // Center background image
+    self.detailImageView.contentMode = UIViewContentModeCenter;
+    // Scale background image to fill container
+    self.detailImageView.contentMode = UIViewContentModeScaleAspectFill;
+    // Switch off clipping
+    self.detailImageView.clipsToBounds = true;
 }
 
 - (void)didReceiveMemoryWarning

@@ -66,8 +66,8 @@
         newSight.identifier = jsonElement[@"ID"];
         newSight.name = jsonElement[@"Name"];
         newSight.address = jsonElement[@"Address"];
-        newSight.latitude = jsonElement[@"LOC_LATITUDE"];
-        newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
+        //newSight.latitude = jsonElement[@"LOC_LATITUDE"];
+        //newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
         newSight.kurzbeschreibung = jsonElement[@"Kurzbeschreibung"];
         newSight.geschichte = jsonElement[@"Geschichte"];
         newSight.besonderheiten = jsonElement[@"Besonderheiten"];

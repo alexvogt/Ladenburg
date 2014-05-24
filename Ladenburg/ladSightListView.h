@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "HomeModel.h"
 
 @interface ladSightListView : UIViewController <UITableViewDataSource, UITableViewDelegate, HomeModelProtocol>
-
 
 @property (weak, nonatomic) IBOutlet UITableView *sightListView;
 

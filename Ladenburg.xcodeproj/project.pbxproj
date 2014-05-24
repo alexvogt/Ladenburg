@@ -30,6 +30,7 @@
 		2235B3571924F3B10081ED14 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235B3561924F3B10081ED14 /* MapViewController.m */; };
 		2235B3591924F4920081ED14 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235B3581924F4920081ED14 /* MapKit.framework */; };
 		2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */; };
+		2285A4251930BD4400588343 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2285A4241930BD4400588343 /* CoreLocation.framework */; };
 		63014EAA192FB09D0008C4D1 /* ladTutorialMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */; };
 		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
 		6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6396202E1924C22D00D8E31C /* ladPageContentViewController.m */; };
@@ -83,6 +84,7 @@
 		2235B3581924F4920081ED14 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2275F3DE1927A8F70067AA62 /* ladDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladDetailViewController.h; sourceTree = "<group>"; };
 		2275F3DF1927A8F70067AA62 /* ladDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladDetailViewController.m; sourceTree = "<group>"; };
+		2285A4241930BD4400588343 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		63014EA8192FB09D0008C4D1 /* ladTutorialMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladTutorialMainViewController.h; sourceTree = "<group>"; };
 		63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladTutorialMainViewController.m; sourceTree = "<group>"; };
 		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2285A4251930BD4400588343 /* CoreLocation.framework in Frameworks */,
 				639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */,
 				2235B3591924F4920081ED14 /* MapKit.framework in Frameworks */,
 				119EF6701912B28200A3DCCB /* CoreGraphics.framework in Frameworks */,
@@ -142,6 +145,7 @@
 		119EF66C1912B28200A3DCCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2285A4241930BD4400588343 /* CoreLocation.framework */,
 				639620621924DC2A00D8E31C /* MessageUI.framework */,
 				2235B3581924F4920081ED14 /* MapKit.framework */,
 				119EF66D1912B28200A3DCCB /* Foundation.framework */,

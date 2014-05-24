@@ -32,10 +32,18 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];   //it hides
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Remove Separator between each Cell
+    [self.sightListView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // Set this view controller object as the delegate and data source for the table view
     self.sightListView.delegate = self;
@@ -52,6 +60,13 @@
     
     // Call the download items method of the home model object
     [_homeModel downloadItems];
+    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,17 +94,61 @@
     return _feedItems.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Set height of each TableCell to 100px
+    return 100;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Retrieve cell
     NSString *cellIdentifier = @"SightCell";
+    
     UITableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    // Create detail Label for each Cell
+    myCell = [[UITableViewCell alloc]
+                 initWithStyle:UITableViewCellStyleSubtitle
+                 reuseIdentifier:cellIdentifier];
+    
+
     
     // Get the sight to be shown
     Sight *item = _feedItems[indexPath.row];
     
     // Get references to labels of cell
     myCell.textLabel.text = [item.name stringByAppendingString:item.identifier];
+    myCell.textLabel.textColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1];
+    myCell.textLabel.font = [UIFont systemFontOfSize:24.0];
+    
+   
+    // Get references to detaillabels of cell
+    NSString* myNewString = item.identifier;
+    [myCell.detailTextLabel setText:myNewString];
+    [myCell.detailTextLabel setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
+    [myCell.detailTextLabel setFont:[UIFont systemFontOfSize:15.0]];
+    
+    
+    // Get background image for each Cell
+    UIImageView *bgView = [[UIImageView alloc]initWithFrame:myCell.backgroundView.frame];
+    [bgView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    bgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    bgView.image = item.image;
+    
+    // Center background image
+    bgView.contentMode = UIViewContentModeCenter;
+    // Scale background image to fill container
+    bgView.contentMode = UIViewContentModeScaleAspectFill;
+    // Switch off clipping
+    bgView.clipsToBounds = true;
+    
+    
+    [myCell setBackgroundView:bgView];
+    
+    
+    
     
     return myCell;
 }
