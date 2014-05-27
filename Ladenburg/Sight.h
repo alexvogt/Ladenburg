@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface Sight : NSObject
 
 @property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, strong) NSString *latitude;
+@property (nonatomic, strong) NSString *longitude;
+
 //@property double latitude;
 //@property double longitude;
+//@property CLLocationDegrees latitude;
+//@property CLLocationDegrees longitude;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *kurzbeschreibung;

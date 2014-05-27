@@ -24,7 +24,9 @@
 - (void)downloadItems
 {
     // Download the json file
-    NSURL *jsonFileUrl = [NSURL URLWithString:@"http://ladenburg.timhartl.de/service-lb-th.php"];
+     NSURL *jsonFileUrl = [NSURL URLWithString:@"http://ladenburg.timhartl.de/service-lb-th.php"];
+        // Lokale Installation
+        //NSURL *jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/service-lb.php"];
     
     // Create the request
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
@@ -66,16 +68,20 @@
         newSight.identifier = jsonElement[@"ID"];
         newSight.name = jsonElement[@"Name"];
         newSight.address = jsonElement[@"Address"];
+        newSight.latitude = jsonElement[@"LOC_LATITUDE"];
+        newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
         //newSight.latitude = jsonElement[@"LOC_LATITUDE"];
-        //newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
         newSight.kurzbeschreibung = jsonElement[@"Kurzbeschreibung"];
         newSight.geschichte = jsonElement[@"Geschichte"];
         newSight.besonderheiten = jsonElement[@"Besonderheiten"];
         newSight.sonstiges = jsonElement[@"Oeffnungszeiten"];
         newSight.imageUrl = jsonElement[@"bild_url"];
         
+        
         //set image property of newSight to image
         baseURL = @"http://ladenburg.timhartl.de";
+            // Lokale Installation
+            //baseURL = @"http://localhost:8888/";
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
         fullURL = [baseURL stringByAppendingString:shortenedImageURL];
         url = [NSURL URLWithString:fullURL];
