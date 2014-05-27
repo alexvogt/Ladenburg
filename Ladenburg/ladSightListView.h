@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "HomeModel.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface ladSightListView : UIViewController <UITableViewDataSource, UITableViewDelegate, HomeModelProtocol>
+@interface ladSightListView : UIViewController <UITableViewDataSource, UITableViewDelegate, HomeModelProtocol, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *sightListView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
+
+
 
 @end
