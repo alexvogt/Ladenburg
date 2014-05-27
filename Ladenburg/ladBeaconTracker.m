@@ -17,6 +17,12 @@
 
 @interface ladBeaconTracker ()
 
+{
+    CLBeacon *lastBeacon;
+    NSMutableDictionary *shownBeacons;
+    NSString *beaconIdentifierKey;
+};
+
 //Properties
 @property (nonatomic, strong) NSUUID *uuid;
 @property (nonatomic) NSInteger *countRangedBeacon;
@@ -74,6 +80,7 @@
     [_homeModel downloadItems];
     
     [self startTrackingBeacons];
+    shownBeacons = [[NSMutableDictionary alloc] init];
     
 }
 
@@ -119,10 +126,8 @@
     }
 }
 
-/*
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    
-    [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
     
@@ -130,9 +135,7 @@
     NSLog(@"Region %@ entered", _beaconRegion.identifier);
     
     _countRangedBeacon = 0;
-    NSLog(@"rangedBeaconCount: %ld", (long)_countRangedBeacon);
 }
-*/
 
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
@@ -162,59 +165,65 @@
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
     //_beacon = [[CLBeacon alloc] init];
     _nearestBeacon = [[CLBeacon alloc]init];
-    
-    beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
+
+     beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
     _nearestBeacon = [beacons firstObject];
+
     
     // Figure out which beacon you found
-    [self identifyDetectedBeacon:_nearestBeacon];
+    if(_nearestBeacon.minor == NULL || _nearestBeacon.major == NULL){
+        NSLog(@"Beacon not compatible");
+    }
+    
+    else{
+        
+        beaconIdentifierKey = [NSString stringWithFormat:@"%@-%@-%@", [_nearestBeacon.proximityUUID UUIDString], [_nearestBeacon.major stringValue], [_nearestBeacon.minor stringValue]];
+
+        [self identifyDetectedBeacon:_nearestBeacon];
+        
+    }
 }
 
 - (void)identifyDetectedBeacon:beacon{
     
-    _lastIdentifiedBeacon = [[CLBeacon alloc] init];
-    
-    if (_nearestBeacon == _lastIdentifiedBeacon && _lastIdentifiedBeacon != NULL){
-        
-        NSLog(@"User has seen and dismissed this sight: %@!", _lastIdentifiedBeacon.minor);
-        
-        [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-        NSLog(@"Dismissed. Continue Ranging");
-    }
-    
-    else{
-    
         self.beaconFoundLabel.text =@"Yes";
     
         NSNumber *beaconMinor = _nearestBeacon.minor;
+        NSLog(@"beaconMinor: %@", beaconMinor);
         NSString *beaconMinorString = [beaconMinor stringValue];
     
-        //Figure out which beacon was found by attributing Minor to Object-ID
-        if ([_sightsDict objectForKey:beaconMinorString]) {
-        
-            //There is an Object stored for this id, set currentSight to this Object
-            _selectedSight=[_sightsDict objectForKey:beaconMinorString];
-            NSLog(@"Selected Sight ist %@", _selectedSight.name);
-        
-            //set lastIdentifiedBeacon to _nearestBeacon so alert is only sent on first encounter
-            _lastIdentifiedBeacon = _nearestBeacon;
-        
-            //sent Notification
-            [self sendNotification];
+    
+        if ([shownBeacons objectForKey:beaconIdentifierKey]){
             
-            [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-            NSLog(@"Continue Ranging");
-        
-        } else {
-        NSLog(@"No object set for key @\"b\"");
+            NSLog(@"Beacon was shown already");
         }
-    }
+    
+        else if (![shownBeacons objectForKey:beaconIdentifierKey]) {
+            
+            NSLog(@"Beacon not shown. Add to dict.");
+            
+            [shownBeacons setObject:_nearestBeacon forKey:beaconIdentifierKey];
+            
+            //Figure out which beacon was found by attributing Minor to Object-ID
+            if ([_sightsDict objectForKey:beaconMinorString]) {
+                
+                //There is an Object stored for this id, set currentSight to this Object
+                _selectedSight=[_sightsDict objectForKey:beaconMinorString];
+                NSLog(@"Selected Sight ist %@", _selectedSight.name);
+                
+                //sent Notification
+                [self sendNotification];
+                
+            } else {
+                NSLog(@"No object set for key @\"b\"");
+            }
+        }
     
 }
 
 - (void)sendNotification {
     
-    if (!_countRangedBeacon) {
+    //if (!_countRangedBeacon) {
         
         //Send Alert
         
@@ -236,8 +245,8 @@
         rangedBeaconNotification.applicationIconBadgeNumber ++;
         [[UIApplication sharedApplication] scheduleLocalNotification:rangedBeaconNotification];
         
-    }
-    _countRangedBeacon ++;
+   /* }
+    _countRangedBeacon ++; */
 }
 
 //Make sure notifications are only shown when App is running in the background
