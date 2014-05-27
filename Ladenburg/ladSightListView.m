@@ -118,14 +118,17 @@
     return _feedItems.count;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set height of each TableCell to 100px (= 200px for Retina)
+    // IF HEIGHT OF TABLE CELL IS CHANGED, ALSO CHANGE GRADIENT-LAYER SIZE
     return 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     // Retrieve cell
     NSString *cellIdentifier = @"SightCell";
     
@@ -230,12 +233,11 @@
     // Switch off clipping
     bgView.clipsToBounds = true;
     
-    [myCell setBackgroundView:bgView];
-    
     // GRADIENT CRAP
     // Set image over layer
     CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = myCell.bounds;
+    //gradient.frame = myCell.frame;
+    gradient.frame = CGRectMake(0, 0, 320, 100);
     
     NSLog(@"Set up gradient");
     
@@ -246,7 +248,7 @@
     UIColor *endColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.0];
     UIColor *midLeftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     UIColor *midRightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    UIColor *startColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.9];
+    UIColor *startColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
     gradient.colors = [NSArray arrayWithObjects:
                        (id)[startColor CGColor],
                        (id)[midLeftColor CGColor],
@@ -261,16 +263,20 @@
                           [NSNumber numberWithFloat:1],
                           nil];
     
-    [myCell.layer insertSublayer:gradient atIndex:0];
+    [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
     
     NSLog(@"added gradient");
     
     // END GRADIENT CRAP
+    
+    [myCell setBackgroundView:bgView];
+    //[myCell setSelectedBackgroundView:bgView];
+    
+    [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
 
     
     return myCell;
 }
-
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
