@@ -44,6 +44,26 @@
     self.detailImageView.contentMode = UIViewContentModeScaleAspectFill;
     // Switch off clipping
     self.detailImageView.clipsToBounds = true;
+    
+    
+    // Customize NavigationBar on DetailView
+    
+    // Set NavigationBar to invisible
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    // Add DropShadow to Backbutton for better readability
+    UIColor *shadowColor = [UIColor blackColor];
+    self.navigationController.navigationBar.layer.shadowColor = [shadowColor CGColor];
+    self.navigationController.navigationBar.layer.shadowRadius = 2.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = .8;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
+    self.navigationController.navigationBar.layer.masksToBounds = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +71,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

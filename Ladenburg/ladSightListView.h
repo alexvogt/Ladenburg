@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *sightListView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
-
+@property (weak, nonatomic) NSTimer *timer;
 
 
 @end
