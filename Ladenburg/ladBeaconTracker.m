@@ -189,24 +189,25 @@
         NSNumber *beaconMinor = _nearestBeacon.minor;
         NSLog(@"beaconMinor: %@", beaconMinor);
         NSString *beaconMinorString = [beaconMinor stringValue];
-        NSDate *now = [[NSDate alloc] init];
+        //NSDate *now = [[NSDate alloc] init];
     
     
         if ([shownBeacons objectForKey:beaconIdentifierKey]){
             
             NSLog(@"Beacon was shown already");
             
+            /*
             NSDate *lastSeen = [shownBeacons objectForKey:beaconIdentifierKey];
             NSTimeInterval secondsSinceLastSeen = [now timeIntervalSinceDate:lastSeen];
             NSLog(@"This beacon was last seen at %@, which was %.0f seconds ago", lastSeen, secondsSinceLastSeen);
             
-            if (secondsSinceLastSeen < 1800 /* 30 Min in seconds */) {
+            if (secondsSinceLastSeen < 1800 // 30 Min in seconds) {
                 
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
                 
                 [self sendNotification];
-            }
+            } */
         }
     
         else if (![shownBeacons objectForKey:beaconIdentifierKey]) {
