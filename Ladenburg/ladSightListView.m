@@ -74,6 +74,12 @@
 
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     self.location = locations.lastObject;
     NSLog(@"%@", self.location.description);
@@ -84,12 +90,6 @@
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [errorAlert show];
     NSLog(@"Error: %@",error.description);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)itemsDownloaded:(NSArray *)items
@@ -113,7 +113,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Set height of each TableCell to 100px
+    // Set height of each TableCell to 100px (= 200px for Retina)
     return 100;
 }
 
@@ -135,7 +135,10 @@
     Sight *item = _feedItems[indexPath.row];
     
     // Get references to labels of cell
-    myCell.textLabel.text = [item.name stringByAppendingString:item.identifier];
+    myCell.textLabel.text = item.name;
+    
+        //DebugVersion - Label with Identifier.
+        //myCell.textLabel.text = [item.name stringByAppendingString:item.identifier];
     
     // Changing color to White and set Fontsize
     myCell.textLabel.textColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1];
@@ -171,7 +174,7 @@
 
     // Get references to detaillabels of cell
     NSString* myNewString = item.identifier;
-    [myCell.detailTextLabel setText:[NSString stringWithFormat:@"%.2lf", meters]];
+    [myCell.detailTextLabel setText:[[NSString stringWithFormat:@"%.0lf", meters] stringByAppendingString:@"m"]];
     
     // Changing color to White and set Fontsize
     [myCell.detailTextLabel setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
