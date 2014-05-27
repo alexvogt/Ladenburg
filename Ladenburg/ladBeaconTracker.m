@@ -33,6 +33,7 @@
 
 
 //Utility-Methods
+- (void) startTrackingBeacons;
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
 - (void) identifyDetectedBeacon: (CLBeacon *)beacon;
 - (void) sendNotification;
@@ -65,8 +66,6 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    //[self initRegion];
-    
     // Create dictionary object and assign it to _sightsDict variable
     _sightsDict = [[NSMutableDictionary alloc] init];
     
@@ -97,9 +96,16 @@
 - (void) startTrackingBeacons{
     //Init different regions --> change UUID in accordance with Beacons
     
-    [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
+    // Check if beacon monitoring is available for this device
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
+    }
     
-    [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
+    else {
+        [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
+        [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
+    }
     
     //Debugging Log
     NSLog(@"Finished call to startTrackingBeacons");
@@ -109,21 +115,12 @@
     
     _uuid = [[NSUUID alloc]initWithUUIDString:uuid];
     
-    
     self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:_uuid identifier:identifier];
     
-    // Check if beacon monitoring is available for this device
-    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
-    }
-    
-    else {
         [self.locationManager startMonitoringForRegion:self.beaconRegion];
         [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
         //Debugging Log
         NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
-    }
 }
 
 
@@ -168,11 +165,10 @@
 
      beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
     _nearestBeacon = [beacons firstObject];
-
     
     // Figure out which beacon you found
     if(_nearestBeacon.minor == NULL || _nearestBeacon.major == NULL){
-        NSLog(@"Beacon not compatible");
+        //Do nothing. This is just used for debugging
     }
     
     else{
@@ -207,18 +203,15 @@
             //Figure out which beacon was found by attributing Minor to Object-ID
             if ([_sightsDict objectForKey:beaconMinorString]) {
                 
-                //There is an Object stored for this id, set currentSight to this Object
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
-                
-                //sent Notification
+
                 [self sendNotification];
                 
             } else {
                 NSLog(@"No object set for key @\"b\"");
             }
         }
-    
 }
 
 - (void)sendNotification {
@@ -226,7 +219,6 @@
     //if (!_countRangedBeacon) {
         
         //Send Alert
-        
         NSString *beaconAlertTitle = _selectedSight.name;
         NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight.name];
         
