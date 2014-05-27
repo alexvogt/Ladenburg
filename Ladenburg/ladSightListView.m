@@ -16,7 +16,6 @@
     HomeModel *_homeModel;
     NSArray *_feedItems;
     Sight *_selectedSight;
-
 }
 
 @end
@@ -171,11 +170,16 @@
     NSLog(@"Double: %f",testValue);
    */
     
+    
+    // Determining Location of the Cell/Sight
     double testLatitude = [item.latitude doubleValue];
     double testLongitude = [item.longitude doubleValue];
-    
-    CLLocation *currentLoc = self.location;
     CLLocation *sightLoc = [[CLLocation alloc] initWithLatitude:testLatitude longitude:testLongitude];
+
+    
+    // Determining user Location
+    CLLocation *currentLoc = self.location;
+    // Calculating distance to Sight
     CLLocationDistance meters = [sightLoc distanceFromLocation:currentLoc];
 
     // Get references to detaillabels of cell
@@ -192,8 +196,6 @@
     myCell.detailTextLabel.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
     myCell.detailTextLabel.layer.masksToBounds = NO;
 
-    
-    
     // Get background image for each Cell
     UIImageView *bgView = [[UIImageView alloc]initWithFrame:myCell.backgroundView.frame];
     [bgView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
@@ -230,6 +232,7 @@
     
     return myCell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
