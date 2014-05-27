@@ -65,7 +65,7 @@
     // Create the locationManager
 
     self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    self.locationManager.distanceFilter = 5; // whenever we move 5m
     self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     [self.locationManager startUpdatingLocation];
     
@@ -83,8 +83,14 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     self.location = locations.lastObject;
     NSLog(@"%@", self.location.description);
+    
+    [self.locationManager stopUpdatingLocation];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(_turnOnLocationManager)  userInfo:nil repeats:NO];
 }
 
+- (void)_turnOnLocationManager {
+    [self.locationManager startUpdatingLocation];
+}
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -164,7 +170,7 @@
     double testValue = [item.latitude doubleValue];
     NSLog(@"Double: %f",testValue);
    */
-   
+    
     double testLatitude = [item.latitude doubleValue];
     double testLongitude = [item.longitude doubleValue];
     
@@ -173,7 +179,6 @@
     CLLocationDistance meters = [sightLoc distanceFromLocation:currentLoc];
 
     // Get references to detaillabels of cell
-    NSString* myNewString = item.identifier;
     [myCell.detailTextLabel setText:[[NSString stringWithFormat:@"%.0lf", meters] stringByAppendingString:@"m"]];
     
     // Changing color to White and set Fontsize
@@ -246,6 +251,7 @@
     // detail view controller loads, it can access that property to get the feeditem obj
     ladVC.selectedSight = _selectedSight;
 }
+
 
 /*
 #pragma mark - Navigation
