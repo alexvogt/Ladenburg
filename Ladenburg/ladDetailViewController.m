@@ -51,7 +51,7 @@
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = _detailImageView.bounds;
     
-    NSLog(@"Set up gradient");
+    //NSLog(@"Set up gradient");
     
     //[gradient setStartPoint:CGPointMake(0.0, 0.5)];
     //[gradient setEndPoint:CGPointMake(0.0, 0.5)];
@@ -77,7 +77,7 @@
     
     [_detailImageView.layer insertSublayer:gradient atIndex:1];
     
-    NSLog(@"added gradient");
+    //NSLog(@"added gradient");
     
     // END GRADIENT CRAP
     

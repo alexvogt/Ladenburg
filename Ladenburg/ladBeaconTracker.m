@@ -21,6 +21,13 @@
     CLBeacon *lastBeacon;
     NSMutableDictionary *shownBeacons;
     NSString *beaconIdentifierKey;
+    
+    //Animation Outlets
+    
+    __weak IBOutlet UIImageView *outestAnimationView;
+    __weak IBOutlet UIImageView *outerAnimationView;
+    __weak IBOutlet UIImageView *innerAnimationView;
+    __weak IBOutlet UIImageView *middleAnimationView;
 };
 
 //Properties
@@ -37,6 +44,7 @@
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
 - (void) identifyDetectedBeacon: (CLBeacon *)beacon;
 - (void) sendNotification;
+- (void) startAnimationForView:(UIImageView*)view WithDuration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat;
 
 @end
 
@@ -62,6 +70,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self startAnimationForView:middleAnimationView WithDuration:0.2 rotations:20 repeat:200];
+    [self startAnimationForView:outerAnimationView WithDuration:0.25 rotations:-20 repeat:200];
+    [self startAnimationForView:outestAnimationView WithDuration:0.3 rotations:26 repeat:200];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -83,6 +94,21 @@
     //Alloc and init Dictionaries to track Notifications
     shownBeacons = [[NSMutableDictionary alloc] init];
     
+}
+
+CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
+
+-(void) startAnimationForView:(UIImageView *)view WithDuration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat{
+    
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat:degreesToRadians(rotations)];
+    //rotationAnimation.toValue = [NSNumber numberWithFloat: rotations * 2.0 /* full rotation*/ * rotations * duration ];
+    rotationAnimation.duration = duration;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = repeat;
+    [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
 }
 
 -(void)itemsDownloaded:(NSArray *)items

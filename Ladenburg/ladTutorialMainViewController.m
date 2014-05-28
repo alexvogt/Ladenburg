@@ -39,8 +39,8 @@
                             @"More Tutorial",
                             @"And still more"];
     _tutorialPageTexts = @[
-                           @"Sobald du in der Nähe einer Sehenswürdigkeit in Ladenburg bist, benachrichtigt dich dein iPhone. Damit das funktioniert, musst du Bluetooth anschalten und den Zugriff auf deine Standortinformationen erlauben.",
-                           @"Wenn du wissen willst was es um dich herum zu sehen gibt, kannst du dir eine Liste oder Karte aller Sehenswürdigkeiten anzeigen lassen. Auf Wunsch kann dich dein iPhone dann sogar zu ihnen führen.",
+                           @"Sobald du in der Nähe einer Sehenswürdigkeit bist, benachrichtigt dich iLadenburg automatisch darüber. Damit das funktioniert, benötigt die App Bluetooth und Zugriff auf deine Standortinformationen.",
+                           @"Wenn du wissen willst was es um dich herum zu sehen gibt, zeigt dir iLadenburg die Sehenswürdigkeiten in einer Liste oder auf der Karte an. Auf Wunsch kann dich dein iPhone dann sogar zu ihnen führen.",
                            @"Text"];
     _tutorialPageImages = @[@"Tut_1", @"Tut_2", @"bluetooth-icon.png"];
     
@@ -54,7 +54,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 35);
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 42);
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
