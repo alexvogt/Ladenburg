@@ -38,6 +38,12 @@
     self.detailTextView.text = _selectedSight.kurzbeschreibung;
     self.detailSightNameLabel.text = _selectedSight.name;
     
+    //set text as hyphenated text
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.hyphenationFactor = 1;
+    self.detailTextView.attributedText = [[NSMutableAttributedString alloc] initWithString:self.detailTextView.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
+    
+    
     // Center background image
     self.detailImageView.contentMode = UIViewContentModeCenter;
     // Scale background image to fill container
@@ -80,7 +86,6 @@
     //NSLog(@"added gradient");
     
     // END GRADIENT CRAP
-    
     
     
     
