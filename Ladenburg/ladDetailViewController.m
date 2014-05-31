@@ -11,6 +11,14 @@
 
 @interface ladDetailViewController ()
 
+{
+    
+    CGFloat draggedOffsetY;
+    CGFloat newHeight;
+    CGFloat newWidth;
+    
+}
+
 @end
 
 @implementation ladDetailViewController
@@ -27,15 +35,48 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    
+    
+    [self.detailTextView sizeToFit];
+    [self.detailTextView layoutIfNeeded];
+    
+    CGRect frame = self.detailTextView.frame;
+    frame.size.height = self.detailTextView.contentSize.height;
+    self.detailTextView.frame = frame;
+    
+    CGFloat imageViewHeight = self.detailImageView.frame.size.height;
+    CGFloat contentHeight = self.detailTextView.frame.size.height;
+    CGFloat contentPlusSpacer = contentHeight+imageViewHeight + 75;
+    [self.detailScrollView setContentSize:(CGSizeMake(CGRectGetWidth(self.detailScrollView.frame), contentPlusSpacer))];
+    
+    
+    NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
+    
+    
+    CGPoint offset = CGPointMake(0, 65);
+    
+    [self.detailScrollView setContentOffset:offset];
+    
+    self.detailScrollView.delegate = self;
+    
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    
+    //Make one String out of the different texts for sight
+    NSString *kurzbeschreibung = [_selectedSight kurzbeschreibung];
+    NSString *absatz = @"\n\n";
+    NSString *geschichte = [_selectedSight geschichte];
+    NSString *kurzbeschreibungAbsatz = [kurzbeschreibung stringByAppendingString:absatz];
+    NSString *text = [kurzbeschreibungAbsatz stringByAppendingString:geschichte];
     
     self.detailImageView.image = _selectedSight.image;
-    self.detailTextView.text = _selectedSight.kurzbeschreibung;
+    //self.detailTextView.text = _selectedSight.kurzbeschreibung;
+    self.detailTextView.text = text;
     self.detailSightNameLabel.text = _selectedSight.name;
     
     //set text as hyphenated text
@@ -108,6 +149,30 @@
     self.navigationController.navigationBar.layer.masksToBounds = NO;
     
 }
+
+//Change Layout on scrolling
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    draggedOffsetY = self.detailScrollView.contentOffset.y;
+    
+    NSLog(@"View was dragged to: %f", draggedOffsetY);
+    
+    newHeight = self.detailImageView.frame.size.height-draggedOffsetY;
+    
+    if (newHeight > 75 && newHeight < 150 ){
+        
+        [self.detailScrollView setFrame:CGRectMake(0, 0, self.view.frame.size.width, newHeight)];
+        
+        CGFloat startTop = self.detailImageView.frame.size.height;
+        
+        self.detailTextView.frame = CGRectMake(0, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+        
+        
+        
+    }
+} */
+
 
 - (void)didReceiveMemoryWarning
 {
