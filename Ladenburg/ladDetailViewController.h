@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Sight.h"
 
-@interface ladDetailViewController : UIViewController
+@interface ladDetailViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) Sight *selectedSight;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailSightNameLabel;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
+
 
 @end
