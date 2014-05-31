@@ -38,12 +38,55 @@
     self.detailTextView.text = _selectedSight.kurzbeschreibung;
     self.detailSightNameLabel.text = _selectedSight.name;
     
+    //set text as hyphenated text
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.hyphenationFactor = 1;
+    self.detailTextView.attributedText = [[NSMutableAttributedString alloc] initWithString:self.detailTextView.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
+    
+    
     // Center background image
     self.detailImageView.contentMode = UIViewContentModeCenter;
     // Scale background image to fill container
     self.detailImageView.contentMode = UIViewContentModeScaleAspectFill;
     // Switch off clipping
     self.detailImageView.clipsToBounds = true;
+    
+    
+    // GRADIENT CRAP
+    // Set image over layer
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = _detailImageView.bounds;
+    
+    //NSLog(@"Set up gradient");
+    
+    //[gradient setStartPoint:CGPointMake(0.0, 0.5)];
+    //[gradient setEndPoint:CGPointMake(0.0, 0.5)];
+    
+    // Add colors to layer
+    UIColor *endColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+    UIColor *midLeftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    UIColor *midRightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    UIColor *startColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[startColor CGColor],
+                       (id)[midLeftColor CGColor],
+                       (id)[midRightColor CGColor],
+                       (id)[endColor CGColor],
+                       nil];
+    
+    gradient.locations = [NSArray arrayWithObjects:
+                          [NSNumber numberWithFloat:0],
+                          [NSNumber numberWithFloat:0.4],
+                          [NSNumber numberWithFloat:0.7],
+                          [NSNumber numberWithFloat:1],
+                          nil];
+    
+    [_detailImageView.layer insertSublayer:gradient atIndex:1];
+    
+    //NSLog(@"added gradient");
+    
+    // END GRADIENT CRAP
+    
     
     
     // Customize NavigationBar on DetailView

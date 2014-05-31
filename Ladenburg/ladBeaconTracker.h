@@ -21,6 +21,4 @@
 
 @property (nonatomic, strong) NSMutableDictionary *sightsDict;
 
- - (void) startTrackingBeacons;
-
 @end

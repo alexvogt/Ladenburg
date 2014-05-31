@@ -11,12 +11,14 @@
 #import "MapViewController.h"
 #import "ladDetailViewController.h"
 
+
 @interface ladSightListView ()
 {
     HomeModel *_homeModel;
     NSArray *_feedItems;
     Sight *_selectedSight;
 }
+
 
 @end
 
@@ -116,14 +118,17 @@
     return _feedItems.count;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set height of each TableCell to 100px (= 200px for Retina)
+    // IF HEIGHT OF TABLE CELL IS CHANGED, ALSO CHANGE GRADIENT-LAYER SIZE
     return 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     // Retrieve cell
     NSString *cellIdentifier = @"SightCell";
     
@@ -157,7 +162,6 @@
     myCell.textLabel.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
     myCell.textLabel.layer.masksToBounds = NO;
     
-
     
     /*
     
@@ -221,8 +225,8 @@
     CGImageRef cgImage = [context createCGImage:outputImage
                                        fromRect:[outputImage extent]];
     
-    
     bgView.image = [UIImage imageWithCGImage:cgImage];
+    
     
     // Original Image - without BW Filter on top.
     //bgView.image = item.image;
@@ -234,7 +238,49 @@
     // Switch off clipping
     bgView.clipsToBounds = true;
     
+    // GRADIENT CRAP
+    // Set image over layer
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    //gradient.frame = myCell.frame;
+    gradient.frame = CGRectMake(0, 0, 320, 100);
+    
+    //DEbuggin Log
+    //NSLog(@"Set up gradient");
+    
+    [gradient setStartPoint:CGPointMake(0.0, 0.5)];
+    [gradient setEndPoint:CGPointMake(1.0, 0.5)];
+    
+    // Add colors to layer
+    UIColor *endColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.0];
+    UIColor *midLeftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    UIColor *midRightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    UIColor *startColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[startColor CGColor],
+                       (id)[midLeftColor CGColor],
+                       (id)[midRightColor CGColor],
+                       (id)[endColor CGColor],
+                       nil];
+    
+    gradient.locations = [NSArray arrayWithObjects:
+                          [NSNumber numberWithFloat:0],
+                          [NSNumber numberWithFloat:0.5],
+                          [NSNumber numberWithFloat:0.8],
+                          [NSNumber numberWithFloat:1],
+                          nil];
+    
+    [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
+    
+    //DEbuggin Log
+    //NSLog(@"added gradient");
+    
+    // END GRADIENT CRAP
+    
     [myCell setBackgroundView:bgView];
+    //[myCell setSelectedBackgroundView:bgView];
+    
+    [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
+
     
     return myCell;
 }
