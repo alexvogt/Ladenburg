@@ -187,8 +187,13 @@
     CLLocationDistance meters = [sightLoc distanceFromLocation:currentLoc];
 
     // Get references to detaillabels of cell
-    //NSString* myNewString = item.identifier;
-    [myCell.detailTextLabel setText:[[NSString stringWithFormat:@"%.0lf", meters] stringByAppendingString:@"m"]];
+    //[myCell.detailTextLabel setText:[[NSString stringWithFormat:@"%.0lf", meters] stringByAppendingString:@"m"]];
+    
+    MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
+    df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+    
+    
+    [myCell.detailTextLabel setText:[df stringFromDistance: meters]];
     
     // Changing color to White and set Fontsize
     [myCell.detailTextLabel setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
