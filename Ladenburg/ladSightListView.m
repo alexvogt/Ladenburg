@@ -62,6 +62,8 @@
     // Call the download items method of the home model object
     [_homeModel downloadItems];
     
+    // Set Statusbarcolor to white
+    [self setNeedsStatusBarAppearanceUpdate];
 
     // Create the locationManager
 
@@ -72,7 +74,6 @@
     
     self.locationManager.delegate = self;
     self.location = [[CLLocation alloc] init];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -206,13 +207,15 @@
     myCell.detailTextLabel.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
     myCell.detailTextLabel.layer.masksToBounds = NO;
 
+
+    
     // Get background image for each Cell
     UIImageView *bgView = [[UIImageView alloc]initWithFrame:myCell.backgroundView.frame];
     [bgView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
     bgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    
+    // Disable cellhilighting for tapping.
+    [myCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     // Lots of crazy Filterstuff to get Black & White images in Listview!
     CIImage *ciImage = [[CIImage alloc] initWithImage:item.image];
@@ -226,6 +229,7 @@
                                        fromRect:[outputImage extent]];
     
     bgView.image = [UIImage imageWithCGImage:cgImage];
+    
     
     
     // Original Image - without BW Filter on top.
@@ -281,6 +285,7 @@
     
     [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
 
+
     
     return myCell;
 }
@@ -293,6 +298,12 @@
     
     // Manually call segue to detail view controller
     [self performSegueWithIdentifier:@"detailSegue" sender:self];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+ 
+    // Set Statusbarcolor to white
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark Segue
