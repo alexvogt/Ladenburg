@@ -19,11 +19,13 @@
 
 {
     CLBeacon *lastBeacon;
+    
+    //Variables for Notification Timout
     NSMutableDictionary *shownBeacons;
     NSString *beaconIdentifierKey;
+    NSTimeInterval timeInSecUntilNextNotification;
     
     //Animation Outlets
-    
     __weak IBOutlet UIImageView *outestAnimationView;
     __weak IBOutlet UIImageView *outerAnimationView;
     __weak IBOutlet UIImageView *innerAnimationView;
@@ -127,16 +129,14 @@ CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     // Check if beacon monitoring is available for this device
     if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
+        //Inform user that device can't use beacon functionality
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:@"This device can't be used as an iBeacon Receiver" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
     }
-    
     else {
+        //Initalize Beacon Regions for inside and outside of museum
         [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
         [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
     }
-    
-    //Debugging Log
-    NSLog(@"Finished call to startTrackingBeacons");
 }
 
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier:(NSString *)identifier{
@@ -147,8 +147,9 @@ CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     
         [self.locationManager startMonitoringForRegion:self.beaconRegion];
         [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+    
         //Debugging Log
-        NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
+        //NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
 }
 
 
@@ -157,7 +158,7 @@ CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
     
     //Debugging Log
-    NSLog(@"Region %@ entered", _beaconRegion.identifier);
+   // NSLog(@"Region %@ entered", _beaconRegion.identifier);
     
     _countRangedBeacon = 0;
 }
@@ -188,23 +189,20 @@ CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
-    //_beacon = [[CLBeacon alloc] init];
+    
+    //Find the first (closest) beacon in Array
     _nearestBeacon = [[CLBeacon alloc]init];
-
      beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
     _nearestBeacon = [beacons firstObject];
     
-    // Figure out which beacon you found
+    // Figure out which sight that beacon corresponds with
     if(_nearestBeacon.minor == NULL || _nearestBeacon.major == NULL){
         //Do nothing. This is just used for debugging
     }
-    
     else{
-        
+        //set an identifierKey and call identifyDetectedBeacon to figure out corresponding sight
         beaconIdentifierKey = [NSString stringWithFormat:@"%@-%@-%@", [_nearestBeacon.proximityUUID UUIDString], [_nearestBeacon.major stringValue], [_nearestBeacon.minor stringValue]];
-
         [self identifyDetectedBeacon:_nearestBeacon];
-        
     }
 }
 
@@ -215,37 +213,51 @@ CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
         NSNumber *beaconMinor = _nearestBeacon.minor;
         NSLog(@"beaconMinor: %@", beaconMinor);
         NSString *beaconMinorString = [beaconMinor stringValue];
-        //NSDate *now = [[NSDate alloc] init];
-    
+
+        //Variables for time out
+        NSDate *now = [[NSDate alloc] init];
+        timeInSecUntilNextNotification = 900; //15Min * 60 Sec = 900 sec
+
     
         if ([shownBeacons objectForKey:beaconIdentifierKey]){
             
             NSLog(@"Beacon was shown already");
             
-            /*
+            //Check when beacon was last seen and compare to 30 min in seconds
             NSDate *lastSeen = [shownBeacons objectForKey:beaconIdentifierKey];
             NSTimeInterval secondsSinceLastSeen = [now timeIntervalSinceDate:lastSeen];
-            NSLog(@"This beacon was last seen at %@, which was %.0f seconds ago", lastSeen, secondsSinceLastSeen);
+            NSLog(@"This beacon was last notified about at %@: %.0f seconds ago", lastSeen, secondsSinceLastSeen);
             
-            if (secondsSinceLastSeen < 1800 // 30 Min in seconds) {
+            //If Beacon hasn't been seen in a certain time interval
+            if (secondsSinceLastSeen > timeInSecUntilNextNotification)
+            {
                 
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
                 
+                //set new time for this object in beaconShown array
+                [shownBeacons setObject:now forKey:beaconIdentifierKey];
+                
                 [self sendNotification];
-            } */
+            }
         }
     
         else if (![shownBeacons objectForKey:beaconIdentifierKey]) {
             
             NSLog(@"Beacon not shown. Add to dict.");
             
-            [shownBeacons setObject:_nearestBeacon forKey:beaconIdentifierKey];
+            //set time for this object in beaconShown array
+            [shownBeacons setObject:now forKey:beaconIdentifierKey];
             
             //Figure out which beacon was found by attributing Minor to Object-ID
             if ([_sightsDict objectForKey:beaconMinorString]) {
                 
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
+                
+                //set time for this object in beaconShown array
+                //[shownBeacons setObject:now forKey:beaconMinorString];
+
+                
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
 
                 [self sendNotification];
