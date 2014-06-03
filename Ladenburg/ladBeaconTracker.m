@@ -26,7 +26,7 @@
     NSTimeInterval timeInSecUntilNextNotification;
     
     //Animation Outlets
-    __weak IBOutlet UIImageView *outestAnimationView;
+   // __weak IBOutlet UIImageView *outestAnimationView;
     __weak IBOutlet UIImageView *outerAnimationView;
     __weak IBOutlet UIImageView *innerAnimationView;
     __weak IBOutlet UIImageView *middleAnimationView;
@@ -46,7 +46,7 @@
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
 - (void) identifyDetectedBeacon: (CLBeacon *)beacon;
 - (void) sendNotification;
-- (void) startAnimationForView:(UIImageView*)view WithDuration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat;
+- (void) startAnimationForView;
 
 @end
 
@@ -72,9 +72,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self startAnimationForView:middleAnimationView WithDuration:0.2 rotations:20 repeat:200];
-    [self startAnimationForView:outerAnimationView WithDuration:0.25 rotations:-20 repeat:200];
-    [self startAnimationForView:outestAnimationView WithDuration:0.3 rotations:26 repeat:200];
+    
+    [self startAnimationForView];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -96,21 +95,6 @@
     //Alloc and init Dictionaries to track Notifications
     shownBeacons = [[NSMutableDictionary alloc] init];
     
-}
-
-CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
-
--(void) startAnimationForView:(UIImageView *)view WithDuration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat{
-    
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat:degreesToRadians(rotations)];
-    //rotationAnimation.toValue = [NSNumber numberWithFloat: rotations * 2.0 /* full rotation*/ * rotations * duration ];
-    rotationAnimation.duration = duration;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = repeat;
-    [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-
 }
 
 -(void)itemsDownloaded:(NSArray *)items
@@ -333,6 +317,65 @@ CGFloat degreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     
     
     ladVC.selectedSight = _selectedSight;
+}
+
+
+
+-(void) startAnimationForView{
+    //// Declaring first image view -> point
+    UIImage *image = [UIImage imageNamed: @"first-scan.png"];
+    [innerAnimationView setImage:image];
+    CALayer *scanIcon = [CALayer layer];
+    [self.view.layer addSublayer:scanIcon];
+    [innerAnimationView setAlpha:0];
+    
+    // pulse animation with 1 delay
+    CABasicAnimation *theAnimation;
+    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    theAnimation.beginTime = CACurrentMediaTime()+1;
+    theAnimation.duration=1.3;
+    theAnimation.repeatCount=HUGE_VALF;
+    theAnimation.autoreverses=YES;
+    theAnimation.fromValue=[NSNumber numberWithFloat:0.0];
+    theAnimation.toValue=[NSNumber numberWithFloat:1.0];
+    [innerAnimationView.layer addAnimation:theAnimation forKey:@"animateOpacity"];
+    
+    
+    //// Declaring second image view -> middle ring
+    UIImage *image2 = [UIImage imageNamed: @"second-scan.png"];
+    [middleAnimationView setImage:image2];
+    CALayer *scanIcon2 = [CALayer layer];
+    [self.view.layer addSublayer:scanIcon2];
+    [middleAnimationView setAlpha:0];
+    
+    // pulse animation with 1.5 delay
+    CABasicAnimation *theAnimation2;
+    theAnimation2=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    theAnimation2.beginTime = CACurrentMediaTime()+1.5;
+    theAnimation2.duration=1.3;
+    theAnimation2.repeatCount=HUGE_VALF;
+    theAnimation2.autoreverses=YES;
+    theAnimation2.fromValue=[NSNumber numberWithFloat:0.0];
+    theAnimation2.toValue=[NSNumber numberWithFloat:1.0];
+    [middleAnimationView.layer addAnimation:theAnimation2 forKey:@"animateOpacity"];
+    
+    //// Declaring third image view -> outer ring
+    UIImage *image3 = [UIImage imageNamed: @"third-scan.png"];
+    [outerAnimationView setImage:image3];
+    CALayer *scanIcon3 = [CALayer layer];
+    [self.view.layer addSublayer:scanIcon3];
+    [outerAnimationView setAlpha:0];
+    
+    // pulse animation with 1.8 delay
+    CABasicAnimation *theAnimation3;
+    theAnimation3=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    theAnimation3.beginTime = CACurrentMediaTime()+1.8;
+    theAnimation3.duration=1.3;
+    theAnimation3.repeatCount=HUGE_VALF;
+    theAnimation3.autoreverses=YES;
+    theAnimation3.fromValue=[NSNumber numberWithFloat:0.0];
+    theAnimation3.toValue=[NSNumber numberWithFloat:1.0];
+    [outerAnimationView.layer addAnimation:theAnimation3 forKey:@"animateOpacity"];
 }
 
 
