@@ -226,7 +226,7 @@
     bgView.contentMode = UIViewContentModeCenter;
     // Scale background image to fill container
     bgView.contentMode = UIViewContentModeScaleAspectFill;
-    // Switch off clipping
+    // Switch on clipping
     bgView.clipsToBounds = true;
     
     // GRADIENT CRAP

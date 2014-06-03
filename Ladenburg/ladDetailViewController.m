@@ -12,11 +12,9 @@
 @interface ladDetailViewController ()
 
 {
-    
     CGFloat draggedOffsetY;
     CGFloat newHeight;
     CGFloat newWidth;
-    
 }
 
 @end
@@ -36,7 +34,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     
-    
+    //make textView fit Text - resize container depending on text lenght
     [self.detailTextView sizeToFit];
     [self.detailTextView layoutIfNeeded];
     
@@ -49,23 +47,19 @@
     CGFloat contentPlusSpacer = contentHeight+imageViewHeight + 75;
     [self.detailScrollView setContentSize:(CGSizeMake(CGRectGetWidth(self.detailScrollView.frame), contentPlusSpacer))];
     
+    //Debugging Log
+    //NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
     
-    NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
-    
-    
-    CGPoint offset = CGPointMake(0, 65);
-    
-    [self.detailScrollView setContentOffset:offset];
+    //Inset Content so white bar on top isn't shown
+    UIEdgeInsets inset = UIEdgeInsetsMake(-65, 0, 0, 0) ;
+    [self.detailScrollView setContentInset:inset];
     
     self.detailScrollView.delegate = self;
-    
-    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     
     //Make one String out of the different texts for sight
     NSString *kurzbeschreibung = [_selectedSight kurzbeschreibung];
@@ -84,14 +78,12 @@
     paragraph.hyphenationFactor = 1;
     self.detailTextView.attributedText = [[NSMutableAttributedString alloc] initWithString:self.detailTextView.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
     
-    
     // Center background image
     self.detailImageView.contentMode = UIViewContentModeCenter;
     // Scale background image to fill container
     self.detailImageView.contentMode = UIViewContentModeScaleAspectFill;
     // Switch off clipping
     self.detailImageView.clipsToBounds = true;
-    
     
     // GRADIENT CRAP
     // Set image over layer
@@ -123,15 +115,8 @@
                           nil];
     
     [_detailImageView.layer insertSublayer:gradient atIndex:1];
-    
-    //NSLog(@"added gradient");
-    
-    // END GRADIENT CRAP
-    
-    
-    
+
     // Customize NavigationBar on DetailView
-    
     // Set NavigationBar to invisible
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
@@ -151,27 +136,26 @@
 }
 
 //Change Layout on scrolling
-/*
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    draggedOffsetY = self.detailScrollView.contentOffset.y;
+    /* draggedOffsetY = self.detailScrollView.contentOffset.y;
     
     NSLog(@"View was dragged to: %f", draggedOffsetY);
-    
     newHeight = self.detailImageView.frame.size.height-draggedOffsetY;
-    
+
     if (newHeight > 75 && newHeight < 150 ){
         
         [self.detailScrollView setFrame:CGRectMake(0, 0, self.view.frame.size.width, newHeight)];
-        
         CGFloat startTop = self.detailImageView.frame.size.height;
-        
         self.detailTextView.frame = CGRectMake(0, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-        
-        
-        
-    }
-} */
+     }
+     */
+    
+    //Turn off Bounce on Top of View
+    self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
+    
+}
 
 
 - (void)didReceiveMemoryWarning
