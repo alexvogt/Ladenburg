@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="6q7-vT-ash">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -190,19 +190,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Outer" translatesAutoresizingMaskIntoConstraints="NO" id="X4k-TN-L6D">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="X4k-TN-L6D">
                                 <rect key="frame" x="40" y="164" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Outer" translatesAutoresizingMaskIntoConstraints="NO" id="Iss-au-Mtg">
-                                <rect key="frame" x="-23" y="106" width="367" height="356"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Middle" translatesAutoresizingMaskIntoConstraints="NO" id="wX3-ue-TkX">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wX3-ue-TkX">
                                 <rect key="frame" x="40" y="164" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Inner" translatesAutoresizingMaskIntoConstraints="NO" id="Cfc-al-0vH">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Cfc-al-0vH">
                                 <rect key="frame" x="40" y="164" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -215,7 +211,6 @@
                         <outlet property="innerAnimationView" destination="Cfc-al-0vH" id="zSO-F2-lPp"/>
                         <outlet property="middleAnimationView" destination="wX3-ue-TkX" id="nhY-7s-zHU"/>
                         <outlet property="outerAnimationView" destination="X4k-TN-L6D" id="DGd-W3-iHL"/>
-                        <outlet property="outestAnimationView" destination="Iss-au-Mtg" id="esb-wL-H85"/>
                         <segue destination="buz-qi-qqg" kind="push" identifier="alertToDetail" id="GyG-ys-8B8"/>
                     </connections>
                 </viewController>
@@ -431,10 +426,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Inner" width="2083" height="2083"/>
         <image name="Maps_Icons" width="22" height="21"/>
-        <image name="Middle" width="2083" height="2083"/>
-        <image name="Outer" width="2083" height="2083"/>
         <image name="Scan_Icons" width="21" height="20"/>
         <image name="Settings_Icons" width="21" height="21"/>
         <image name="Sights_Icons" width="21" height="18"/>
