@@ -30,9 +30,20 @@
     return self;
 }
 
+-(void)viewWillLayoutSubviews{
+    
+    //disable AutoLayout
+    [self.detailScrollView removeFromSuperview];
+    [self.detailScrollView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    //[self.detailScrollView setFrame:CGRectMake(0, 0, 362, 634)];
+    [self.detailMainView addSubview:self.detailScrollView];
+
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    
     
     //make textView fit Text - resize container depending on text lenght
     [self.detailTextView sizeToFit];

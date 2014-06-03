@@ -71,6 +71,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //set Application BAdge to 0
+    //delet once pushed
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    
     // Do any additional setup after loading the view.
     [self startAnimationForView:middleAnimationView WithDuration:0.2 rotations:20 repeat:200];
     [self startAnimationForView:outerAnimationView WithDuration:0.25 rotations:-20 repeat:200];

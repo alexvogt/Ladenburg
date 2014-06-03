@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailSightNameLabel;
 
+@property (strong, nonatomic) IBOutlet UIView *detailMainView;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 
 
