@@ -164,18 +164,6 @@
     myCell.textLabel.layer.masksToBounds = NO;
     
     
-    /*
-    
-    // TESTAREA - CONVERSION OF STRING TO DOUBLE
-    
-    //    NSLog(@"%@",jsonElement[@"LOC_LATITUDE"]);
-    NSLog(@"String: %@",item.latitude);
-    
-    double testValue = [item.latitude doubleValue];
-    NSLog(@"Double: %f",testValue);
-   */
-    
-    
     // Determining Location of the Cell/Sight
     double testLatitude = [item.latitude doubleValue];
     double testLongitude = [item.longitude doubleValue];
@@ -229,8 +217,7 @@
                                        fromRect:[outputImage extent]];
     
     bgView.image = [UIImage imageWithCGImage:cgImage];
-    
-    
+
     
     // Original Image - without BW Filter on top.
     //bgView.image = item.image;
@@ -247,9 +234,6 @@
     CAGradientLayer *gradient = [CAGradientLayer layer];
     //gradient.frame = myCell.frame;
     gradient.frame = CGRectMake(0, 0, 320, 100);
-    
-    //DEbuggin Log
-    //NSLog(@"Set up gradient");
     
     [gradient setStartPoint:CGPointMake(0.0, 0.5)];
     [gradient setEndPoint:CGPointMake(1.0, 0.5)];
@@ -274,9 +258,6 @@
                           nil];
     
     [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
-    
-    //DEbuggin Log
-    //NSLog(@"added gradient");
     
     // END GRADIENT CRAP
     
