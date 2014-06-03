@@ -30,6 +30,9 @@
     return self;
 }
 
+
+/*
+ Test
 -(void)viewWillLayoutSubviews{
     
     //disable AutoLayout
@@ -38,7 +41,7 @@
     //[self.detailScrollView setFrame:CGRectMake(0, 0, 362, 634)];
     [self.detailMainView addSubview:self.detailScrollView];
 
-}
+} */
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -71,6 +74,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Change Constraints of UITextView to fit Text
+    //self.detailTextViewHeightConstraint.constant = self.detailTextView.frame.size.height+150;
     
     //Make one String out of the different texts for sight
     NSString *kurzbeschreibung = [_selectedSight kurzbeschreibung];

@@ -20,5 +20,11 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 
+//Constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailImageViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextViewHeightConstraint;
+
+
 
 @end
