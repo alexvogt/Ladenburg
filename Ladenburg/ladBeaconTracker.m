@@ -26,7 +26,6 @@
     NSTimeInterval timeInSecUntilNextNotification;
     
     //Animation Outlets
-   // __weak IBOutlet UIImageView *outestAnimationView;
     __weak IBOutlet UIImageView *outerAnimationView;
     __weak IBOutlet UIImageView *innerAnimationView;
     __weak IBOutlet UIImageView *middleAnimationView;
@@ -66,6 +65,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];   //it hides
+    
+    // Pulsating scan-animation starts
+    [self startAnimationForView];
+    
 }
 
 - (void)viewDidLoad
@@ -78,9 +81,6 @@
     
     
     // Do any additional setup after loading the view.
-    
-    [self startAnimationForView];
-    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     

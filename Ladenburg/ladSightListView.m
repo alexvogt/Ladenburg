@@ -67,12 +67,14 @@
 
     // Create the locationManager
 
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = 5; // whenever we move 5m
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    [self.locationManager startUpdatingLocation];
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.distanceFilter = 5; // whenever we move 5m
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     
-    self.locationManager.delegate = self;
+    
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingLocation];
+    
     self.location = [[CLLocation alloc] init];
 }
 
@@ -87,7 +89,9 @@
     NSLog(@"%@", self.location.description);
     
     [self.locationManager stopUpdatingLocation];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(_turnOnLocationManager)  userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(_turnOnLocationManager)  userInfo:nil repeats:NO];
+    
+    [_sightListView reloadData];
 }
 
 - (void)_turnOnLocationManager {
