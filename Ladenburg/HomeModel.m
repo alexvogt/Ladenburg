@@ -26,11 +26,11 @@
     // Download the json file
     NSURL *jsonFileUrl = [NSURL URLWithString:@"http://ladenburg.timhartl.de/service-lb-th.php"];
     
-    // Lokale Installation
+    // Local Installation
     //NSURL *jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/service-lb.php"];
     
-    // Lokale netzwerk Installation
-    // Replace URL with IP of
+    // Locale Nework Installation
+    // Replace URL with IP of Network Server
     //NSURL *jsonFileUrl = [NSURL URLWithString:@"http://141.72.154.188:8888/service-lb-th.php"];
     
     
@@ -87,11 +87,12 @@
         //set image property of newSight to image
         baseURL = @"http://ladenburg.timhartl.de";
         
-        // Lokale Installation
-        //baseURL = @"http://localhost:8888/";
+        // Locale Installation
+        // baseURL = @"http://localhost:8888/";
         
-        // Netzwerk Installation
-        //baseURL = @"http://141.72.154.188:8888/";
+        // Locale Nework Installation
+        // Replace URL with IP of Network Server
+        // baseURL = @"http://141.72.154.188:8888/";
         
         
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
