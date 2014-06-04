@@ -22,10 +22,49 @@
     
     // Set the application setting defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
-                                                            forKey:@"enableBeaconTracking"];
+    
+    NSDictionary *appDefaults = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], @"enableBeaconTracking",
+                                 [NSNumber numberWithBool:YES], @"showTutorial",
+                                 nil];
+    
     [defaults registerDefaults:appDefaults];
+    
     [defaults synchronize];
+    
+    //DEBUGGING:
+    //Check if Settings have been changed
+    BOOL beaconTrackingEnabled = [defaults boolForKey:@"enableBeaconTracking"];
+    BOOL showTutorialEnabled = [defaults boolForKey:@"showTutorial"];
+    NSLog(@"set beaconTracking to %@", beaconTrackingEnabled ? @"YES" : @"NO");
+    NSLog(@"set showTutorial to %@", showTutorialEnabled ? @"YES" : @"NO");
+    
+    
+    //Show Tutorial on first View only
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    
+    NSLog(@"set showTutorial to %@", showTutorialEnabled ? @"YES" : @"NO");
+    
+    if([defaults boolForKey:@"showTutorial"]){
+        NSLog(@"showTutorial");
+        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ladTutorialMainViewController"];
+        self.window.rootViewController = viewController;
+        
+        [defaults setBool:NO forKey:@"showTutorial"];
+        
+    } else {
+        NSLog(@"Don't showTutorial");
+        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ladMainTabController"];
+        self.window.rootViewController = viewController;
+    }
+    
+    [defaults synchronize];
+    
+    [self.window makeKeyAndVisible];
+    
+    
     
     return YES;
 }

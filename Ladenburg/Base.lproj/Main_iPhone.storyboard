@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="1704" y="83"/>
         </scene>
-        <!--Lad Tutorial Main View Controller - ladMainViewController-->
+        <!--Lad Tutorial Main View Controller - ladTutorialMainViewController-->
         <scene sceneID="OZi-Iu-iXe">
             <objects>
-                <viewController title="ladMainViewController" id="6q7-vT-ash" customClass="ladTutorialMainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ladTutorialMainViewController" title="ladTutorialMainViewController" id="6q7-vT-ash" customClass="ladTutorialMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AYr-Xw-UHo"/>
                         <viewControllerLayoutGuide type="bottom" id="D3q-kQ-iGm"/>
@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="756" y="483"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - ladMainTabController-->
         <scene sceneID="VHz-wF-hk7">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="T91-x1-9Dc" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ladMainTabController" title="ladMainTabController" definesPresentationContext="YES" id="T91-x1-9Dc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="qnQ-u0-GmM"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xqZ-PM-u7d">

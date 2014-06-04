@@ -12,7 +12,7 @@
 #import "HomeModel.h"
 #import "Sight.h"
 
-@interface ladBeaconTracker : UIViewController <CLLocationManagerDelegate, UIAlertViewDelegate, HomeModelProtocol>
+@interface ladBeaconTracker : UIViewController <CLLocationManagerDelegate, UIApplicationDelegate, UIAlertViewDelegate, HomeModelProtocol>
 
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 @property (strong, nonatomic) CLLocationManager *locationManager;

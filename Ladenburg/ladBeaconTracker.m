@@ -75,6 +75,7 @@
 {
     [super viewDidLoad];
     
+    
     //set Application BAdge to 0
     //delet once pushed
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -96,10 +97,27 @@
     // Call the download items method of the home model object
     [_homeModel downloadItems];
     
-    [self startTrackingBeacons];
+    //Check if Automatic Beacon Search is set
+    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableTrackingBeacons"];
+    NSLog(@"%@", (enabled ? @"YES" : @"NO"));
     
-    //Alloc and init Dictionaries to track Notifications
-    shownBeacons = [[NSMutableDictionary alloc] init];
+    if (enabled) {
+        
+        [self startTrackingBeacons];
+        //Debugging Log
+        NSLog(@"Start tracking beacons called");
+        NSLog(@"Automatic Tracking turned ON");
+        
+        //Alloc and init Dictionaries to track Notifications
+        shownBeacons = [[NSMutableDictionary alloc] init];
+    
+    }else{
+    
+        NSLog(@"Automatic Tracking turned OFF");
+        
+    }
+    
+    
     
 }
 
@@ -126,6 +144,8 @@
         //Initalize Beacon Regions for inside and outside of museum
         [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
         [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
+        //Debugging Log
+        NSLog(@"Regions initialized");
     }
 }
 
@@ -139,7 +159,7 @@
         [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     
         //Debugging Log
-        //NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
+        NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
 }
 
 
@@ -148,7 +168,7 @@
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
     
     //Debugging Log
-   // NSLog(@"Region %@ entered", _beaconRegion.identifier);
+    NSLog(@"Region %@ entered", _beaconRegion.identifier);
     
     _countRangedBeacon = 0;
 }
