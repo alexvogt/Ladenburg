@@ -37,6 +37,7 @@
 		6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6396202E1924C22D00D8E31C /* ladPageContentViewController.m */; };
 		639620321924D64C00D8E31C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 639620311924D64C00D8E31C /* Settings.bundle */; };
 		639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639620621924DC2A00D8E31C /* MessageUI.framework */; };
+		63EC2A4E1941CA2400E959E9 /* ladSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		6396202E1924C22D00D8E31C /* ladPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladPageContentViewController.m; sourceTree = "<group>"; };
 		639620311924D64C00D8E31C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		639620621924DC2A00D8E31C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		63EC2A4C1941CA2400E959E9 /* ladSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladSettingsTableViewController.h; sourceTree = "<group>"; };
+		63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladSettingsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +175,7 @@
 				6396202C1924849200D8E31C /* Beacon Functionality */,
 				2235B3511924EF090081ED14 /* SightList */,
 				119EF68B1912B28200A3DCCB /* Main_iPad.storyboard */,
-				63962021192262D700D8E31C /* Demo Classes */,
+				63EC2A4B19419D6100E959E9 /* Settings */,
 				119EF6741912B28200A3DCCB /* Supporting Files */,
 				639620311924D64C00D8E31C /* Settings.bundle */,
 			);
@@ -182,6 +185,7 @@
 		119EF6741912B28200A3DCCB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				63962021192262D700D8E31C /* Demo Classes */,
 				119EF6751912B28200A3DCCB /* Ladenburg-Info.plist */,
 				119EF6761912B28200A3DCCB /* InfoPlist.strings */,
 				119EF6791912B28200A3DCCB /* main.m */,
@@ -254,6 +258,15 @@
 				6396202E1924C22D00D8E31C /* ladPageContentViewController.m */,
 			);
 			name = "Tutorial Functionality";
+			sourceTree = "<group>";
+		};
+		63EC2A4B19419D6100E959E9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				63EC2A4C1941CA2400E959E9 /* ladSettingsTableViewController.h */,
+				63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +384,7 @@
 				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,
 				119EF67A1912B28200A3DCCB /* main.m in Sources */,
 				2235B34D1924EE530081ED14 /* ladSightListView.m in Sources */,
+				63EC2A4E1941CA2400E959E9 /* ladSettingsTableViewController.m in Sources */,
 				63014EAA192FB09D0008C4D1 /* ladTutorialMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
