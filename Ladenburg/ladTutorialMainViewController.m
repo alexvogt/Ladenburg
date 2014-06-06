@@ -35,14 +35,17 @@
 {
     [super viewDidLoad];
     
-    _tutorialPageTitles = @[@"Tutorial Page 1",
+    /* _tutorialPageTitles = @[@"Tutorial Page 1",
                             @"More Tutorial",
-                            @"And still more"];
-    _tutorialPageTexts = @[
-                           @"Sobald du in der Nähe einer Sehenswürdigkeit bist, benachrichtigt dich iLadenburg automatisch darüber. \n \n Damit das funktioniert, benötigt die App Bluetooth und Zugriff auf deine Standortinformationen.",
-                           @"Wenn du wissen willst was es um dich herum zu sehen gibt, zeigt dir iLadenburg die Sehenswürdigkeiten in einer Liste oder auf der Karte an. \n \n Auf Wunsch kann dich dein iPhone dann sogar zu ihnen führen.",
-                           @"Text"];
-    _tutorialPageImages = @[@"Tut_1", @"Tut_2", @"bluetooth-icon.png"];
+                            @"And still more"]; */
+    _tutorialPageTexts = @[[NSString stringWithFormat:NSLocalizedString(@"Tutorial Page 1", nil)],
+                           [NSString stringWithFormat:NSLocalizedString(@"Tutorial Page 2", nil)]
+                           /* @"Sobald du in der Nähe einer Sehenswürdigkeit bist, benachrichtigt dich iLadenburg automatisch darüber. \n \n Damit das funktioniert, benötigt die App Bluetooth und Zugriff auf deine Standortinformationen.",
+                           @"Wenn du wissen willst was es um dich herum zu sehen gibt, zeigt dir iLadenburg die Sehenswürdigkeiten in einer Liste oder auf der Karte an. \n \n Auf Wunsch kann dich dein iPhone dann sogar zu ihnen führen." */
+                           /*,
+                           @"Text" */
+                           ];
+    _tutorialPageImages = @[@"Tut_1", @"Tut_2"];
     
     
     // Create page view controller
@@ -70,7 +73,7 @@
 
 - (ladPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if (([self.tutorialPageTitles count] == 0) || (index >= [self.tutorialPageTitles count])) {
+    if (([self.tutorialPageImages count] == 0) || (index >= [self.tutorialPageImages count])) {
         return nil;
     }
     
@@ -79,7 +82,7 @@
     
     //set Content
     pageContentViewController.tutorialImageFile = self.tutorialPageImages[index];
-    pageContentViewController.tutorialTitleText = self.tutorialPageTitles[index];
+    //pageContentViewController.tutorialTitleText = self.tutorialPageTitles[index];
     pageContentViewController.tutorialPageText = self.tutorialPageTexts[index];
     
     
@@ -96,7 +99,7 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return [self.tutorialPageTitles count];
+    return [self.tutorialPageImages count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
@@ -133,7 +136,7 @@
     }
     
     index++;
-    if (index == [self.tutorialPageTitles count]) {
+    if (index == [self.tutorialPageImages count]) {
         return nil;
     }
     return [self viewControllerAtIndex:index];

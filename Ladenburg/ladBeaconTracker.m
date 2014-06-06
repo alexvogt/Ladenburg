@@ -8,8 +8,10 @@
 
 // TEST UUID 1 : A5456D78-C85B-44C6-9F20-8268FD25EF8A
 // TEST MINORS: 156 - BISCHOFSHOF ( "Cocktail Mint" )
-//              97 - BURGUS ("Icy Marshmallow")
-//              163 - CARL-BENZ-HAUS ("Blueberry Pie")
+//              /*97 - BURGUS ("Icy Marshmallow")*/
+//              /*163 - CARL-BENZ-HAUS ("Blueberry Pie")*/
+//              165 - Jupitergingantensäule
+//              169 - Marktplatz
 
 #import "ladBeaconTracker.h"
 #import "ladDetailViewController.h"
@@ -29,6 +31,9 @@
     __weak IBOutlet UIImageView *outerAnimationView;
     __weak IBOutlet UIImageView *innerAnimationView;
     __weak IBOutlet UIImageView *middleAnimationView;
+    
+    BOOL isRangingAndMonitoring;
+    BOOL didNotifyAboutUnsupportedDevice;
 };
 
 //Properties
@@ -42,10 +47,12 @@
 
 //Utility-Methods
 - (void) startTrackingBeacons;
+- (void) stopTrackingBeacons;
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier: (NSString *)identifier;
 - (void) identifyDetectedBeacon: (CLBeacon *)beacon;
 - (void) sendNotification;
 - (void) startAnimationForView;
+- (void) stopAnimationForView;
 
 @end
 
@@ -66,31 +73,40 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];   //it hides
     
-    
-    
-    // Pulsating scan-animation starts
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
-        [self startAnimationForView];
+    // Check if Beacon-Monitoring is ON
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"] && !isRangingAndMonitoring){
+        //If ON - Animate View and start tracking
+        NSLog(@"Settings set on on, Beacons will be tracked.");
+            [self startTrackingBeacons];
+    }else{
+        //If OFF - show just dot and stop tracking
+        if (isRangingAndMonitoring) {
+            [self stopTrackingBeacons];
+            NSLog(@"Settings set on off, Beacons won't be tracked.");
+        }
     }
-    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    
     //set Application BAdge to 0
-    //delet once pushed
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    
     
     // Do any additional setup after loading the view.
     self.locationManager = [[CLLocationManager alloc] init];
+    self.bluetoothManager = [[CBCentralManager alloc] init];
+    
     self.locationManager.delegate = self;
+    self.bluetoothManager.delegate = self;
     
     // Create dictionary object and assign it to _sightsDict variable
     _sightsDict = [[NSMutableDictionary alloc] init];
+    
+    _beaconRegions = [[NSMutableArray alloc] init];
     
     // Create new HomeModel object and assign it to _homeModel variable
     _homeModel = [[HomeModel alloc] init];
@@ -101,58 +117,85 @@
     // Call the download items method of the home model object
     [_homeModel downloadItems];
     
+    [self detectBluetooth];
+    
     //Check if Automatic Beacon Search is set
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL enabled = [defaults boolForKey:@"enableBeaconTracking"];
     NSLog(@"%@", (enabled ? @"YES" : @"NO"));
     
     if (enabled) {
         
+        //start Tracking and Start Animation
         [self startTrackingBeacons];
         
         //Debugging Log
         NSLog(@"Start tracking beacons called");
         NSLog(@"Automatic Tracking turned ON");
         
-        //Alloc and init Dictionaries to track Notifications
-        shownBeacons = [[NSMutableDictionary alloc] init];
+        //Alloc and init Dictionaries to track Notifications */
     
-    }else{
+    shownBeacons = [[NSMutableDictionary alloc] init];
     
+   /* }else{
+        [self stopAnimationForView];
         NSLog(@"Automatic Tracking turned OFF");
-        
     }
-    
-    
+    */
     
 }
 
 -(void)itemsDownloaded:(NSArray *)items
 {
     // This delegate method will get called when the items are finished downloading
+    // It turns the downloaded date into a dictionary used to identify the beacons
     for (Sight* currentSight in items)
     {
         [_sightsDict setObject:currentSight forKey:currentSight.identifier];
     }
-    
 }
 
 - (void) startTrackingBeacons{
     //Init different regions --> change UUID in accordance with Beacons
     
     // Check if beacon monitoring is available for this device
-    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]&& (!didNotifyAboutUnsupportedDevice)) {
         
         //Inform user that device can't use beacon functionality
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Monitoring not available" message:@"This device can't be used as an iBeacon Receiver" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil]; [alert show]; return;
-    }
-    else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                            initWithTitle:NSLocalizedString(@"Monitoring not available!", nil)
+                            message:NSLocalizedString(@"This device can't be used as an iBeacon receiver", nil)
+                            delegate:nil
+                            cancelButtonTitle:@"Ok"
+                            otherButtonTitles: nil];
+    [alert show];
+    didNotifyAboutUnsupportedDevice = YES;
+    [self stopAnimationForView];
+    
+    return;
+        
+    } else {
         //Initalize Beacon Regions for inside and outside of museum
         [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
         [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
         //Debugging Log
         NSLog(@"Regions initialized");
+        [self startAnimationForView];
     }
+}
+
+- (void) stopTrackingBeacons{
+    //Stop tracking
+    for (NSInteger i = 0; i < self.beaconRegions.count; i++) {
+        
+        [self.locationManager stopMonitoringForRegion:self.beaconRegions[i]];
+        [self.locationManager stopRangingBeaconsInRegion:self.beaconRegions[i]];
+        
+        NSLog(@"Stopped looking for beacons in Region %@", self.beaconRegions[i]);
+    }
+    
+    isRangingAndMonitoring = NO;
+    [self stopAnimationForView];
 }
 
 - (void) initRegionWithUUIDString:(NSString *)uuid andIdentifier:(NSString *)identifier{
@@ -161,11 +204,18 @@
     
     self.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:_uuid identifier:identifier];
     
+    [self.beaconRegions addObject:self.beaconRegion];
+    
         [self.locationManager startMonitoringForRegion:self.beaconRegion];
         [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+        NSLog(@"Started looking for beacons");
+    
+        //set Bool to show App is Monitoring
+        isRangingAndMonitoring = YES;
     
         //Debugging Log
         NSLog(@"Init Region with UUID %@ and identifier %@", _uuid , identifier);
+    
 }
 
 
@@ -292,11 +342,12 @@
         NSString *beaconAlertTitle = _selectedSight.name;
         NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight.name];
         
-        UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle message:message
-                                                                          delegate:self
-                                                                 cancelButtonTitle:@"No"
-                                                                 otherButtonTitles:@"Yes",
-                                                 nil];
+        UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle
+                                                                message:message
+                                                                delegate:self
+                                                                cancelButtonTitle:@"No"
+                                                                otherButtonTitles:@"Yes",
+                                                                nil];
         [rangedBeaconAlert show];
       
         //Send Notification
@@ -317,40 +368,41 @@
     
 }
 
-
-- (void)didReceiveMemoryWarning
+- (void)detectBluetooth
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark AlertView Delegate
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != alertView.cancelButtonIndex)
+    if(!self.bluetoothManager)
     {
-        [self performSegueWithIdentifier:@"alertToDetail" sender:self];
+        // Put on main queue so we can call UIAlertView from delegate callbacks.
+        self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     }
     
-    //If View is cancelled go back to ranging beacons
-    else
-    {
-        [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-    }
+    [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
 }
 
-
-#pragma mark Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    // Get reference to the destination view controller
-    ladDetailViewController *ladVC = segue.destinationViewController;
+    NSString *stateString = nil;
+    switch(self.bluetoothManager.state)
+    {
+        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
+        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
+        case CBCentralManagerStateUnauthorized: stateString = @"The app is not authorized to use Bluetooth Low Energy."; break;
+        case CBCentralManagerStatePoweredOff: stateString = @"Bluetooth is currently powered off."; break;
+        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
+        default: stateString = @"State unknown, update imminent."; break;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
+                                                message:stateString
+                                                delegate:nil
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles: nil,
+                                                nil];
+    if ([stateString isEqualToString:@"The app is not authorized to use Bluetooth Low Energy."]
+        || [stateString isEqualToString:@"Bluetooth is currently powered off."]) {
+        [alert show];
+    }
     
-    
-    ladVC.selectedSight = _selectedSight;
 }
-
 
 
 -(void) startAnimationForView{
@@ -409,6 +461,49 @@
     theAnimation3.toValue=[NSNumber numberWithFloat:1.0];
     [outerAnimationView.layer addAnimation:theAnimation3 forKey:@"animateOpacity"];
     
+}
+
+- (void) stopAnimationForView{
+    //Stop animating, just show dot
+    UIImage *image = [UIImage imageNamed: @"first-scan.png"];
+    [innerAnimationView setImage:image];
+    CALayer *scanIcon = [CALayer layer];
+    [self.view.layer addSublayer:scanIcon];
+    [innerAnimationView setAlpha:1];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark AlertView Delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        [self performSegueWithIdentifier:@"alertToDetail" sender:self];
+    }
+    
+    //If View is cancelled go back to ranging beacons
+    else
+    {
+        [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+    }
+}
+
+
+#pragma mark Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get reference to the destination view controller
+    ladDetailViewController *ladVC = segue.destinationViewController;
+    
+    
+    ladVC.selectedSight = _selectedSight;
 }
 
 

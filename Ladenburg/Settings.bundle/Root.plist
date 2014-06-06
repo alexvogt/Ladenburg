@@ -6,28 +6,6 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Sprache</string>
-			<key>Key</key>
-			<string>choseLanguage</string>
-			<key>DefaultValue</key>
-			<string>Deutsch</string>
-			<key>Titles</key>
-			<array>
-				<string>Deutsch</string>
-				<string>English</string>
-				<string>??Chinesisch??</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<string>german</string>
-				<string>english</string>
-				<string>chinese</string>
-			</array>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Automatische Suche nach Beacons</string>

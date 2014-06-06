@@ -45,17 +45,13 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     
-    NSLog(@"set showTutorial to %@", showTutorialEnabled ? @"YES" : @"NO");
-    
     if([defaults boolForKey:@"showTutorial"]){
-        NSLog(@"showTutorial");
         UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ladTutorialMainViewController"];
         self.window.rootViewController = viewController;
         
         [defaults setBool:NO forKey:@"showTutorial"];
         
     } else {
-        NSLog(@"Don't showTutorial");
         UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ladMainTabController"];
         self.window.rootViewController = viewController;
     }
