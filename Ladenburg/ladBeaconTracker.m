@@ -98,12 +98,14 @@
     [_homeModel downloadItems];
     
     //Check if Automatic Beacon Search is set
-    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableTrackingBeacons"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL enabled = [defaults boolForKey:@"enableBeaconTracking"];
     NSLog(@"%@", (enabled ? @"YES" : @"NO"));
     
     if (enabled) {
         
         [self startTrackingBeacons];
+        
         //Debugging Log
         NSLog(@"Start tracking beacons called");
         NSLog(@"Automatic Tracking turned ON");
@@ -402,6 +404,7 @@
     theAnimation3.fromValue=[NSNumber numberWithFloat:0.0];
     theAnimation3.toValue=[NSNumber numberWithFloat:1.0];
     [outerAnimationView.layer addAnimation:theAnimation3 forKey:@"animateOpacity"];
+    
 }
 
 
