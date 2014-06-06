@@ -66,8 +66,12 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];   //it hides
     
+    
+    
     // Pulsating scan-animation starts
-    [self startAnimationForView];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
+        [self startAnimationForView];
+    }
     
 }
 

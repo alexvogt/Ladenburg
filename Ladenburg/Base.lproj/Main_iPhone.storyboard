@@ -152,10 +152,10 @@
             </objects>
             <point key="canvasLocation" x="1170" y="478"/>
         </scene>
-        <!--Table View Controller - Settings-->
+        <!--Lad Settings Table View Controller - Settings-->
         <scene sceneID="oNu-gC-3zp">
             <objects>
-                <tableViewController title="Settings" id="bSu-hB-KjA" sceneMemberID="viewController">
+                <tableViewController title="Settings" id="bSu-hB-KjA" customClass="ladSettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qTV-ng-T9I">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,6 +179,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zhs-El-4aL">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="changeBeaconSettings:" destination="bSu-hB-KjA" eventType="valueChanged" id="Aif-Db-BGs"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -199,6 +202,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIQ-MU-iGz">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="changeTutorialSettings:" destination="bSu-hB-KjA" eventType="valueChanged" id="Gmf-p9-Mj8"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -250,6 +256,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Lx9-bG-ikt"/>
+                    <connections>
+                        <outlet property="beaconTrackingSwitch" destination="Zhs-El-4aL" id="D0f-Gb-nEJ"/>
+                        <outlet property="showTutorialSwitch" destination="dIQ-MU-iGz" id="Rj5-bc-eho"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFj-Wq-bXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

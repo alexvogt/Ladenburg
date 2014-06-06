@@ -10,4 +10,7 @@
 
 @interface ladSettingsTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UISwitch *beaconTrackingSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *showTutorialSwitch;
+
 @end
