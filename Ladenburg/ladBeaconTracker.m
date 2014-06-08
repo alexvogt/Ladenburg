@@ -32,8 +32,10 @@
     __weak IBOutlet UIImageView *innerAnimationView;
     __weak IBOutlet UIImageView *middleAnimationView;
     
+    //Bools to Check if Location Services are turned on
     BOOL isRangingAndMonitoring;
     BOOL didNotifyAboutUnsupportedDevice;
+    
 };
 
 //Properties
@@ -96,7 +98,8 @@
     //set Application BAdge to 0
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-    // Do any additional setup after loading the view.
+    // Initialize Location Manager for Beacon Functionality
+    // and Bluetooth Manager to check bluetooth status
     self.locationManager = [[CLLocationManager alloc] init];
     self.bluetoothManager = [[CBCentralManager alloc] init];
     
@@ -105,7 +108,7 @@
     
     // Create dictionary object and assign it to _sightsDict variable
     _sightsDict = [[NSMutableDictionary alloc] init];
-    
+
     _beaconRegions = [[NSMutableArray alloc] init];
     
     // Create new HomeModel object and assign it to _homeModel variable
@@ -164,7 +167,7 @@
         //Inform user that device can't use beacon functionality
         UIAlertView *alert = [[UIAlertView alloc]
                             initWithTitle:NSLocalizedString(@"Monitoring not available!", nil)
-                            message:NSLocalizedString(@"This device can't be used as an iBeacon receiver", nil)
+                            message:NSLocalizedString(@"Monitoring OFF Text", nil)
                             delegate:nil
                             cancelButtonTitle:@"Ok"
                             otherButtonTitles: nil];
@@ -340,22 +343,22 @@
         
         //Send Alert
         NSString *beaconAlertTitle = _selectedSight.name;
-        NSString *message = [NSString stringWithFormat:@"You're close to the '%@', do you want to see further information to this Sight?", _selectedSight.name];
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Beacon Notification Text", nil), _selectedSight.name];
         
         UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle
                                                                 message:message
                                                                 delegate:self
-                                                                cancelButtonTitle:@"No"
-                                                                otherButtonTitles:@"Yes",
+                                                                cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                                                otherButtonTitles:NSLocalizedString(@"Yes", nil),
                                                                 nil];
         [rangedBeaconAlert show];
       
         //Send Notification
         UILocalNotification *rangedBeaconNotification = [[UILocalNotification alloc] init];
-        rangedBeaconNotification.alertAction = @"View";
+        rangedBeaconNotification.alertAction = NSLocalizedString(@"Show Information", nil);
         rangedBeaconNotification.alertBody = message;
         rangedBeaconNotification.fireDate = nil;
-        rangedBeaconNotification.applicationIconBadgeNumber ++;
+        //rangedBeaconNotification.applicationIconBadgeNumber ++;
         [[UIApplication sharedApplication] scheduleLocalNotification:rangedBeaconNotification];
         
    /* }
@@ -382,24 +385,24 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     NSString *stateString = nil;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
+                                                    message:stateString
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles: nil,
+                          nil];
     switch(self.bluetoothManager.state)
     {
         case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
         case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
-        case CBCentralManagerStateUnauthorized: stateString = @"The app is not authorized to use Bluetooth Low Energy."; break;
-        case CBCentralManagerStatePoweredOff: stateString = @"Bluetooth is currently powered off."; break;
+        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil);
+            [alert show];
+            break;
+        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil);
+            [alert show];
+            break;
         case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
         default: stateString = @"State unknown, update imminent."; break;
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
-                                                message:stateString
-                                                delegate:nil
-                                                cancelButtonTitle:@"Ok"
-                                                otherButtonTitles: nil,
-                                                nil];
-    if ([stateString isEqualToString:@"The app is not authorized to use Bluetooth Low Energy."]
-        || [stateString isEqualToString:@"Bluetooth is currently powered off."]) {
-        [alert show];
     }
     
 }

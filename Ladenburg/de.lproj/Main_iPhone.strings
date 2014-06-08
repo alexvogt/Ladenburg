@@ -1,0 +1,90 @@
+
+/* Class = "IBUIViewController"; title = "Home"; ObjectID = "5Km-Z0-pvG"; */
+"5Km-Z0-pvG.title" = "Home";
+
+/* Class = "IBUITabBarItem"; title = "Sights"; ObjectID = "6I9-Z7-eKa"; */
+"6I9-Z7-eKa.title" = "POIs";
+
+/* Class = "IBUIViewController"; title = "ladTutorialMainViewController"; ObjectID = "6q7-vT-ash"; */
+"6q7-vT-ash.title" = "ladTutorialMainViewController";
+
+/* Class = "IBUILabel"; text = "English"; ObjectID = "BRL-Zd-kN7"; */
+"BRL-Zd-kN7.text" = "English";
+
+/* Class = "IBUITabBarItem"; title = "Map"; ObjectID = "Blh-r4-yyK"; */
+"Blh-r4-yyK.title" = "Karte";
+
+/* Class = "IBUIButton"; normalTitle = "OK got it!"; ObjectID = "Dzp-GB-yZm"; */
+"Dzp-GB-yZm.normalTitle" = "Alles klar!";
+
+/* Class = "IBUILabel"; text = "Chinese"; ObjectID = "EFK-5h-DaL"; */
+"EFK-5h-DaL.text" = "Chinese";
+
+/* Class = "IBUIViewController"; title = "ladPageContentView"; ObjectID = "Ee2-ks-HsI"; */
+"Ee2-ks-HsI.title" = "ladPageContentView";
+
+/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "Elr-IG-CuC"; */
+"Elr-IG-CuC.title" = "Einstellungen";
+
+/* Class = "IBUILabel"; text = "Show Tutorial on Start"; ObjectID = "J8C-Z9-Xiw"; */
+"J8C-Z9-Xiw.text" = "Zeige Tutorial beim Start";
+
+/* Class = "IBUILabel"; text = "In beaconRegion"; ObjectID = "JU5-bf-LHK"; */
+"JU5-bf-LHK.text" = "In beaconRegion";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Lof-Bx-t0S"; */
+"Lof-Bx-t0S.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "; ObjectID = "STm-Uq-ZVP"; */
+"STm-Uq-ZVP.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ";
+
+/* Class = "IBUITabBarController"; title = "ladMainTabController"; ObjectID = "T91-x1-9Dc"; */
+"T91-x1-9Dc.title" = "ladMainTabController";
+
+/* Class = "IBUILabel"; text = "Automatic Beacon Tracking"; ObjectID = "Uyj-Rf-JfE"; */
+"Uyj-Rf-JfE.text" = "Automatische Beacon-Suche";
+
+/* Class = "IBUIViewController"; title = "Map"; ObjectID = "ZPn-gu-ePd"; */
+"ZPn-gu-ePd.title" = "Map";
+
+/* Class = "IBUILabel"; text = "Map"; ObjectID = "ZgG-8v-em9"; */
+"ZgG-8v-em9.text" = "Map";
+
+/* Class = "IBUITableViewController"; title = "Settings"; ObjectID = "bSu-hB-KjA"; */
+"bSu-hB-KjA.title" = "Settings";
+
+/* Class = "IBUIViewController"; title = "ladDetailViewController"; ObjectID = "buz-qi-qqg"; */
+"buz-qi-qqg.title" = "ladDetailViewController";
+
+/* Class = "IBUILabel"; text = "About"; ObjectID = "bvh-1j-0YT"; */
+"bvh-1j-0YT.text" = "About";
+
+/* Class = "IBUIViewController"; title = "About"; ObjectID = "fE5-hh-4pb"; */
+"fE5-hh-4pb.title" = "About";
+
+/* Class = "IBUINavigationController"; title = "Sights"; ObjectID = "gBt-Nk-SOL"; */
+"gBt-Nk-SOL.title" = "Sights";
+
+/* Class = "IBUILabel"; text = "German"; ObjectID = "i0h-zc-5xM"; */
+"i0h-zc-5xM.text" = "German";
+
+/* Class = "IBUITableViewController"; title = "Languages"; ObjectID = "l2Q-1n-rcw"; */
+"l2Q-1n-rcw.title" = "Languages";
+
+/* Class = "IBUILabel"; text = "No"; ObjectID = "ssB-9X-hHW"; */
+"ssB-9X-hHW.text" = "No";
+
+/* Class = "IBUITabBarItem"; title = "Home"; ObjectID = "t2Q-Bf-930"; */
+"t2Q-Bf-930.title" = "Scan";
+
+/* Class = "IBUITextView"; text = "This app is part of a project blurb Lorem Ipsum Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."; ObjectID = "vdx-0b-9h6"; */
+"vdx-0b-9h6.text" = "This app is part of a project blurb Lorem Ipsum Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "vjR-rZ-vYm"; */
+"vjR-rZ-vYm.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Languages"; ObjectID = "xTo-yD-vkJ"; */
+"xTo-yD-vkJ.text" = "Languages";
+
+/* Class = "IBUILabel"; text = "Tutorial"; ObjectID = "zHR-1s-80e"; */
+"zHR-1s-80e.text" = "Tutorial";

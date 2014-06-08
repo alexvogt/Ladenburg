@@ -39,6 +39,7 @@
 		639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639620621924DC2A00D8E31C /* MessageUI.framework */; };
 		63EC2A4E1941CA2400E959E9 /* ladSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */; };
 		63EC2A551941F16D00E959E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63EC2A571941F16D00E959E9 /* Localizable.strings */; };
+		63EC2A5E194386F400E959E9 /* ladAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A5D194386F400E959E9 /* ladAboutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		63EC2A541941F11500E959E9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		63EC2A561941F16D00E959E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63EC2A581941F18600E959E9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		63EC2A5C194386F400E959E9 /* ladAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladAboutViewController.h; sourceTree = "<group>"; };
+		63EC2A5D194386F400E959E9 /* ladAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladAboutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +276,8 @@
 			children = (
 				63EC2A4C1941CA2400E959E9 /* ladSettingsTableViewController.h */,
 				63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */,
+				63EC2A5C194386F400E959E9 /* ladAboutViewController.h */,
+				63EC2A5D194386F400E959E9 /* ladAboutViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				2275F3E01927A8F70067AA62 /* ladDetailViewController.m in Sources */,
 				2235B3541924EF390081ED14 /* Sight.m in Sources */,
 				119EF67E1912B28200A3DCCB /* ladAppDelegate.m in Sources */,
+				63EC2A5E194386F400E959E9 /* ladAboutViewController.m in Sources */,
 				6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */,
 				639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */,
 				119EF67A1912B28200A3DCCB /* main.m in Sources */,

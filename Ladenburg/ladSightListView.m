@@ -35,13 +35,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];   //it hides
+    
+    //Hide Navigation Bar
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // Remove Separator between each Cell
     [self.sightListView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

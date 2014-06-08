@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  Ladenburg
+
+  Created by Sonja on 06.06.14.
+  Copyright (c) 2014 DHBW Mannheim. All rights reserved.
+*/
+/*  Input Content as: "KEY" = "CONTENT";
+    Example: "Hello englishman!" = "Hallo, Engländer!";
+*/
+
+/*Standard-Strings for Multi-Use*/
+"Yes" = "Ja";
+"No" = "Nein";
+"OK" = "OK";
+
+/*Tutorial*/
+"Tutorial Page 1" = "Sobald du in der Nähe einer Sehenswürdigkeit bist, benachrichtigt dich iLadenburg automatisch darüber.\n\nDamit das funktioniert, benötigt die App Bluetooth und Zugriff auf deine Standortinformationen.";
+
+"Tutorial Page 2" = "Wenn du wissen willst was es um dich herum zu sehen gibt, zeigt dir iLadenburg die Sehenswürdigkeiten in einer Liste oder auf der Karte an.\n\nAuf Wunsch kann dich dein iPhone dann sogar zu ihnen führen.";
+
+/*Monitoring not available-Noticiations*/
+"Monitoring not available!" = "Suche nach iBeacons nicht möglich!";
+"Monitoring OFF Text" = "Ihr Gerät kann nicht als iBeacon-Empfänger verwendet werden";
+
+/*Bluetooth Status Notification*/
+"Bluetooth not authorized" = "The app is not authorized to use Bluetooth Low Energy.";
+"Bluetooth OFF Text" = "Bluetooth is currently powered off.";
+
+
+
+/*Beacon found notifications*/
+/*Title will be set with Name of Sight*/
+"Beacon Notification Text" = "Missing Text";
+
+/*Beacon found lockscreen notifications*/
+/*Alert Action*/
+"Show Information" = "Missing Text";
+
+/*Sights-List: Notification about Location Error*/
+"Location Error Title" = "Error";
+"Location Error Text" = "Missing Text";
+
+/*About Page*/
+"About Text" = "Missing Text %@%@";
