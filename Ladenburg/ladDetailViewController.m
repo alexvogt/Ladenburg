@@ -174,6 +174,12 @@
     
 }
 
+// Set Statusbarcolor to white
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

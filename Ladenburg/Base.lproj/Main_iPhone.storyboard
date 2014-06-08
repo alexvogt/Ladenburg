@@ -306,6 +306,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="gB6-Ma-H8k"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="beaconFoundLabel" destination="ssB-9X-hHW" id="Tl4-SD-26R"/>
                         <outlet property="innerAnimationView" destination="Cfc-al-0vH" id="zSO-F2-lPp"/>
@@ -327,16 +329,16 @@
                         <viewControllerLayoutGuide type="bottom" id="FMY-hE-SK0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZgT-vp-wfF">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-y1-C5o">
-                                <rect key="frame" x="0.0" y="-40" width="320" height="457"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-y1-C5o">
+                                <rect key="frame" x="0.0" y="-40" width="320" height="521"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SightCell" id="0Ff-xQ-svl">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Ff-xQ-svl" id="JwU-hH-BhE">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -355,6 +357,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1QS-aH-G5F"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="sightListView" destination="9Yr-y1-C5o" id="n2f-Zl-8hF"/>
                         <segue destination="buz-qi-qqg" kind="push" identifier="detailSegue" id="NxK-U1-7Pj"/>
@@ -373,7 +376,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7cK-Ea-nq3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NXD-YE-Eub">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dVm-oH-PDg">
@@ -408,6 +411,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="LVc-IT-KZl"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="detailImageView" destination="h15-gF-l8R" id="4s4-cM-Gbq"/>
                         <outlet property="detailMainView" destination="NXD-YE-Eub" id="Obl-oO-9Ul"/>
@@ -532,7 +537,8 @@
                 <navigationController title="Sights" automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sights" image="Sights_Icons" id="6I9-Z7-eKa"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="990-9m-Wfn">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="990-9m-Wfn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -555,7 +561,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Txi-Jh-fnb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="Scan_Icons" id="t2Q-Bf-930"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="idU-ey-tyL">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="idU-ey-tyL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
