@@ -92,10 +92,20 @@
     self.detailTextView.text = text;
     self.detailSightNameLabel.text = _selectedSight.name;
     
-    //set text as hyphenated text
+    // Set Fontsize of Content to 27px = 54px retina.
+    self.detailSightNameLabel.font = [UIFont systemFontOfSize:27.0];
+    
+    
+    //set text as hyphenated text and add linespacing.
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.hyphenationFactor = 1;
+//    paragraph.minimumLineHeight = 23.4;
+    paragraph.lineSpacing = 1.6;
     self.detailTextView.attributedText = [[NSMutableAttributedString alloc] initWithString:self.detailTextView.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
+    
+    // Set Fontsize of Content to 18px = 36px retina.
+    [_detailTextView setFont:[UIFont systemFontOfSize:18.0]];
+    
     
     // Center background image
     self.detailImageView.contentMode = UIViewContentModeCenter;
@@ -202,6 +212,12 @@
     
     previousDraggedOffsetY = draggedOffsetY;
 
+}
+
+// Set Statusbarcolor to white
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
 }
 
 

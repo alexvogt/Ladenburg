@@ -286,9 +286,9 @@
     [self performSegueWithIdentifier:@"detailSegue" sender:self];
 }
 
+// Set Statusbarcolor to white
 -(UIStatusBarStyle)preferredStatusBarStyle{
- 
-    // Set Statusbarcolor to white
+    
     return UIStatusBarStyleLightContent;
 }
 
