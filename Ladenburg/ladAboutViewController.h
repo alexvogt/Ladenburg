@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ladAboutViewController : UIViewController
+@interface ladAboutViewController : UIViewController <UIScrollViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *aboutMainView;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *aboutScrollView;
+
+@property (weak, nonatomic) IBOutlet UIView *aboutContainerView;
 
 @property (weak, nonatomic) IBOutlet UITextView *aboutText;
+@property (weak, nonatomic) IBOutlet UIImageView *aboutImageView;
+
 
 @end

@@ -13,7 +13,8 @@
 
 {
     CGFloat draggedOffsetY;
-    CGFloat newHeight;
+    CGFloat previousDraggedOffsetY;
+    CGFloat newImageHeight;
     CGFloat newWidth;
 
 }
@@ -61,6 +62,8 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     
+    self.detailScrollView.delegate = self;
+    
     
     [self.detailScrollView setContentSize:self.detailContainerView.frame.size];
     
@@ -68,11 +71,8 @@
     //NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
     
     //Inset Content so white bar on top isn't shown
-    
     UIEdgeInsets inset = UIEdgeInsetsMake(-65, 0, 0, 0) ;
     [self.detailScrollView setContentInset:inset];
-    
-    self.detailScrollView.delegate = self;
     
 }
 
@@ -158,22 +158,50 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    /* draggedOffsetY = self.detailScrollView.contentOffset.y;
-    
-    NSLog(@"View was dragged to: %f", draggedOffsetY);
-    newHeight = self.detailImageView.frame.size.height-draggedOffsetY;
-
-    if (newHeight > 75 && newHeight < 150 ){
-        
-        [self.detailScrollView setFrame:CGRectMake(0, 0, self.view.frame.size.width, newHeight)];
-        CGFloat startTop = self.detailImageView.frame.size.height;
-        self.detailTextView.frame = CGRectMake(0, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-     }
-     */
-    
     //Turn off Bounce on Top of View
     self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
     
+    draggedOffsetY = self.detailScrollView.contentOffset.y;
+    
+    NSLog(@"View was dragged to: %f", draggedOffsetY);
+    newImageHeight = self.detailImageView.frame.size.height-draggedOffsetY;
+    
+    if( draggedOffsetY > previousDraggedOffsetY){
+        NSLog(@"scrolling forwards");
+        
+            if (newImageHeight > 75  /* && newImageHeight < 150 */ ){
+    
+                    [UIView animateWithDuration:0.1
+                            animations:^{
+                                        [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
+                                        CGFloat startTop = self.detailImageView.frame.size.height;
+                                        self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+                                        self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop+10, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                                        }
+                            completion:^(BOOL finished){
+                    }];
+            }
+    }
+    /*
+    else if (draggedOffsetY < previousDraggedOffsetY){
+        NSLog(@"scrolling backwards");
+        
+        if(newImageHeight < 200){
+            
+                    [UIView animateWithDuration:0.1
+                             animations:^{
+                                 [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
+                                 CGFloat startTop = self.detailImageView.frame.size.height;
+                                 self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+                                 self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop+10, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                             }
+                             completion:^(BOOL finished){
+                             }];
+        }
+    } */
+    
+    previousDraggedOffsetY = draggedOffsetY;
+
 }
 
 
