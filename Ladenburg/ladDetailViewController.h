@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Sight.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface ladDetailViewController : UIViewController <UIScrollViewDelegate>
+@interface ladDetailViewController : UIViewController <UIScrollViewDelegate, AVSpeechSynthesizerDelegate>
 
 @property (strong, nonatomic) Sight *selectedSight;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
@@ -25,6 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextViewHeightConstraint;
 
-
+// Synthesizer
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 
 @end

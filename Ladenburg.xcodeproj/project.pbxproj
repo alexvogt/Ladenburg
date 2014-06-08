@@ -37,6 +37,7 @@
 		6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6396202E1924C22D00D8E31C /* ladPageContentViewController.m */; };
 		639620321924D64C00D8E31C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 639620311924D64C00D8E31C /* Settings.bundle */; };
 		639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639620621924DC2A00D8E31C /* MessageUI.framework */; };
+		799A1D3B1944D865002F3FA3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 799A1D3A1944D865002F3FA3 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		6396202E1924C22D00D8E31C /* ladPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladPageContentViewController.m; sourceTree = "<group>"; };
 		639620311924D64C00D8E31C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		639620621924DC2A00D8E31C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		799A1D3A1944D865002F3FA3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				799A1D3B1944D865002F3FA3 /* AVFoundation.framework in Frameworks */,
 				63014F241934CBC50008C4D1 /* QuartzCore.framework in Frameworks */,
 				2285A4251930BD4400588343 /* CoreLocation.framework in Frameworks */,
 				639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */,
@@ -148,6 +151,7 @@
 		119EF66C1912B28200A3DCCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				799A1D3A1944D865002F3FA3 /* AVFoundation.framework */,
 				63014F231934CBC50008C4D1 /* QuartzCore.framework */,
 				2285A4241930BD4400588343 /* CoreLocation.framework */,
 				639620621924DC2A00D8E31C /* MessageUI.framework */,

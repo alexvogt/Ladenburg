@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -293,13 +293,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LVc-IT-KZl"/>
+                    <navigationItem key="navigationItem" id="LVc-IT-KZl">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="aPu-Kl-vy3">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ika-ul-xWn">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playPauseButtonPressed:" destination="buz-qi-qqg" eventType="touchUpInside" id="GmL-gP-v7c"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailImageView" destination="h15-gF-l8R" id="4s4-cM-Gbq"/>
                         <outlet property="detailMainView" destination="NXD-YE-Eub" id="Obl-oO-9Ul"/>
                         <outlet property="detailScrollView" destination="dVm-oH-PDg" id="ES8-fn-ohJ"/>
                         <outlet property="detailSightNameLabel" destination="vjR-rZ-vYm" id="hce-WS-1Qc"/>
                         <outlet property="detailTextView" destination="Lof-Bx-t0S" id="z74-Rn-gP9"/>
+                        <outlet property="playPauseButton" destination="ika-ul-xWn" id="zhh-NS-XFG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQn-Vh-t5F" userLabel="First Responder" sceneMemberID="firstResponder"/>

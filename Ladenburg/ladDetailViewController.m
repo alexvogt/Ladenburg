@@ -21,6 +21,9 @@
 
 @implementation ladDetailViewController
 
+// Synthesizer
+BOOL speechPaused = 0;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -150,6 +153,11 @@
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
     self.navigationController.navigationBar.layer.masksToBounds = NO;
     
+    // Synthesizer
+    self.synthesizer = [[AVSpeechSynthesizer alloc] init];
+    speechPaused = NO;
+    self.synthesizer.delegate = self;
+    
 }
 
 //Change Layout on scrolling
@@ -174,6 +182,36 @@
     
 }
 
+- (IBAction)playPauseButtonPressed:(UIButton *)sender {
+    [self.detailTextView resignFirstResponder];
+    if (speechPaused == NO) {
+        [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.synthesizer continueSpeaking];
+        speechPaused = YES;
+    } else {
+        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        speechPaused = NO;
+        [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    }
+    if (self.synthesizer.speaking == NO) {
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.detailTextView.text];
+        utterance.rate = AVSpeechUtteranceMaximumSpeechRate/3;
+        utterance.pitchMultiplier = 1.2; // [0.5 - 2] Default = 1
+        //utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-au"];
+        [self.synthesizer speakUtterance:utterance];
+    }
+}
+
+-(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    speechPaused = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    speechPaused = NO;
+}
 
 - (void)didReceiveMemoryWarning
 {
