@@ -76,13 +76,17 @@
 {
     [super viewDidLoad];
     
-    //set text as hyphenated text
-    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-    paragraph.hyphenationFactor = 1;
-    
     self.aboutText.text = NSLocalizedString(@"About Text", nil);
     
+    //set text as hyphenated text and add linespacing.
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.hyphenationFactor = 1;
+    //    paragraph.minimumLineHeight = 23.4;
+    paragraph.lineSpacing = 1.6;
     self.aboutText.attributedText = [[NSMutableAttributedString alloc] initWithString:self.aboutText.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
+    
+    // Set Fontsize of Content to 18px = 36px retina.
+    [_aboutText setFont:[UIFont systemFontOfSize:18.0]];
     
     // Center background image
     self.aboutImageView.contentMode = UIViewContentModeCenter;
