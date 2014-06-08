@@ -515,12 +515,6 @@
     ladVC.selectedSight = _selectedSight;
 }
 
-// Set Statusbarcolor to white
--(UIStatusBarStyle)preferredStatusBarStyle{
-    
-    return UIStatusBarStyleLightContent;
-}
-
 
 /*
 #pragma mark - Navigation
