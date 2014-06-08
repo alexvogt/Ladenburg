@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -9,8 +9,8 @@
             <objects>
                 <viewController title="Map" id="ZPn-gu-ePd" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="U9Y-St-bSQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="OX1-Yb-mNI"/>
+                        <viewControllerLayoutGuide type="top" id="fgS-7g-h9n"/>
+                        <viewControllerLayoutGuide type="bottom" id="FAK-uz-3xE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fc7-Vj-URd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -44,14 +44,14 @@
             <objects>
                 <viewController storyboardIdentifier="ladTutorialMainViewController" title="ladTutorialMainViewController" id="6q7-vT-ash" customClass="ladTutorialMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AYr-Xw-UHo"/>
-                        <viewControllerLayoutGuide type="bottom" id="D3q-kQ-iGm"/>
+                        <viewControllerLayoutGuide type="top" id="Ht3-Pn-H5L"/>
+                        <viewControllerLayoutGuide type="bottom" id="HgY-Pn-bcr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JP4-Fe-Afl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzp-GB-yZm">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzp-GB-yZm">
                                 <rect key="frame" x="127" y="434" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="OK got it!">
@@ -63,11 +63,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Dzp-GB-yZm" firstAttribute="leading" secondItem="JP4-Fe-Afl" secondAttribute="leading" constant="127" id="3Bu-hy-wyh"/>
-                            <constraint firstItem="D3q-kQ-iGm" firstAttribute="top" secondItem="Dzp-GB-yZm" secondAttribute="bottom" constant="16" id="AKJ-a2-B1x"/>
-                            <constraint firstAttribute="trailing" secondItem="Dzp-GB-yZm" secondAttribute="trailing" constant="127" id="OED-g6-rJx"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGy-CO-t9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,8 +82,8 @@
             <objects>
                 <viewController storyboardIdentifier="PageContentViewController" title="ladPageContentView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ee2-ks-HsI" customClass="ladPageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Usm-JN-hWp"/>
-                        <viewControllerLayoutGuide type="bottom" id="jpj-ms-k4J"/>
+                        <viewControllerLayoutGuide type="top" id="AmP-kB-d6G"/>
+                        <viewControllerLayoutGuide type="bottom" id="AMo-fu-zdh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bt1-SF-rlp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -243,8 +238,8 @@
             <objects>
                 <viewController title="Home" id="5Km-Z0-pvG" customClass="ladBeaconTracker" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XBF-jk-f8f"/>
-                        <viewControllerLayoutGuide type="bottom" id="7Pt-Yz-aOU"/>
+                        <viewControllerLayoutGuide type="top" id="1W4-fv-Qrg"/>
+                        <viewControllerLayoutGuide type="bottom" id="fCO-A2-vAn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bHK-XF-FH9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -301,15 +296,15 @@
             <objects>
                 <viewController id="qr1-jh-S9C" customClass="ladSightListView" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="v4w-cr-ZfC"/>
-                        <viewControllerLayoutGuide type="bottom" id="jYw-SZ-aKi"/>
+                        <viewControllerLayoutGuide type="top" id="PvC-vX-FmA"/>
+                        <viewControllerLayoutGuide type="bottom" id="FMY-hE-SK0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZgT-vp-wfF">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-y1-C5o">
-                                <rect key="frame" x="0.0" y="-20" width="320" height="456"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-y1-C5o">
+                                <rect key="frame" x="0.0" y="-40" width="320" height="457"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -325,6 +320,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9Yr-y1-C5o" firstAttribute="leading" secondItem="ZgT-vp-wfF" secondAttribute="leading" id="7IL-Xv-rQg"/>
+                            <constraint firstItem="FMY-hE-SK0" firstAttribute="top" secondItem="9Yr-y1-C5o" secondAttribute="bottom" constant="-50" id="KHi-AJ-53P"/>
+                            <constraint firstAttribute="trailing" secondItem="9Yr-y1-C5o" secondAttribute="trailing" id="THD-k4-ueq"/>
+                            <constraint firstItem="9Yr-y1-C5o" firstAttribute="top" secondItem="PvC-vX-FmA" secondAttribute="bottom" constant="-40" id="Wm8-Ed-D0x"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1QS-aH-G5F"/>
                     <connections>
@@ -341,11 +342,11 @@
             <objects>
                 <viewController title="ladDetailViewController" id="buz-qi-qqg" customClass="ladDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ER1-6a-cZI"/>
-                        <viewControllerLayoutGuide type="bottom" id="GP3-te-7qt"/>
+                        <viewControllerLayoutGuide type="top" id="rkw-CK-bld"/>
+                        <viewControllerLayoutGuide type="bottom" id="7cK-Ea-nq3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NXD-YE-Eub">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVm-oH-PDg">
@@ -439,8 +440,8 @@
             <objects>
                 <viewController title="About" id="fE5-hh-4pb" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="R9M-jK-ItF"/>
-                        <viewControllerLayoutGuide type="bottom" id="rmL-FR-t17"/>
+                        <viewControllerLayoutGuide type="top" id="acb-UQ-DmB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q7c-Iz-qZ2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V96-uN-l7c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -543,6 +544,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GyG-ys-8B8"/>
+        <segue reference="NxK-U1-7Pj"/>
     </inferredMetricsTieBreakers>
 </document>
