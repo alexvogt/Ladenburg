@@ -15,6 +15,7 @@
     CGFloat draggedOffsetY;
     CGFloat newHeight;
     CGFloat newWidth;
+
 }
 
 @end
@@ -31,24 +32,13 @@
 }
 
 
-/*
- Test
+
+ //Test
+
 -(void)viewWillLayoutSubviews{
-    
-    //disable AutoLayout
-    [self.detailScrollView removeFromSuperview];
-    [self.detailScrollView setTranslatesAutoresizingMaskIntoConstraints:YES];
-    //[self.detailScrollView setFrame:CGRectMake(0, 0, 362, 634)];
-    [self.detailMainView addSubview:self.detailScrollView];
-
-} */
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    
     //make textView fit Text - resize container depending on text lenght
+    
+    /*
     [self.detailTextView sizeToFit];
     [self.detailTextView layoutIfNeeded];
     
@@ -59,24 +49,36 @@
     CGFloat imageViewHeight = self.detailImageView.frame.size.height;
     CGFloat contentHeight = self.detailTextView.frame.size.height;
     CGFloat contentPlusSpacer = contentHeight+imageViewHeight + 75;
-    [self.detailScrollView setContentSize:(CGSizeMake(CGRectGetWidth(self.detailScrollView.frame), contentPlusSpacer))];
+    
+     */
+    
+    //[self.detailContainerView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.detailContainerView.frame), contentPlusSpacer)];
+    //[self.detailScrollView setContentSize:self.detailContainerView.frame.size];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    
+    [self.detailScrollView setContentSize:self.detailContainerView.frame.size];
     
     //Debugging Log
     //NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
     
     //Inset Content so white bar on top isn't shown
+    
     UIEdgeInsets inset = UIEdgeInsetsMake(-65, 0, 0, 0) ;
     [self.detailScrollView setContentInset:inset];
     
     self.detailScrollView.delegate = self;
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //Change Constraints of UITextView to fit Text
-    //self.detailTextViewHeightConstraint.constant = self.detailTextView.frame.size.height+150;
     
     //Make one String out of the different texts for sight
     NSString *kurzbeschreibung = [_selectedSight kurzbeschreibung];

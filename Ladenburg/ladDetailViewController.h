@@ -18,13 +18,18 @@
 
 @property (strong, nonatomic) IBOutlet UIView *detailMainView;
 
+@property (weak, nonatomic) IBOutlet UIView *detailContainerView;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 
+
 //Constraints
+/*
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailImageViewHeightConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextViewHeightConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextViewHeightConstraint;
+*/
 
 
 @end
