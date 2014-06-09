@@ -492,7 +492,7 @@
         <scene sceneID="vQP-Ti-RKw">
             <objects>
                 <navigationController title="Sights" automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sights" image="Sights_Icons" id="6I9-Z7-eKa"/>
+                    <tabBarItem key="tabBarItem" title="POIs" image="Sights_Icons" id="6I9-Z7-eKa"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="990-9m-Wfn">
