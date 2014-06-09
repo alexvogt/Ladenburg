@@ -23,22 +23,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rCH-OR-MBG">
-                                <rect key="frame" x="0.0" y="-88" width="320" height="518"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCH-OR-MBG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="Maps_Icons" id="Blh-r4-yyK"/>
                     <navigationItem key="navigationItem" id="HZw-M0-PW3"/>
                     <connections>
                         <outlet property="mapView" destination="rCH-OR-MBG" id="oRP-RU-697"/>
+                        <segue destination="buz-qi-qqg" kind="push" identifier="DetailViewMap" id="X8V-AI-TAC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOS-BP-qmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1704" y="83"/>
+            <point key="canvasLocation" x="2720" y="-506"/>
         </scene>
         <!--Lad Tutorial Main View Controller - ladTutorialMainViewController-->
         <scene sceneID="OZi-Iu-iXe">
@@ -154,7 +154,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Txi-Jh-fnb" kind="relationship" relationship="viewControllers" id="DRb-kZ-RjO"/>
-                        <segue destination="ZPn-gu-ePd" kind="relationship" relationship="viewControllers" id="5qh-ep-OZX"/>
+                        <segue destination="Nvw-1f-wft" kind="relationship" relationship="viewControllers" id="epI-Is-XcQ"/>
                         <segue destination="gBt-Nk-SOL" kind="relationship" relationship="viewControllers" id="a7d-ll-bwD"/>
                         <segue destination="xT5-Y6-rhg" kind="relationship" relationship="viewControllers" id="2x7-hK-YLJ"/>
                     </connections>
@@ -378,7 +378,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7cK-Ea-nq3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NXD-YE-Eub">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVm-oH-PDg">
@@ -643,6 +643,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GyG-ys-8B8"/>
+        <segue reference="NxK-U1-7Pj"/>
     </inferredMetricsTieBreakers>
 </document>
