@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -23,12 +23,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCH-OR-MBG">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCH-OR-MBG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FAK-uz-3xE" firstAttribute="top" secondItem="rCH-OR-MBG" secondAttribute="bottom" constant="-49" id="9Hv-vP-59q"/>
+                            <constraint firstItem="rCH-OR-MBG" firstAttribute="leading" secondItem="fc7-Vj-URd" secondAttribute="leading" id="9RK-IS-qqD"/>
+                            <constraint firstAttribute="trailing" secondItem="rCH-OR-MBG" secondAttribute="trailing" id="bt8-y5-PTi"/>
+                            <constraint firstItem="rCH-OR-MBG" firstAttribute="top" secondItem="fgS-7g-h9n" secondAttribute="bottom" constant="-64" id="eHF-oq-llb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HZw-M0-PW3"/>
                     <connections>
@@ -659,6 +665,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GyG-ys-8B8"/>
+        <segue reference="X8V-AI-TAC"/>
     </inferredMetricsTieBreakers>
 </document>
