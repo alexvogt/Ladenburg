@@ -186,7 +186,7 @@
                                         [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
                                         CGFloat startTop = self.detailImageView.frame.size.height;
                                         self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-                                        self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop+10, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                                        self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop-50, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
                                         }
                             completion:^(BOOL finished){
                     }];
