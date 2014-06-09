@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.translucent = NO;
+    //self.navigationController.navigationBar.translucent = NO;
     
     self.mapView.delegate = self;
     
@@ -57,13 +57,7 @@
     [homeModel downloadItems];
     
     
-    
-    
-    
     self.mapView.showsPointsOfInterest = NO;
-    
-    
-    
     
 }
 
@@ -96,8 +90,6 @@
         
         [annotationMuArr addObject:point];
         
-        
-        
     }
     
     //[mapVC showSightsOnMap];
@@ -106,7 +98,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
+    //Hide NavigatonBar
+    [self.navigationController setNavigationBarHidden:YES];
+    
     //1
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 49.473976;
