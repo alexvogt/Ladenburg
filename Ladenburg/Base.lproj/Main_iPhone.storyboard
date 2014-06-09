@@ -399,13 +399,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjR-rZ-vYm">
-                                                <rect key="frame" x="59" y="157" width="241" height="31"/>
+                                                <rect key="frame" x="20" y="157" width="280" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="La3-u3-9Ue"/>
-                                                    <constraint firstAttribute="width" constant="241" id="lFx-UZ-blo"/>
+                                                    <constraint firstAttribute="width" constant="280" id="lFx-UZ-blo"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -430,7 +430,7 @@
                                             <constraint firstItem="vjR-rZ-vYm" firstAttribute="bottom" secondItem="Lof-Bx-t0S" secondAttribute="top" constant="-20" id="Owr-99-R8Q"/>
                                             <constraint firstItem="Lof-Bx-t0S" firstAttribute="leading" secondItem="QqB-gD-sz3" secondAttribute="leading" constant="20" id="QTj-jD-OmH"/>
                                             <constraint firstAttribute="trailing" secondItem="Lof-Bx-t0S" secondAttribute="trailing" constant="20" id="ScZ-Wb-rfr"/>
-                                            <constraint firstItem="vjR-rZ-vYm" firstAttribute="leading" secondItem="h15-gF-l8R" secondAttribute="trailing" constant="-261" id="TNJ-5a-l1A"/>
+                                            <constraint firstItem="vjR-rZ-vYm" firstAttribute="leading" secondItem="h15-gF-l8R" secondAttribute="trailing" constant="-300" id="TNJ-5a-l1A"/>
                                             <constraint firstAttribute="trailing" secondItem="h15-gF-l8R" secondAttribute="trailing" id="dYS-fj-8ve"/>
                                             <constraint firstItem="h15-gF-l8R" firstAttribute="top" secondItem="QqB-gD-sz3" secondAttribute="top" id="iDu-qV-nhc"/>
                                             <constraint firstItem="h15-gF-l8R" firstAttribute="leading" secondItem="QqB-gD-sz3" secondAttribute="leading" id="kbA-GP-nqC"/>
@@ -486,7 +486,7 @@
         <scene sceneID="vQP-Ti-RKw">
             <objects>
                 <navigationController title="Sights" automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sights" image="Sights_Icons" id="6I9-Z7-eKa"/>
+                    <tabBarItem key="tabBarItem" title="POIs" image="Sights_Icons" id="6I9-Z7-eKa"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="990-9m-Wfn">
