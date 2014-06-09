@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Sight.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface ladDetailViewController : UIViewController <UIScrollViewDelegate>
+@interface ladDetailViewController : UIViewController <UIScrollViewDelegate, AVSpeechSynthesizerDelegate>
 
 @property (strong, nonatomic) Sight *selectedSight;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
