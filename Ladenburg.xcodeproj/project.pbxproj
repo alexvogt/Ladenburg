@@ -33,6 +33,7 @@
 		2285A4251930BD4400588343 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2285A4241930BD4400588343 /* CoreLocation.framework */; };
 		63014EAA192FB09D0008C4D1 /* ladTutorialMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */; };
 		63014F241934CBC50008C4D1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63014F231934CBC50008C4D1 /* QuartzCore.framework */; };
+		633F8B851945B20A0068CBB1 /* Sights_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 633F8B841945B20A0068CBB1 /* Sights_de.plist */; };
 		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
 		6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6396202E1924C22D00D8E31C /* ladPageContentViewController.m */; };
 		639620321924D64C00D8E31C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 639620311924D64C00D8E31C /* Settings.bundle */; };
@@ -92,6 +93,7 @@
 		63014EA8192FB09D0008C4D1 /* ladTutorialMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladTutorialMainViewController.h; sourceTree = "<group>"; };
 		63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladTutorialMainViewController.m; sourceTree = "<group>"; };
 		63014F231934CBC50008C4D1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		633F8B841945B20A0068CBB1 /* Sights_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Sights_de.plist; path = Ladenburg/Sights_de.plist; sourceTree = "<group>"; };
 		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
 		639620261922C40C00D8E31C /* ladBeaconTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladBeaconTracker.m; sourceTree = "<group>"; };
 		6396202D1924C22D00D8E31C /* ladPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladPageContentViewController.h; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		119EF6611912B28200A3DCCB = {
 			isa = PBXGroup;
 			children = (
+				633F8B841945B20A0068CBB1 /* Sights_de.plist */,
 				63EC2A571941F16D00E959E9 /* Localizable.strings */,
 				119EF68E1912B28200A3DCCB /* Images.xcassets */,
 				119EF6731912B28200A3DCCB /* Ladenburg */,
@@ -366,6 +369,7 @@
 				119EF68D1912B28200A3DCCB /* Main_iPad.storyboard in Resources */,
 				63EC2A551941F16D00E959E9 /* Localizable.strings in Resources */,
 				119EF68F1912B28200A3DCCB /* Images.xcassets in Resources */,
+				633F8B851945B20A0068CBB1 /* Sights_de.plist in Resources */,
 				639620321924D64C00D8E31C /* Settings.bundle in Resources */,
 				119EF68A1912B28200A3DCCB /* Main_iPhone.storyboard in Resources */,
 				119EF6781912B28200A3DCCB /* InfoPlist.strings in Resources */,

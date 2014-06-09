@@ -35,7 +35,6 @@
     //Bools to Check if Location Services are turned on
     BOOL isRangingAndMonitoring;
     BOOL didNotifyAboutUnsupportedDevice;
-    
 };
 
 //Properties
@@ -45,7 +44,6 @@
 @property (nonatomic, strong)CLBeacon *beacon;
 @property (nonatomic, strong)CLBeacon *nearestBeacon;
 @property (nonatomic, strong)CLBeacon *lastIdentifiedBeacon;
-
 
 //Utility-Methods
 - (void) startTrackingBeacons;
@@ -57,7 +55,6 @@
 - (void) stopAnimationForView;
 
 @end
-
 
 
 @implementation ladBeaconTracker
@@ -122,36 +119,16 @@
     
     [self detectBluetooth];
     
-    //Check if Automatic Beacon Search is set
-    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL enabled = [defaults boolForKey:@"enableBeaconTracking"];
-    NSLog(@"%@", (enabled ? @"YES" : @"NO"));
-    
-    if (enabled) {
-        
-        //start Tracking and Start Animation
-        [self startTrackingBeacons];
-        
-        //Debugging Log
-        NSLog(@"Start tracking beacons called");
-        NSLog(@"Automatic Tracking turned ON");
-        
-        //Alloc and init Dictionaries to track Notifications */
-    
     shownBeacons = [[NSMutableDictionary alloc] init];
-    
-   /* }else{
-        [self stopAnimationForView];
-        NSLog(@"Automatic Tracking turned OFF");
-    }
-    */
-    
+
 }
+
 
 -(void)itemsDownloaded:(NSArray *)items
 {
+    NSLog(@"Items downloaded called");
     // This delegate method will get called when the items are finished downloading
-    // It turns the downloaded date into a dictionary used to identify the beacons
+    // It turns the downloaded data into a dictionary used to identify the beacons
     for (Sight* currentSight in items)
     {
         [_sightsDict setObject:currentSight forKey:currentSight.identifier];
@@ -162,7 +139,9 @@
     //Init different regions --> change UUID in accordance with Beacons
     
     // Check if beacon monitoring is available for this device
-    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]&& (!didNotifyAboutUnsupportedDevice)) {
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
+        
+        if(!didNotifyAboutUnsupportedDevice){
         
         //Inform user that device can't use beacon functionality
         UIAlertView *alert = [[UIAlertView alloc]
@@ -171,11 +150,13 @@
                             delegate:nil
                             cancelButtonTitle:@"Ok"
                             otherButtonTitles: nil];
-    [alert show];
-    didNotifyAboutUnsupportedDevice = YES;
-    [self stopAnimationForView];
+        [alert show];
+        didNotifyAboutUnsupportedDevice = YES;
+        }
+           
+        [self stopAnimationForView];
     
-    return;
+        return;
         
     } else {
         //Initalize Beacon Regions for inside and outside of museum
@@ -243,11 +224,11 @@
     switch (state) {
         case CLRegionStateInside:
             NSLog(@"Inside");
-            self.beaconFoundLabel.text =@"Yes";
+            //self.beaconFoundLabel.text =@"Yes";
             break;
         case CLRegionStateOutside:
             NSLog(@"Outside");
-            self.beaconFoundLabel.text =@"No";
+            //self.beaconFoundLabel.text =@"No";
             break;
         case CLRegionStateUnknown:
             NSLog(@"Unknown");
@@ -322,13 +303,7 @@
             if ([_sightsDict objectForKey:beaconMinorString]) {
                 
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
-                
-                //set time for this object in beaconShown array
-                //[shownBeacons setObject:now forKey:beaconMinorString];
-
-                
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
-
                 [self sendNotification];
                 
             } else {
@@ -338,12 +313,10 @@
 }
 
 - (void)sendNotification {
-    
-    //if (!_countRangedBeacon) {
-        
+
         //Send Alert
         NSString *beaconAlertTitle = _selectedSight.name;
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Beacon Notification Text", nil), _selectedSight.name];
+        NSString *message = NSLocalizedString(@"Beacon Notification Text", nil);
         
         UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle
                                                                 message:message
@@ -360,13 +333,9 @@
         rangedBeaconNotification.fireDate = nil;
         //rangedBeaconNotification.applicationIconBadgeNumber ++;
         [[UIApplication sharedApplication] scheduleLocalNotification:rangedBeaconNotification];
-        
-   /* }
-    _countRangedBeacon ++; */
 }
 
 //Make sure notifications are only shown when App is running in the background
-
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     
 }
@@ -391,18 +360,21 @@
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles: nil,
                           nil];
-    switch(self.bluetoothManager.state)
-    {
-        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
-        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
+    switch(self.bluetoothManager.state){
+        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent.";
+            break;
+        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy.";
+            break;
         case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil);
             [alert show];
             break;
         case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil);
             [alert show];
             break;
-        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
-        default: stateString = @"State unknown, update imminent."; break;
+        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use.";
+            break;
+        default: stateString = @"State unknown, update imminent.";
+            break;
     }
     
 }
@@ -425,8 +397,7 @@
     theAnimation.autoreverses=YES;
     theAnimation.fromValue=[NSNumber numberWithFloat:0.0];
     theAnimation.toValue=[NSNumber numberWithFloat:1.0];
-    [innerAnimationView.layer addAnimation:theAnimation forKey:@"animateOpacity"];
-    
+    [innerAnimationView.layer addAnimation:theAnimation forKey:@"animateOpacity"];    
     
     //// Declaring second image view -> middle ring
     UIImage *image2 = [UIImage imageNamed: @"second-scan.png"];

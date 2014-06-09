@@ -95,7 +95,6 @@
     // Set Fontsize of Content to 27px = 54px retina.
     self.detailSightNameLabel.font = [UIFont systemFontOfSize:27.0];
     
-    
     //set text as hyphenated text and add linespacing.
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.hyphenationFactor = 1;
@@ -105,6 +104,8 @@
     
     // Set Fontsize of Content to 18px = 36px retina.
     [_detailTextView setFont:[UIFont systemFontOfSize:18.0]];
+    [_detailTextView setTextAlignment:NSTextAlignmentJustified];
+    //self.detailTextView.textAlignment = NSTextAlignmentJustified;
     
     
     // Center background image
