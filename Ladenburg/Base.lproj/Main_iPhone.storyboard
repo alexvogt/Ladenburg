@@ -389,6 +389,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
+                                            <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="top" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-Bx-t0S">
+                                                <rect key="frame" x="20" y="208" width="280" height="224"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="280" id="KNa-3h-Nk5"/>
+                                                </constraints>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h15-gF-l8R">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -411,29 +422,18 @@
                                                 <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <size key="shadowOffset" width="1" height="1"/>
                                             </label>
-                                            <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="top" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-Bx-t0S">
-                                                <rect key="frame" x="20" y="208" width="280" height="224"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="280" id="KNa-3h-Nk5"/>
-                                                </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="Lof-Bx-t0S" secondAttribute="bottom" constant="48" id="8se-MF-abO"/>
                                             <constraint firstItem="Lof-Bx-t0S" firstAttribute="top" secondItem="h15-gF-l8R" secondAttribute="bottom" constant="8" id="ELg-i2-cE4"/>
-                                            <constraint firstItem="vjR-rZ-vYm" firstAttribute="bottom" secondItem="Lof-Bx-t0S" secondAttribute="top" constant="-20" id="Owr-99-R8Q"/>
                                             <constraint firstItem="Lof-Bx-t0S" firstAttribute="leading" secondItem="QqB-gD-sz3" secondAttribute="leading" constant="20" id="QTj-jD-OmH"/>
                                             <constraint firstAttribute="trailing" secondItem="Lof-Bx-t0S" secondAttribute="trailing" constant="20" id="ScZ-Wb-rfr"/>
                                             <constraint firstItem="vjR-rZ-vYm" firstAttribute="leading" secondItem="h15-gF-l8R" secondAttribute="trailing" constant="-300" id="TNJ-5a-l1A"/>
                                             <constraint firstAttribute="trailing" secondItem="h15-gF-l8R" secondAttribute="trailing" id="dYS-fj-8ve"/>
                                             <constraint firstItem="h15-gF-l8R" firstAttribute="top" secondItem="QqB-gD-sz3" secondAttribute="top" id="iDu-qV-nhc"/>
                                             <constraint firstItem="h15-gF-l8R" firstAttribute="leading" secondItem="QqB-gD-sz3" secondAttribute="leading" id="kbA-GP-nqC"/>
+                                            <constraint firstItem="vjR-rZ-vYm" firstAttribute="bottom" secondItem="h15-gF-l8R" secondAttribute="bottom" constant="-12" id="tak-vY-gNV"/>
                                         </constraints>
                                     </view>
                                 </subviews>
