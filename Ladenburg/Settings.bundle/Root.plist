@@ -6,39 +6,9 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
-			<key>Title</key>
-			<string>About</string>
-			<key>Key</key>
-			<string>about</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Sprache</string>
-			<key>Key</key>
-			<string>choseLanguage</string>
-			<key>DefaultValue</key>
-			<string>Deutsch</string>
-			<key>Titles</key>
-			<array>
-				<string>Deutsch</string>
-				<string>English</string>
-				<string>??Chinesisch??</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<string>german</string>
-				<string>english</string>
-				<string>chinese</string>
-			</array>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Suche nach iBeacons</string>
+			<string>Automatische Suche nach Beacons</string>
 			<key>TrueValue</key>
 			<true/>
 			<key>FalseValue</key>
@@ -47,6 +17,28 @@
 			<string>enableBeaconTracking</string>
 			<key>DefaultValue</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Tutorial bei Start anzeigen</string>
+			<key>Key</key>
+			<string>showTutorial</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>About</string>
+			<key>Key</key>
+			<string>about</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

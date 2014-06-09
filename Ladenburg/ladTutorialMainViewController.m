@@ -138,6 +138,13 @@
     return [self viewControllerAtIndex:index];
 }
 
+// Set Statusbarcolor to white
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
+}
+
+
 /*
  #pragma mark - Navigation
  

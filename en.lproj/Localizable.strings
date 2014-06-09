@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  Ladenburg
+
+  Created by Sonja on 06.06.14.
+  Copyright (c) 2014 DHBW Mannheim. All rights reserved.
+*/
+/*  Input Content as: "KEY" = "CONTENT";
+    Whereas Key is the default-language text 
+    Default-Language for iLadenburg is ENGLISH
+*/
+
+/*Standards*/
+"Yes" = "Yes";
+"No" = "No";
+"OK" = "OK";
+
+
+/*Tutorial*/
+"Tutorial Page 1" = "iLadenburg will notify you when you approach a point of interest in the city of Ladenburg.\n\nPlease activate Bluetooth and grant our app permission to access the location services.";
+
+"Tutorial Page 2" = "If you want to know what other places around you are worth visiting, iLadenburg can show you all sights in a list or on a map.\n\nIf you want to, you can let your phone lead you to them.";
+
+
+/*iBeacon-Monitoring Notifications*/
+"Monitoring not available!" = "Monitoring not available!";
+"Monitoring OFF Text" = "Sorry, your device does not support iBeacon.";
+
+/*Bluetooth Status Notification*/
+"Bluetooth not authorized" = "The app is not authorized to use Bluetooth Low Energy.";
+"Bluetooth OFF Text" = "Bluetooth is currently powered off.";
+
+
+
+/*Beacon found notifications*/
+/*Title will be set with Name of Sight*/
+"Beacon Notification Text" = "You’re close to a POI. Would you like to get more information?";
+
+/*Beacon found lockscreen notifications*/
+/*Alert Action*/
+"Show Information" = "Show Information";
+
+/*Sights-List: Notification about Location Error*/
+"Location Error Title" = "Error";
+"Location Error Text" = "There was an error retrieving your location";
+
+/*About Page*/
+"About Text" = "iLadenburg is a project of class WMPG11 of the degree program Digital Media – Mediapublishing & Design at Baden-Wuerttemberg Cooperative State University Mannheim. Further information about the degree program can be found at www.dm.dhbw-mannheim.de. The apps source code as well as more information are publicly available on GitHub via www.github.com/alexvogt/Ladenburg.\n\nSupervising lecturers:\nProf. Peter Mayr\nProf. Dr. Jürgen Redelius\n\nDesign:\nTim Hartl\nSergej Lotz\n\nImplementation:\nTim Hartl\nSonja Karl";

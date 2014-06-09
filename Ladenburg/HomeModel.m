@@ -16,6 +16,9 @@
     NSString *shortenedImageURL;
     NSString *fullURL;
     NSURL *url;
+    
+    NSURL *jsonFileUrl;
+    
 }
 @end
 
@@ -23,34 +26,60 @@
 
 - (void)downloadItems
 {
-    // Download the json file
-     NSURL *jsonFileUrl = [NSURL URLWithString:@"http://ladenburg.timhartl.de/service-lb-th.php"];
+    //Check for Language Settings
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray* arrayLanguages = [userDefaults objectForKey:@"AppleLanguages"];
+    NSString* currentLanguage = [arrayLanguages objectAtIndex:0];
+    
+    if([currentLanguage isEqualToString:@"de"]){
+
+    
+        // Download german json file
+        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
         // Lokale Installation
         //NSURL *jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/service-lb.php"];
+    } else {
+    
+         jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
+    }
+    
+    // Locale Nework Installation
+    // Replace URL with IP of Network Server
+    //NSURL *jsonFileUrl = [NSURL URLWithString:@"http://141.72.154.188:8888/service-lb-th.php"];
+    
     
     // Create the request
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
-    
+    NSLog(@"Request Created");
+
     // Create the NSURLConnection
     [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+    NSLog(@"Connection created");
 }
 
 #pragma mark NSURLConnectionDataProtocol Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+ 
     // Initialize the data object
     _downloadedData = [[NSMutableData alloc] init];
+           NSLog(@"Response received");
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    
     // Append the newly downloaded data
     [_downloadedData appendData:data];
+    NSLog(@"Data received");
+
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    NSLog(@"finishedLoading called \nDownloaded Data: %@", _downloadedData);
     // Create an array to store the sights
     NSMutableArray *_sights = [[NSMutableArray alloc] init];
     
@@ -58,6 +87,9 @@
     NSError *error;
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
     
+    NSLog(@"error: %@", error);
+    
+    NSLog(@"Json Array: %@", jsonArray);
     // Loop through Json objects, create question objects and add them to our questions array
     for (int i = 0; i < jsonArray.count; i++)
     {
@@ -79,9 +111,17 @@
         
         
         //set image property of newSight to image
-        baseURL = @"http://ladenburg.timhartl.de";
-            // Lokale Installation
-            //baseURL = @"http://localhost:8888/";
+//        baseURL = @"http://ladenburg.timhartl.de";
+        
+        baseURL = @"http://m-ladenburg.de";
+        
+        // Lokale Installation
+        //baseURL = @"http://localhost:8888/";
+        // Locale Nework Installation
+        // Replace URL with IP of Network Server
+        // baseURL = @"http://141.72.154.188:8888/";
+        
+        
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
         fullURL = [baseURL stringByAppendingString:shortenedImageURL];
         url = [NSURL URLWithString:fullURL];

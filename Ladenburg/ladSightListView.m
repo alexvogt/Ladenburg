@@ -35,13 +35,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];   //it hides
+    
+    //Hide Navigation Bar
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // Remove Separator between each Cell
     [self.sightListView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -106,8 +107,8 @@
 
 -(void)itemsDownloaded:(NSArray *)items
 {
+    NSLog(@"Items downloaded called");
     // This delegate method will get called when the items are finished downloading
-    
     // Set the downloaded items to the array
     _feedItems = items;
     
@@ -285,9 +286,9 @@
     [self performSegueWithIdentifier:@"detailSegue" sender:self];
 }
 
+// Set Statusbarcolor to white
 -(UIStatusBarStyle)preferredStatusBarStyle{
- 
-    // Set Statusbarcolor to white
+    
     return UIStatusBarStyleLightContent;
 }
 

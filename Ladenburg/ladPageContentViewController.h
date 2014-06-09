@@ -10,13 +10,13 @@
 
 @interface ladPageContentViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *tutorialTitleLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *tutorialTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *tutorialTextView;
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property NSUInteger pageIndex;
 
-@property NSString *tutorialTitleText;
+//@property NSString *tutorialTitleText;
 @property NSString *tutorialPageText;
 
 @property (weak, nonatomic) IBOutlet UIImageView *tutorialImageView;

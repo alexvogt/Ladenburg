@@ -13,13 +13,18 @@
 
 {
     CGFloat draggedOffsetY;
-    CGFloat newHeight;
+    CGFloat previousDraggedOffsetY;
+    CGFloat newImageHeight;
     CGFloat newWidth;
+
 }
 
 @end
 
 @implementation ladDetailViewController
+
+// Synthesizer
+BOOL speechPaused = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,24 +36,13 @@
 }
 
 
-/*
- Test
+
+ //Test
+
 -(void)viewWillLayoutSubviews{
-    
-    //disable AutoLayout
-    [self.detailScrollView removeFromSuperview];
-    [self.detailScrollView setTranslatesAutoresizingMaskIntoConstraints:YES];
-    //[self.detailScrollView setFrame:CGRectMake(0, 0, 362, 634)];
-    [self.detailMainView addSubview:self.detailScrollView];
-
-} */
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    
     //make textView fit Text - resize container depending on text lenght
+    
+    /*
     [self.detailTextView sizeToFit];
     [self.detailTextView layoutIfNeeded];
     
@@ -59,7 +53,22 @@
     CGFloat imageViewHeight = self.detailImageView.frame.size.height;
     CGFloat contentHeight = self.detailTextView.frame.size.height;
     CGFloat contentPlusSpacer = contentHeight+imageViewHeight + 75;
-    [self.detailScrollView setContentSize:(CGSizeMake(CGRectGetWidth(self.detailScrollView.frame), contentPlusSpacer))];
+    
+     */
+    
+    //[self.detailContainerView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.detailContainerView.frame), contentPlusSpacer)];
+    //[self.detailScrollView setContentSize:self.detailContainerView.frame.size];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    self.detailScrollView.delegate = self;
+    
+    
+    [self.detailScrollView setContentSize:self.detailContainerView.frame.size];
     
     //Debugging Log
     //NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
@@ -68,15 +77,11 @@
     UIEdgeInsets inset = UIEdgeInsetsMake(-65, 0, 0, 0) ;
     [self.detailScrollView setContentInset:inset];
     
-    self.detailScrollView.delegate = self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //Change Constraints of UITextView to fit Text
-    //self.detailTextViewHeightConstraint.constant = self.detailTextView.frame.size.height+150;
     
     //Make one String out of the different texts for sight
     NSString *kurzbeschreibung = [_selectedSight kurzbeschreibung];
@@ -90,10 +95,21 @@
     self.detailTextView.text = text;
     self.detailSightNameLabel.text = _selectedSight.name;
     
-    //set text as hyphenated text
+    // Set Fontsize of Content to 27px = 54px retina.
+    self.detailSightNameLabel.font = [UIFont systemFontOfSize:27.0];
+    
+    //set text as hyphenated text and add linespacing.
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.hyphenationFactor = 1;
+//    paragraph.minimumLineHeight = 23.4;
+    paragraph.lineSpacing = 1.6;
     self.detailTextView.attributedText = [[NSMutableAttributedString alloc] initWithString:self.detailTextView.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
+    
+    // Set Fontsize of Content to 18px = 36px retina.
+    [_detailTextView setFont:[UIFont systemFontOfSize:18.0]];
+    [_detailTextView setTextAlignment:NSTextAlignmentJustified];
+    //self.detailTextView.textAlignment = NSTextAlignmentJustified;
+    
     
     // Center background image
     self.detailImageView.contentMode = UIViewContentModeCenter;
@@ -150,30 +166,100 @@
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
     self.navigationController.navigationBar.layer.masksToBounds = NO;
     
+    // Synthesizer
+    self.synthesizer = [[AVSpeechSynthesizer alloc] init];
+    speechPaused = NO;
+    self.synthesizer.delegate = self;
+    
 }
 
 //Change Layout on scrolling
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    /* draggedOffsetY = self.detailScrollView.contentOffset.y;
-    
-    NSLog(@"View was dragged to: %f", draggedOffsetY);
-    newHeight = self.detailImageView.frame.size.height-draggedOffsetY;
-
-    if (newHeight > 75 && newHeight < 150 ){
-        
-        [self.detailScrollView setFrame:CGRectMake(0, 0, self.view.frame.size.width, newHeight)];
-        CGFloat startTop = self.detailImageView.frame.size.height;
-        self.detailTextView.frame = CGRectMake(0, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-     }
-     */
-    
     //Turn off Bounce on Top of View
     self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
     
+    draggedOffsetY = self.detailScrollView.contentOffset.y;
+    
+    NSLog(@"View was dragged to: %f", draggedOffsetY);
+    newImageHeight = self.detailImageView.frame.size.height-draggedOffsetY;
+    
+    if( draggedOffsetY > previousDraggedOffsetY){
+        NSLog(@"scrolling forwards");
+        
+            if (newImageHeight > 75  /* && newImageHeight < 150 */ ){
+    
+                    [UIView animateWithDuration:0.1
+                            animations:^{
+                                        [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
+                                        CGFloat startTop = self.detailImageView.frame.size.height;
+                                        self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+                                        self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop-50, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                                        }
+                            completion:^(BOOL finished){
+                    }];
+            }
+    }
+    /*
+    else if (draggedOffsetY < previousDraggedOffsetY){
+        NSLog(@"scrolling backwards");
+        
+        if(newImageHeight < 200){
+            
+                    [UIView animateWithDuration:0.1
+                             animations:^{
+                                 [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
+                                 CGFloat startTop = self.detailImageView.frame.size.height;
+                                 self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+                                 self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop+10, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                             }
+                             completion:^(BOOL finished){
+                             }];
+        }
+    } */
+    
+    previousDraggedOffsetY = draggedOffsetY;
+
 }
 
+- (IBAction)playPauseButtonPressed:(UIButton *)sender {
+    [self.detailTextView resignFirstResponder];
+    if (speechPaused == NO) {
+        [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.synthesizer continueSpeaking];
+        speechPaused = YES;
+    } else {
+        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        speechPaused = NO;
+        [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    }
+    if (self.synthesizer.speaking == NO) {
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.detailTextView.text];
+        utterance.rate = AVSpeechUtteranceMaximumSpeechRate/3;
+        utterance.pitchMultiplier = 1.2; // [0.5 - 2] Default = 1
+        //utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-au"];
+        [self.synthesizer speakUtterance:utterance];
+    }
+    
+}
+
+// Set Statusbarcolor to white
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
+}
+
+-(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    speechPaused = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    speechPaused = NO;
+}
 
 - (void)didReceiveMemoryWarning
 {

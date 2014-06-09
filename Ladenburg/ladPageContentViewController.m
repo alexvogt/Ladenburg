@@ -31,7 +31,7 @@
 
     self.tutorialImageView.image = [UIImage imageNamed:self.tutorialImageFile];
     
-    self.tutorialTitleLabel.text = self.tutorialTitleText;
+    //self.tutorialTitleLabel.text = self.tutorialTitleText;
     
     self.tutorialTextView.text = self.tutorialPageText;
     
