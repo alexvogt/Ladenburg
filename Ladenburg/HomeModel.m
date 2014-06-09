@@ -43,6 +43,10 @@
          jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
     }
     
+    // Locale Nework Installation
+    // Replace URL with IP of Network Server
+    //NSURL *jsonFileUrl = [NSURL URLWithString:@"http://141.72.154.188:8888/service-lb-th.php"];
+    
     
     // Create the request
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
@@ -111,8 +115,13 @@
         
         baseURL = @"http://m-ladenburg.de";
         
-            // Lokale Installation
-            //baseURL = @"http://localhost:8888/";
+        // Lokale Installation
+        //baseURL = @"http://localhost:8888/";
+        // Locale Nework Installation
+        // Replace URL with IP of Network Server
+        // baseURL = @"http://141.72.154.188:8888/";
+        
+        
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
         fullURL = [baseURL stringByAppendingString:shortenedImageURL];
         url = [NSURL URLWithString:fullURL];

@@ -41,6 +41,7 @@
 		63EC2A4E1941CA2400E959E9 /* ladSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */; };
 		63EC2A551941F16D00E959E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63EC2A571941F16D00E959E9 /* Localizable.strings */; };
 		63EC2A5E194386F400E959E9 /* ladAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A5D194386F400E959E9 /* ladAboutViewController.m */; };
+		799A1D3B1944D865002F3FA3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 799A1D3A1944D865002F3FA3 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		63EC2A581941F18600E959E9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63EC2A5C194386F400E959E9 /* ladAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladAboutViewController.h; sourceTree = "<group>"; };
 		63EC2A5D194386F400E959E9 /* ladAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladAboutViewController.m; sourceTree = "<group>"; };
+		799A1D3A1944D865002F3FA3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

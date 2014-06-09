@@ -223,12 +223,6 @@ BOOL speechPaused = 0;
 
 }
 
-// Set Statusbarcolor to white
--(UIStatusBarStyle)preferredStatusBarStyle{
-    
-    return UIStatusBarStyleLightContent;
-}
-
 - (IBAction)playPauseButtonPressed:(UIButton *)sender {
     [self.detailTextView resignFirstResponder];
     if (speechPaused == NO) {
@@ -247,6 +241,13 @@ BOOL speechPaused = 0;
         //utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-au"];
         [self.synthesizer speakUtterance:utterance];
     }
+    
+}
+
+// Set Statusbarcolor to white
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {

@@ -32,5 +32,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextViewHeightConstraint;
 */
 
+// Synthesizer
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 
 @end
