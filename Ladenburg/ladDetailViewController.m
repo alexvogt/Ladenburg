@@ -16,6 +16,7 @@
     CGFloat previousDraggedOffsetY;
     CGFloat newImageHeight;
     CGFloat minImageHeight;
+    CGFloat maxImageHeight;
     CGFloat newWidth;
 
 }
@@ -34,32 +35,6 @@ BOOL speechPaused = 0;
         // Custom initialization
     }
     return self;
-}
-
-
-
- //Test
-
--(void)viewWillLayoutSubviews{
-    //make textView fit Text - resize container depending on text lenght
-    
-    /*
-    [self.detailTextView sizeToFit];
-    [self.detailTextView layoutIfNeeded];
-    
-    CGRect frame = self.detailTextView.frame;
-    frame.size.height = self.detailTextView.contentSize.height;
-    self.detailTextView.frame = frame;
-    
-    CGFloat imageViewHeight = self.detailImageView.frame.size.height;
-    CGFloat contentHeight = self.detailTextView.frame.size.height;
-    CGFloat contentPlusSpacer = contentHeight+imageViewHeight + 75;
-    
-     */
-    
-    //[self.detailContainerView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.detailContainerView.frame), contentPlusSpacer)];
-    //[self.detailScrollView setContentSize:self.detailContainerView.frame.size];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -185,46 +160,72 @@ BOOL speechPaused = 0;
     NSLog(@"View was dragged to: %f", draggedOffsetY);
     newImageHeight = self.detailImageView.frame.size.height-draggedOffsetY;
     minImageHeight = 115;
+    maxImageHeight = 220;
     
     //Check if scrolling forwards or backwards
     if( draggedOffsetY > previousDraggedOffsetY){
         //scrolling forwards
             if (newImageHeight > minImageHeight){
-                
-                //self.detailTextView.scrollEnabled = YES;
     
                     [UIView animateWithDuration:0.1
                             animations:^{
                                         [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
                                         CGFloat textStartTop = self.detailImageView.frame.size.height;
                                         self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, textStartTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+                                
                                         if((textStartTop-45) > 90){
                                             self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, textStartTop-45, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
                                         }else{
                                             [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
                                         }
-                                
                                         }
                             completion:^(BOOL finished){
                     }];
-            }else if (newImageHeight < minImageHeight){
+        }else if (newImageHeight < minImageHeight){
             
                                      [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
                                      [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
             }
     }
-    else if (draggedOffsetY < previousDraggedOffsetY){
+    else if (draggedOffsetY <= previousDraggedOffsetY){
         //scrolling backwards
         NSLog(@"scrolling backwards");
+
+        if(draggedOffsetY > 0){
         
-        [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
-        [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
-
+                [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
+                [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
+        /*
+        
+        }else if( draggedOffsetY <0){
+                if(newImageHeight < maxImageHeight){
+                    
+                    [UIView animateWithDuration:0.1
+                                     animations:^{
+            
+                                         [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
+                                         
+                                     }
+                    completion:^(BOOL finished){
+                    }];
+            
+                }else if((newImageHeight > maxImageHeight)){
+            
+                        [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, maxImageHeight)];
+                        self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
+                    
+                    }
+                }
+        
+        }else{
+                
+                [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, maxImageHeight)];
+                self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
+    */ }
     }
-    
     previousDraggedOffsetY = draggedOffsetY;
-
 }
+
 
 - (IBAction)playPauseButtonPressed:(UIButton *)sender {
     [self.detailTextView resignFirstResponder];

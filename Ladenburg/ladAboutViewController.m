@@ -14,6 +14,8 @@
     CGFloat draggedOffsetY;
     CGFloat previousDraggedOffsetY;
     CGFloat newImageHeight;
+    CGFloat minImageHeight;
+    CGFloat maxImageHeight;
 }
 
 @end
@@ -99,31 +101,47 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    //Turn off Bounce on Top of View
     self.aboutScrollView.bounces = (self.aboutScrollView.contentOffset.y > 60);
     
     draggedOffsetY = self.aboutScrollView.contentOffset.y;
     
     NSLog(@"View was dragged to: %f", draggedOffsetY);
     newImageHeight = self.aboutImageView.frame.size.height-draggedOffsetY;
+    minImageHeight = 115;
+    maxImageHeight = 220;
     
+    //Check if scrolling forwards or backwards
     if( draggedOffsetY > previousDraggedOffsetY){
-        NSLog(@"scrolling forwards");
-        
-        if (newImageHeight > 75  /* && newImageHeight < 150 */ ){
+        //scrolling forwards
+        if (newImageHeight > minImageHeight){
             
             [UIView animateWithDuration:0.1
                              animations:^{
                                  [self.aboutImageView setFrame:CGRectMake(self.aboutImageView.frame.origin.x, self.aboutImageView.frame.origin.y, self.aboutImageView.frame.size.width, newImageHeight)];
-                                 CGFloat startTop = self.aboutImageView.frame.size.height;
-                                 self.aboutText.frame = CGRectMake(self.aboutText.frame.origin.x, startTop, self.aboutText.frame.size.width, self.aboutText.frame.size.height);
+                                 CGFloat textStartTop = self.aboutImageView.frame.size.height;
+                                 self.aboutText.frame = CGRectMake(self.aboutText.frame.origin.x, textStartTop, self.aboutText.frame.size.width, self.aboutText.frame.size.height);
+                                 
                              }
                              completion:^(BOOL finished){
                              }];
+        }else if (newImageHeight < minImageHeight){
+            [self.aboutImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.aboutImageView.frame.size.width, minImageHeight)];
         }
     }
+    else if (draggedOffsetY <= previousDraggedOffsetY){
+        //scrolling backwards
+        NSLog(@"scrolling backwards");
+        
+        if(draggedOffsetY > 0){
+            
+            [self.aboutImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.aboutImageView.frame.size.width, minImageHeight)];
+        }
+    }
+    previousDraggedOffsetY = draggedOffsetY;
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning
