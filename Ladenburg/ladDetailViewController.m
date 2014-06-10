@@ -15,6 +15,7 @@
     CGFloat draggedOffsetY;
     CGFloat previousDraggedOffsetY;
     CGFloat newImageHeight;
+    CGFloat minImageHeight;
     CGFloat newWidth;
 
 }
@@ -22,6 +23,9 @@
 @end
 
 @implementation ladDetailViewController
+
+// Synthesizer
+BOOL speechPaused = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -95,7 +99,6 @@
     // Set Fontsize of Content to 27px = 54px retina.
     self.detailSightNameLabel.font = [UIFont systemFontOfSize:27.0];
     
-    
     //set text as hyphenated text and add linespacing.
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.hyphenationFactor = 1;
@@ -105,6 +108,8 @@
     
     // Set Fontsize of Content to 18px = 36px retina.
     [_detailTextView setFont:[UIFont systemFontOfSize:18.0]];
+    [_detailTextView setTextAlignment:NSTextAlignmentJustified];
+    //self.detailTextView.textAlignment = NSTextAlignmentJustified;
     
     
     // Center background image
@@ -162,10 +167,14 @@
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.5f,1.5f);
     self.navigationController.navigationBar.layer.masksToBounds = NO;
     
+    // Synthesizer
+    self.synthesizer = [[AVSpeechSynthesizer alloc] init];
+    speechPaused = NO;
+    self.synthesizer.delegate = self;
+    
 }
 
 //Change Layout on scrolling
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     //Turn off Bounce on Top of View
@@ -175,43 +184,67 @@
     
     NSLog(@"View was dragged to: %f", draggedOffsetY);
     newImageHeight = self.detailImageView.frame.size.height-draggedOffsetY;
+    minImageHeight = 115;
     
+    //Check if scrolling forwards or backwards
     if( draggedOffsetY > previousDraggedOffsetY){
-        NSLog(@"scrolling forwards");
-        
-            if (newImageHeight > 75  /* && newImageHeight < 150 */ ){
+        //scrolling forwards
+            if (newImageHeight > minImageHeight){
+                
+                //self.detailTextView.scrollEnabled = YES;
     
                     [UIView animateWithDuration:0.1
                             animations:^{
                                         [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
-                                        CGFloat startTop = self.detailImageView.frame.size.height;
-                                        self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-                                        self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop-50, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                                        CGFloat textStartTop = self.detailImageView.frame.size.height;
+                                        self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, textStartTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
+                                        if((textStartTop-45) > 90){
+                                            self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, textStartTop-45, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                                        }else{
+                                            [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
+                                        }
+                                
                                         }
                             completion:^(BOOL finished){
                     }];
+            }else if (newImageHeight < minImageHeight){
+            
+                                     [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
+                                     [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
             }
     }
-    /*
     else if (draggedOffsetY < previousDraggedOffsetY){
+        //scrolling backwards
         NSLog(@"scrolling backwards");
         
-        if(newImageHeight < 200){
-            
-                    [UIView animateWithDuration:0.1
-                             animations:^{
-                                 [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
-                                 CGFloat startTop = self.detailImageView.frame.size.height;
-                                 self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, startTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-                                 self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, startTop+10, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
-                             }
-                             completion:^(BOOL finished){
-                             }];
-        }
-    } */
+        [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
+        [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
+
+    }
     
     previousDraggedOffsetY = draggedOffsetY;
 
+}
+
+- (IBAction)playPauseButtonPressed:(UIButton *)sender {
+    [self.detailTextView resignFirstResponder];
+    if (speechPaused == NO) {
+        [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.synthesizer continueSpeaking];
+        speechPaused = YES;
+    } else {
+        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        speechPaused = NO;
+        [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    }
+    if (self.synthesizer.speaking == NO) {
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.detailTextView.text];
+        utterance.rate = AVSpeechUtteranceMaximumSpeechRate/3;
+        utterance.pitchMultiplier = 1.2; // [0.5 - 2] Default = 1
+        //utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-au"];
+        [self.synthesizer speakUtterance:utterance];
+    }
+    
 }
 
 // Set Statusbarcolor to white
@@ -220,6 +253,16 @@
     return UIStatusBarStyleLightContent;
 }
 
+-(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    speechPaused = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    speechPaused = NO;
+}
 
 - (void)didReceiveMemoryWarning
 {

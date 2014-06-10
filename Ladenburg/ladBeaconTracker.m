@@ -35,7 +35,7 @@
     //Bools to Check if Location Services are turned on
     BOOL isRangingAndMonitoring;
     BOOL didNotifyAboutUnsupportedDevice;
-    
+    BOOL bluetoothIsOn;
 };
 
 //Properties
@@ -45,7 +45,6 @@
 @property (nonatomic, strong)CLBeacon *beacon;
 @property (nonatomic, strong)CLBeacon *nearestBeacon;
 @property (nonatomic, strong)CLBeacon *lastIdentifiedBeacon;
-
 
 //Utility-Methods
 - (void) startTrackingBeacons;
@@ -57,7 +56,6 @@
 - (void) stopAnimationForView;
 
 @end
-
 
 
 @implementation ladBeaconTracker
@@ -73,20 +71,46 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];   //it hides
+    [self.navigationController setNavigationBarHidden:YES];//it hides
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //Check if Bluetooth is on
+    [self detectBluetooth];
+    
+    //Decide wether to delete saved Notifications or not
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
+        
+        //Remove Beacons shown
+        [shownBeacons removeAllObjects];
+        //set back standardUserDefaults
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"setBackNotifications"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"setBack Notifications called");
+    }else{
+        NSLog(@"setBack Notifications not called");
+    }
+    
+    BOOL enableBeaconTracking = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"];
     
     // Check if Beacon-Monitoring is ON
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"] && !isRangingAndMonitoring){
-        //If ON - Animate View and start tracking
-        NSLog(@"Settings set on on, Beacons will be tracked.");
-            [self startTrackingBeacons];
-    }else{
+    if (enableBeaconTracking && !isRangingAndMonitoring){
+        //If ON start tracking
+        NSLog(@"Settings set on on, not ranging --> start tracking.");
+        [self startTrackingBeacons];
+        
+    }else if(enableBeaconTracking){
+        [self startAnimationForView];
+        NSLog(@"Settings set on on, is already ranging --> start animating.");
+    
+    }else if (!enableBeaconTracking){
         //If OFF - show just dot and stop tracking
         if (isRangingAndMonitoring) {
             [self stopTrackingBeacons];
             NSLog(@"Settings set on off, Beacons won't be tracked.");
+        }else{
+            [self stopAnimationForView];
         }
     }
 }
@@ -101,7 +125,7 @@
     // Initialize Location Manager for Beacon Functionality
     // and Bluetooth Manager to check bluetooth status
     self.locationManager = [[CLLocationManager alloc] init];
-    self.bluetoothManager = [[CBCentralManager alloc] init];
+    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     
     self.locationManager.delegate = self;
     self.bluetoothManager.delegate = self;
@@ -120,38 +144,16 @@
     // Call the download items method of the home model object
     [_homeModel downloadItems];
     
-    [self detectBluetooth];
-    
-    //Check if Automatic Beacon Search is set
-    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL enabled = [defaults boolForKey:@"enableBeaconTracking"];
-    NSLog(@"%@", (enabled ? @"YES" : @"NO"));
-    
-    if (enabled) {
-        
-        //start Tracking and Start Animation
-        [self startTrackingBeacons];
-        
-        //Debugging Log
-        NSLog(@"Start tracking beacons called");
-        NSLog(@"Automatic Tracking turned ON");
-        
-        //Alloc and init Dictionaries to track Notifications */
-    
     shownBeacons = [[NSMutableDictionary alloc] init];
-    
-   /* }else{
-        [self stopAnimationForView];
-        NSLog(@"Automatic Tracking turned OFF");
-    }
-    */
-    
+
 }
+
 
 -(void)itemsDownloaded:(NSArray *)items
 {
+    NSLog(@"Items downloaded called");
     // This delegate method will get called when the items are finished downloading
-    // It turns the downloaded date into a dictionary used to identify the beacons
+    // It turns the downloaded data into a dictionary used to identify the beacons
     for (Sight* currentSight in items)
     {
         [_sightsDict setObject:currentSight forKey:currentSight.identifier];
@@ -162,7 +164,9 @@
     //Init different regions --> change UUID in accordance with Beacons
     
     // Check if beacon monitoring is available for this device
-    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]&& (!didNotifyAboutUnsupportedDevice)) {
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]) {
+        
+        if(!didNotifyAboutUnsupportedDevice){
         
         //Inform user that device can't use beacon functionality
         UIAlertView *alert = [[UIAlertView alloc]
@@ -171,11 +175,13 @@
                             delegate:nil
                             cancelButtonTitle:@"Ok"
                             otherButtonTitles: nil];
-    [alert show];
-    didNotifyAboutUnsupportedDevice = YES;
-    [self stopAnimationForView];
+        [alert show];
+        didNotifyAboutUnsupportedDevice = YES;
+        }
+           
+        [self stopAnimationForView];
     
-    return;
+        return;
         
     } else {
         //Initalize Beacon Regions for inside and outside of museum
@@ -243,11 +249,11 @@
     switch (state) {
         case CLRegionStateInside:
             NSLog(@"Inside");
-            self.beaconFoundLabel.text =@"Yes";
+            //self.beaconFoundLabel.text =@"Yes";
             break;
         case CLRegionStateOutside:
             NSLog(@"Outside");
-            self.beaconFoundLabel.text =@"No";
+            //self.beaconFoundLabel.text =@"No";
             break;
         case CLRegionStateUnknown:
             NSLog(@"Unknown");
@@ -285,7 +291,7 @@
 
         //Variables for time out
         NSDate *now = [[NSDate alloc] init];
-        timeInSecUntilNextNotification = 900; //15Min * 60 Sec = 900 sec
+        timeInSecUntilNextNotification = 300; //5Min * 60 Sec = 300 sec
 
     
         if ([shownBeacons objectForKey:beaconIdentifierKey]){
@@ -322,13 +328,7 @@
             if ([_sightsDict objectForKey:beaconMinorString]) {
                 
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
-                
-                //set time for this object in beaconShown array
-                //[shownBeacons setObject:now forKey:beaconMinorString];
-
-                
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
-
                 [self sendNotification];
                 
             } else {
@@ -338,12 +338,10 @@
 }
 
 - (void)sendNotification {
-    
-    //if (!_countRangedBeacon) {
-        
+
         //Send Alert
         NSString *beaconAlertTitle = _selectedSight.name;
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Beacon Notification Text", nil), _selectedSight.name];
+        NSString *message = NSLocalizedString(@"Beacon Notification Text", nil);
         
         UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle
                                                                 message:message
@@ -360,13 +358,9 @@
         rangedBeaconNotification.fireDate = nil;
         //rangedBeaconNotification.applicationIconBadgeNumber ++;
         [[UIApplication sharedApplication] scheduleLocalNotification:rangedBeaconNotification];
-        
-   /* }
-    _countRangedBeacon ++; */
 }
 
 //Make sure notifications are only shown when App is running in the background
-
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     
 }
@@ -384,27 +378,23 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    NSLog(@"Bluetooth Status Check");
     NSString *stateString = nil;
+    switch(central.state){
+        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
+        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
+        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil); break;
+        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil); break;
+        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
+        default: stateString = @"State unknown, update imminent."; break;
+    }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
                                                     message:stateString
                                                    delegate:nil
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles: nil,
                           nil];
-    switch(self.bluetoothManager.state)
-    {
-        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
-        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
-        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil);
-            [alert show];
-            break;
-        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil);
-            [alert show];
-            break;
-        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
-        default: stateString = @"State unknown, update imminent."; break;
-    }
-    
+    [alert show];
 }
 
 
@@ -425,8 +415,7 @@
     theAnimation.autoreverses=YES;
     theAnimation.fromValue=[NSNumber numberWithFloat:0.0];
     theAnimation.toValue=[NSNumber numberWithFloat:1.0];
-    [innerAnimationView.layer addAnimation:theAnimation forKey:@"animateOpacity"];
-    
+    [innerAnimationView.layer addAnimation:theAnimation forKey:@"animateOpacity"];    
     
     //// Declaring second image view -> middle ring
     UIImage *image2 = [UIImage imageNamed: @"second-scan.png"];

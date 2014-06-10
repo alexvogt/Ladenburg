@@ -1,3 +1,4 @@
+
 //
 //  MapViewController.h
 //  Ladenburg
@@ -7,10 +8,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "Sight.h"
+#import "HomeModel.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <CLLocationManagerDelegate, UIAlertViewDelegate, HomeModelProtocol, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 

@@ -100,15 +100,20 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    
+    /* COMMENTED OUT JUST FOR EVENT!!!
+     
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [errorAlert show];
+    */
     NSLog(@"Error: %@",error.description);
 }
 
 -(void)itemsDownloaded:(NSArray *)items
 {
+    NSLog(@"Items downloaded called");
     // This delegate method will get called when the items are finished downloading
-    
     // Set the downloaded items to the array
     _feedItems = items;
     

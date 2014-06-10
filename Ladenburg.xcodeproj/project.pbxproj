@@ -33,6 +33,8 @@
 		2285A4251930BD4400588343 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2285A4241930BD4400588343 /* CoreLocation.framework */; };
 		63014EAA192FB09D0008C4D1 /* ladTutorialMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */; };
 		63014F241934CBC50008C4D1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63014F231934CBC50008C4D1 /* QuartzCore.framework */; };
+		633F8B851945B20A0068CBB1 /* Sights_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 633F8B841945B20A0068CBB1 /* Sights_de.plist */; };
+		633F8B8719475D480068CBB1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F8B8619475D480068CBB1 /* CoreBluetooth.framework */; };
 		639620271922C40C00D8E31C /* ladBeaconTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 639620261922C40C00D8E31C /* ladBeaconTracker.m */; };
 		6396202F1924C22D00D8E31C /* ladPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6396202E1924C22D00D8E31C /* ladPageContentViewController.m */; };
 		639620321924D64C00D8E31C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 639620311924D64C00D8E31C /* Settings.bundle */; };
@@ -40,6 +42,7 @@
 		63EC2A4E1941CA2400E959E9 /* ladSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A4D1941CA2400E959E9 /* ladSettingsTableViewController.m */; };
 		63EC2A551941F16D00E959E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63EC2A571941F16D00E959E9 /* Localizable.strings */; };
 		63EC2A5E194386F400E959E9 /* ladAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EC2A5D194386F400E959E9 /* ladAboutViewController.m */; };
+		799A1D3B1944D865002F3FA3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 799A1D3A1944D865002F3FA3 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,8 @@
 		63014EA8192FB09D0008C4D1 /* ladTutorialMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladTutorialMainViewController.h; sourceTree = "<group>"; };
 		63014EA9192FB09D0008C4D1 /* ladTutorialMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladTutorialMainViewController.m; sourceTree = "<group>"; };
 		63014F231934CBC50008C4D1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		633F8B841945B20A0068CBB1 /* Sights_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Sights_de.plist; path = Ladenburg/Sights_de.plist; sourceTree = "<group>"; };
+		633F8B8619475D480068CBB1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		639620251922C40C00D8E31C /* ladBeaconTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladBeaconTracker.h; sourceTree = "<group>"; };
 		639620261922C40C00D8E31C /* ladBeaconTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladBeaconTracker.m; sourceTree = "<group>"; };
 		6396202D1924C22D00D8E31C /* ladPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladPageContentViewController.h; sourceTree = "<group>"; };
@@ -108,6 +113,7 @@
 		63EC2A581941F18600E959E9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63EC2A5C194386F400E959E9 /* ladAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladAboutViewController.h; sourceTree = "<group>"; };
 		63EC2A5D194386F400E959E9 /* ladAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ladAboutViewController.m; sourceTree = "<group>"; };
+		799A1D3A1944D865002F3FA3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633F8B8719475D480068CBB1 /* CoreBluetooth.framework in Frameworks */,
+				799A1D3B1944D865002F3FA3 /* AVFoundation.framework in Frameworks */,
 				63014F241934CBC50008C4D1 /* QuartzCore.framework in Frameworks */,
 				2285A4251930BD4400588343 /* CoreLocation.framework in Frameworks */,
 				639620631924DC2A00D8E31C /* MessageUI.framework in Frameworks */,
@@ -141,6 +149,7 @@
 		119EF6611912B28200A3DCCB = {
 			isa = PBXGroup;
 			children = (
+				633F8B841945B20A0068CBB1 /* Sights_de.plist */,
 				63EC2A571941F16D00E959E9 /* Localizable.strings */,
 				119EF68E1912B28200A3DCCB /* Images.xcassets */,
 				119EF6731912B28200A3DCCB /* Ladenburg */,
@@ -162,6 +171,8 @@
 		119EF66C1912B28200A3DCCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				633F8B8619475D480068CBB1 /* CoreBluetooth.framework */,
+				799A1D3A1944D865002F3FA3 /* AVFoundation.framework */,
 				63014F231934CBC50008C4D1 /* QuartzCore.framework */,
 				2285A4241930BD4400588343 /* CoreLocation.framework */,
 				639620621924DC2A00D8E31C /* MessageUI.framework */,
@@ -366,6 +377,7 @@
 				119EF68D1912B28200A3DCCB /* Main_iPad.storyboard in Resources */,
 				63EC2A551941F16D00E959E9 /* Localizable.strings in Resources */,
 				119EF68F1912B28200A3DCCB /* Images.xcassets in Resources */,
+				633F8B851945B20A0068CBB1 /* Sights_de.plist in Resources */,
 				639620321924D64C00D8E31C /* Settings.bundle in Resources */,
 				119EF68A1912B28200A3DCCB /* Main_iPhone.storyboard in Resources */,
 				119EF6781912B28200A3DCCB /* InfoPlist.strings in Resources */,

@@ -27,7 +27,7 @@
 "Elr-IG-CuC.title" = "Einstellungen";
 
 /* Class = "IBUILabel"; text = "Show Tutorial on Start"; ObjectID = "J8C-Z9-Xiw"; */
-"J8C-Z9-Xiw.text" = "Zeige Tutorial beim Start";
+"J8C-Z9-Xiw.text" = "Tutorial bei Neustart";
 
 /* Class = "IBUILabel"; text = "In beaconRegion"; ObjectID = "JU5-bf-LHK"; */
 "JU5-bf-LHK.text" = "In beaconRegion";
@@ -42,7 +42,7 @@
 "T91-x1-9Dc.title" = "ladMainTabController";
 
 /* Class = "IBUILabel"; text = "Automatic Beacon Tracking"; ObjectID = "Uyj-Rf-JfE"; */
-"Uyj-Rf-JfE.text" = "Automatische Beacon-Suche";
+"Uyj-Rf-JfE.text" = "Suche Beacons";
 
 /* Class = "IBUIViewController"; title = "Map"; ObjectID = "ZPn-gu-ePd"; */
 "ZPn-gu-ePd.title" = "Map";
