@@ -26,6 +26,7 @@
     NSDictionary *appDefaults = [[NSDictionary alloc] initWithObjectsAndKeys:
                                  [NSNumber numberWithBool:YES], @"enableBeaconTracking",
                                  [NSNumber numberWithBool:YES], @"showTutorial",
+                                 [NSNumber numberWithBool:NO], @"setBackNotifications",
                                  nil];
     
     [defaults registerDefaults:appDefaults];
@@ -36,8 +37,10 @@
     //Check if Settings have been changed
     BOOL beaconTrackingEnabled = [defaults boolForKey:@"enableBeaconTracking"];
     BOOL showTutorialEnabled = [defaults boolForKey:@"showTutorial"];
+    BOOL setBackNotifications = [defaults boolForKey:@"setBackNotifications"];
     NSLog(@"set beaconTracking to %@", beaconTrackingEnabled ? @"YES" : @"NO");
     NSLog(@"set showTutorial to %@", showTutorialEnabled ? @"YES" : @"NO");
+    NSLog(@"set setBackNotifications to %@", setBackNotifications ? @"YES" : @"NO");
     
     
     //Show Tutorial on first View only

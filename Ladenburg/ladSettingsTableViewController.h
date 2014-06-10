@@ -12,5 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *beaconTrackingSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *showTutorialSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *setBackNotificationsSwitch;
+
+
 
 @end

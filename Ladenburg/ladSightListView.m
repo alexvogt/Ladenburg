@@ -100,8 +100,13 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    
+    /* COMMENTED OUT JUST FOR EVENT!!!
+     
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [errorAlert show];
+    */
     NSLog(@"Error: %@",error.description);
 }
 

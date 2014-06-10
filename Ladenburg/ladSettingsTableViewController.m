@@ -52,6 +52,23 @@
 
 }
 
+- (IBAction)setBackNotifications:(id)sender {
+    
+    if ([_setBackNotificationsSwitch isOn]){
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"setBackNotifications"];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"setBackNotifications"];
+    }
+    
+    //Debugging Log
+    NSLog(@"set back Notifications to %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"] ? @"YES" : @"NO");
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
 
 - (void)viewDidLoad
 {

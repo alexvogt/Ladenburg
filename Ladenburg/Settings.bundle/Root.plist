@@ -8,6 +8,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Benachrichtigungen zurücksetzen</string>
+			<key>Key</key>
+			<string>setBackNotifications</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Automatische Suche nach Beacons</string>
 			<key>TrueValue</key>
 			<true/>

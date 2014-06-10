@@ -70,16 +70,34 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];   //it hides
+    [self.navigationController setNavigationBarHidden:YES];//it hides
+    
+    //Check if Bluetooth is on
+    [self detectBluetooth];
+    
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //Decide wether to delete saved Notifications or not
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
+        
+        //Remove Beacons shown
+        [shownBeacons removeAllObjects];
+        //set back standardUserDefaults
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"setBackNotifications"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"setBack Notifications called");
+    }else{
+        NSLog(@"setBack Notifications not called");
+    }
     
     // Check if Beacon-Monitoring is ON
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"] && !isRangingAndMonitoring){
         //If ON - Animate View and start tracking
         NSLog(@"Settings set on on, Beacons will be tracked.");
-            [self startTrackingBeacons];
-    }else{
+        [self startTrackingBeacons];
+    }else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
         //If OFF - show just dot and stop tracking
         if (isRangingAndMonitoring) {
             [self stopTrackingBeacons];
@@ -116,8 +134,6 @@
     
     // Call the download items method of the home model object
     [_homeModel downloadItems];
-    
-    [self detectBluetooth];
     
     shownBeacons = [[NSMutableDictionary alloc] init];
 
@@ -266,7 +282,7 @@
 
         //Variables for time out
         NSDate *now = [[NSDate alloc] init];
-        timeInSecUntilNextNotification = 900; //15Min * 60 Sec = 900 sec
+        timeInSecUntilNextNotification = 300; //5Min * 60 Sec = 300 sec
 
     
         if ([shownBeacons objectForKey:beaconIdentifierKey]){
