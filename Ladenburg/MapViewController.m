@@ -108,7 +108,7 @@
     zoomLocation.latitude = 49.473976;
     zoomLocation.longitude= 8.607746;
     // 2
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1000, 1000);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 700, 700);
     [self.mapView setRegion:viewRegion animated:YES];
 }
 - (void)didReceiveMemoryWarning
@@ -119,28 +119,38 @@
 
 
 #pragma mark -MapView Delegate Methods
-//6
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
-    
-    //7
     if([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    //8
-    static NSString *identifier = @"myAnnotation";
-    MKPinAnnotationView * annotationView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    
+    MKAnnotationView * annotationView = (MKAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
     if (!annotationView)
     {
-        //9
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-        annotationView.pinColor = MKPinAnnotationColorPurple;
-        annotationView.animatesDrop = YES;
+        
+        NSInteger index = [self->annotationMuArr indexOfObject:annotation];
+        
+        NSUInteger indexRight = index;
+        
+        _selectedSight = _sightArray[indexRight];
+        
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
+        annotationView.image = [UIImage imageNamed:@"map_annotation_pin.png"];
+        
+        //annotationView.animatesDrop = YES;
         annotationView.canShowCallout = YES;
     }else {
         annotationView.annotation = annotation;
     }
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:_selectedSight.image];
+    myImageView.frame = CGRectMake(0,0,31,31);
+    
+    annotationView.leftCalloutAccessoryView = myImageView;
+    
     return annotationView;
 }
 
