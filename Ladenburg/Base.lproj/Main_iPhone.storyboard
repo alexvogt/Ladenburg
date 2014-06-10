@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6q7-vT-ash">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -275,11 +275,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
-                                                    <rect key="frame" x="46" y="28" width="229" height="134"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DHBW_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
+                                                    <rect key="frame" x="59" y="36" width="203" height="118"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="203" id="LZc-4J-9II"/>
+                                                        <constraint firstAttribute="height" constant="118" id="wkO-CY-LWY"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="MK8-rL-p3P" secondAttribute="centerX" constant="-0.5" id="a5M-nj-pds"/>
+                                                <constraint firstAttribute="centerY" secondItem="MK8-rL-p3P" secondAttribute="centerY" id="shd-Oz-08r"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -690,6 +698,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DHBW_Logo" width="1069" height="641"/>
         <image name="Kursbild" width="4842" height="3228"/>
         <image name="Maps_Icons" width="22" height="21"/>
         <image name="Scan_Icons" width="21" height="20"/>
@@ -703,6 +712,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="X8V-AI-TAC"/>
+        <segue reference="GyG-ys-8B8"/>
     </inferredMetricsTieBreakers>
 </document>

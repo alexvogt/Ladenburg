@@ -87,10 +87,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     self.location = locations.lastObject;
-    NSLog(@"%@", self.location.description);
+    //NSLog(@"%@", self.location.description);
     
     [self.locationManager stopUpdatingLocation];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(_turnOnLocationManager)  userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(_turnOnLocationManager)  userInfo:nil repeats:NO];
     
     [_sightListView reloadData];
 }

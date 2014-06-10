@@ -73,10 +73,10 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];//it hides
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     //Check if Bluetooth is on
     [self detectBluetooth];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //Decide wether to delete saved Notifications or not
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
@@ -100,9 +100,9 @@
         NSLog(@"Settings set on on, not ranging --> start tracking.");
         [self startTrackingBeacons];
         
-    }else if(enableBeaconTracking){
-        [self startAnimationForView];
-        NSLog(@"Settings set on on, is already ranging --> start animating.");
+    }else if(enableBeaconTracking && bluetoothIsOn){
+            [self startAnimationForView];
+            NSLog(@"Settings set on on, is already ranging --> start animating.");
     
     }else if (!enableBeaconTracking){
         //If OFF - show just dot and stop tracking
@@ -178,18 +178,19 @@
         [alert show];
         didNotifyAboutUnsupportedDevice = YES;
         }
-           
         [self stopAnimationForView];
     
         return;
         
-    } else {
+    } else if (bluetoothIsOn) {
         //Initalize Beacon Regions for inside and outside of museum
         [self initRegionWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" andIdentifier:@"Stadt"];
         [self initRegionWithUUIDString:@"A5456D78-C85B-44C6-9F20-8268FD25EF8A" andIdentifier:@"Museum"];
         //Debugging Log
         NSLog(@"Regions initialized");
         [self startAnimationForView];
+    } else{
+        NSLog(@"Did not start animating because bluetooth isn't on");
     }
 }
 
@@ -378,23 +379,56 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    
     NSLog(@"Bluetooth Status Check");
+    NSString *stateIdentifier = nil;
     NSString *stateString = nil;
     switch(central.state){
         case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
         case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
-        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil); break;
-        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil); break;
-        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
-        default: stateString = @"State unknown, update imminent."; break;
+        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil);
+            bluetoothIsOn = NO;
+            stateIdentifier = @"Unauthorized";
+            [self stopAnimationForView];
+            [innerAnimationView setNeedsDisplay];
+            [middleAnimationView setNeedsDisplay];
+            [outerAnimationView setNeedsDisplay];
+            break;
+        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil);
+            bluetoothIsOn = NO;
+            stateIdentifier = @"Off";
+            [self stopAnimationForView];
+            [innerAnimationView setNeedsDisplay];
+            [middleAnimationView setNeedsDisplay];
+            [outerAnimationView setNeedsDisplay];
+            break;
+        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use.";
+            bluetoothIsOn = YES;
+            stateIdentifier = @"On";
+            if([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
+                [self startAnimationForView];
+                if(!isRangingAndMonitoring){
+                    [self startTrackingBeacons];
+                }
+            }
+            break;
+        default: stateString = @"State unknown, update imminent.";
+            stateIdentifier = @"Unknown";
+            break;
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
+    
+    NSLog(@"%@", stateString);
+    
+    /*
+    if(!bluetoothIsOn && ([stateIdentifier isEqualToString:@"Unauthorized"] || [stateIdentifier isEqualToString:@"Off"])){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
                                                     message:stateString
                                                    delegate:nil
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles: nil,
-                          nil];
-    [alert show];
+                                            nil];
+        [alert show];
+    }*/
 }
 
 
