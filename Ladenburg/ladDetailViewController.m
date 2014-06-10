@@ -188,6 +188,7 @@ BOOL speechPaused = 0;
     
     //Check if scrolling forwards or backwards
     if( draggedOffsetY > previousDraggedOffsetY){
+        //scrolling forwards
             if (newImageHeight > minImageHeight){
                 
                 //self.detailTextView.scrollEnabled = YES;
@@ -197,10 +198,10 @@ BOOL speechPaused = 0;
                                         [self.detailImageView setFrame:CGRectMake(self.detailImageView.frame.origin.x, self.detailImageView.frame.origin.y, self.detailImageView.frame.size.width, newImageHeight)];
                                         CGFloat textStartTop = self.detailImageView.frame.size.height;
                                         self.detailTextView.frame = CGRectMake(self.detailTextView.frame.origin.x, textStartTop, self.detailTextView.frame.size.width, self.detailTextView.frame.size.height);
-                                        if((textStartTop-20) < 95){
-                                            self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, textStartTop-20, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
+                                        if((textStartTop-45) > 90){
+                                            self.detailSightNameLabel.frame = CGRectMake(self.detailSightNameLabel.frame.origin.x, textStartTop-45, self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height);
                                         }else{
-                                            [self.detailSightNameLabel setFrame:CGRectMake(0, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
+                                            [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
                                         }
                                 
                                         }
@@ -209,14 +210,15 @@ BOOL speechPaused = 0;
             }else if (newImageHeight < minImageHeight){
             
                                      [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
-                                     [self.detailSightNameLabel setFrame:CGRectMake(0, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
+                                     [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
             }
     }
     else if (draggedOffsetY < previousDraggedOffsetY){
+        //scrolling backwards
         NSLog(@"scrolling backwards");
         
         [self.detailImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.detailImageView.frame.size.width, minImageHeight)];
-        [self.detailSightNameLabel setFrame:CGRectMake(0, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
+        [self.detailSightNameLabel setFrame:CGRectMake(self.detailSightNameLabel.frame.origin.x, (0+draggedOffsetY+75), self.detailSightNameLabel.frame.size.width, self.detailSightNameLabel.frame.size.height)];
 
     }
     

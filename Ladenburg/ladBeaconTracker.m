@@ -35,6 +35,7 @@
     //Bools to Check if Location Services are turned on
     BOOL isRangingAndMonitoring;
     BOOL didNotifyAboutUnsupportedDevice;
+    BOOL bluetoothIsOn;
 };
 
 //Properties
@@ -72,11 +73,10 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];//it hides
     
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     //Check if Bluetooth is on
     [self detectBluetooth];
-    
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //Decide wether to delete saved Notifications or not
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
@@ -92,16 +92,25 @@
         NSLog(@"setBack Notifications not called");
     }
     
+    BOOL enableBeaconTracking = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"];
+    
     // Check if Beacon-Monitoring is ON
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"] && !isRangingAndMonitoring){
-        //If ON - Animate View and start tracking
-        NSLog(@"Settings set on on, Beacons will be tracked.");
+    if (enableBeaconTracking && !isRangingAndMonitoring){
+        //If ON start tracking
+        NSLog(@"Settings set on on, not ranging --> start tracking.");
         [self startTrackingBeacons];
-    }else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
+        
+    }else if(enableBeaconTracking){
+        [self startAnimationForView];
+        NSLog(@"Settings set on on, is already ranging --> start animating.");
+    
+    }else if (!enableBeaconTracking){
         //If OFF - show just dot and stop tracking
         if (isRangingAndMonitoring) {
             [self stopTrackingBeacons];
             NSLog(@"Settings set on off, Beacons won't be tracked.");
+        }else{
+            [self stopAnimationForView];
         }
     }
 }
@@ -116,7 +125,7 @@
     // Initialize Location Manager for Beacon Functionality
     // and Bluetooth Manager to check bluetooth status
     self.locationManager = [[CLLocationManager alloc] init];
-    self.bluetoothManager = [[CBCentralManager alloc] init];
+    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     
     self.locationManager.delegate = self;
     self.bluetoothManager.delegate = self;
@@ -369,30 +378,23 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    NSLog(@"Bluetooth Status Check");
     NSString *stateString = nil;
+    switch(central.state){
+        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent."; break;
+        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
+        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil); break;
+        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil); break;
+        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use."; break;
+        default: stateString = @"State unknown, update imminent."; break;
+    }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth"
                                                     message:stateString
                                                    delegate:nil
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles: nil,
                           nil];
-    switch(self.bluetoothManager.state){
-        case CBCentralManagerStateResetting: stateString = @"The connection with the system service was momentarily lost, update imminent.";
-            break;
-        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy.";
-            break;
-        case CBCentralManagerStateUnauthorized: stateString = NSLocalizedString(@"Bluetooth not authorized", nil);
-            [alert show];
-            break;
-        case CBCentralManagerStatePoweredOff: stateString = NSLocalizedString(@"Bluetooth OFF Text", nil);
-            [alert show];
-            break;
-        case CBCentralManagerStatePoweredOn: stateString = @"Bluetooth is currently powered on and available to use.";
-            break;
-        default: stateString = @"State unknown, update imminent.";
-            break;
-    }
-    
+    [alert show];
 }
 
 
