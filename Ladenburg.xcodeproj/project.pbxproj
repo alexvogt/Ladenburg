@@ -56,14 +56,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		119EF66A1912B28200A3DCCB /* iLadenburg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLadenburg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		119EF66A1912B28200A3DCCB /* Ladenburg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ladenburg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119EF66D1912B28200A3DCCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		119EF66F1912B28200A3DCCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		119EF6711912B28200A3DCCB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		119EF6751912B28200A3DCCB /* iLadenburg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iLadenburg-Info.plist"; sourceTree = "<group>"; };
+		119EF6751912B28200A3DCCB /* Ladenburg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ladenburg-Info.plist"; sourceTree = "<group>"; };
 		119EF6771912B28200A3DCCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		119EF6791912B28200A3DCCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		119EF67B1912B28200A3DCCB /* iLadenburg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iLadenburg-Prefix.pch"; sourceTree = "<group>"; };
+		119EF67B1912B28200A3DCCB /* Ladenburg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ladenburg-Prefix.pch"; sourceTree = "<group>"; };
 		119EF67C1912B28200A3DCCB /* ladAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ladAppDelegate.h; sourceTree = "<group>"; };
 		119EF67D1912B28200A3DCCB /* ladAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ladAppDelegate.m; sourceTree = "<group>"; };
 		119EF67F1912B28200A3DCCB /* ladRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ladRootViewController.h; sourceTree = "<group>"; };
@@ -75,9 +75,9 @@
 		119EF6891912B28200A3DCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		119EF68C1912B28200A3DCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		119EF68E1912B28200A3DCCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Ladenburg/Images.xcassets; sourceTree = "<group>"; };
-		119EF6941912B28200A3DCCB /* iLadenburgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iLadenburgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		119EF6941912B28200A3DCCB /* LadenburgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LadenburgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		119EF6951912B28200A3DCCB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		119EF69D1912B28200A3DCCB /* iLadenburgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iLadenburgTests-Info.plist"; sourceTree = "<group>"; };
+		119EF69D1912B28200A3DCCB /* LadenburgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LadenburgTests-Info.plist"; sourceTree = "<group>"; };
 		119EF69F1912B28200A3DCCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		119EF6A11912B28200A3DCCB /* LadenburgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LadenburgTests.m; sourceTree = "<group>"; };
 		2235B34B1924EE530081ED14 /* ladSightListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ladSightListView.h; sourceTree = "<group>"; };
@@ -162,8 +162,8 @@
 		119EF66B1912B28200A3DCCB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				119EF66A1912B28200A3DCCB /* iLadenburg.app */,
-				119EF6941912B28200A3DCCB /* iLadenburgTests.xctest */,
+				119EF66A1912B28200A3DCCB /* Ladenburg.app */,
+				119EF6941912B28200A3DCCB /* LadenburgTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,10 +208,10 @@
 			isa = PBXGroup;
 			children = (
 				63962021192262D700D8E31C /* Demo Classes */,
-				119EF6751912B28200A3DCCB /* iLadenburg-Info.plist */,
+				119EF6751912B28200A3DCCB /* Ladenburg-Info.plist */,
 				119EF6761912B28200A3DCCB /* InfoPlist.strings */,
 				119EF6791912B28200A3DCCB /* main.m */,
-				119EF67B1912B28200A3DCCB /* iLadenburg-Prefix.pch */,
+				119EF67B1912B28200A3DCCB /* Ladenburg-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 		119EF69C1912B28200A3DCCB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				119EF69D1912B28200A3DCCB /* iLadenburgTests-Info.plist */,
+				119EF69D1912B28200A3DCCB /* LadenburgTests-Info.plist */,
 				119EF69E1912B28200A3DCCB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -296,9 +296,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		119EF6691912B28200A3DCCB /* iLadenburg */ = {
+		119EF6691912B28200A3DCCB /* Ladenburg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 119EF6A51912B28200A3DCCB /* Build configuration list for PBXNativeTarget "iLadenburg" */;
+			buildConfigurationList = 119EF6A51912B28200A3DCCB /* Build configuration list for PBXNativeTarget "Ladenburg" */;
 			buildPhases = (
 				119EF6661912B28200A3DCCB /* Sources */,
 				119EF6671912B28200A3DCCB /* Frameworks */,
@@ -308,14 +308,14 @@
 			);
 			dependencies = (
 			);
-			name = iLadenburg;
+			name = Ladenburg;
 			productName = Ladenburg;
-			productReference = 119EF66A1912B28200A3DCCB /* iLadenburg.app */;
+			productReference = 119EF66A1912B28200A3DCCB /* Ladenburg.app */;
 			productType = "com.apple.product-type.application";
 		};
-		119EF6931912B28200A3DCCB /* iLadenburgTests */ = {
+		119EF6931912B28200A3DCCB /* LadenburgTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "iLadenburgTests" */;
+			buildConfigurationList = 119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "LadenburgTests" */;
 			buildPhases = (
 				119EF6901912B28200A3DCCB /* Sources */,
 				119EF6911912B28200A3DCCB /* Frameworks */,
@@ -326,9 +326,9 @@
 			dependencies = (
 				119EF69A1912B28200A3DCCB /* PBXTargetDependency */,
 			);
-			name = iLadenburgTests;
+			name = LadenburgTests;
 			productName = LadenburgTests;
-			productReference = 119EF6941912B28200A3DCCB /* iLadenburgTests.xctest */;
+			productReference = 119EF6941912B28200A3DCCB /* LadenburgTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -349,7 +349,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 119EF6651912B28200A3DCCB /* Build configuration list for PBXProject "iLadenburg" */;
+			buildConfigurationList = 119EF6651912B28200A3DCCB /* Build configuration list for PBXProject "Ladenburg" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -363,8 +363,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				119EF6691912B28200A3DCCB /* iLadenburg */,
-				119EF6931912B28200A3DCCB /* iLadenburgTests */,
+				119EF6691912B28200A3DCCB /* Ladenburg */,
+				119EF6931912B28200A3DCCB /* LadenburgTests */,
 			);
 		};
 /* End PBXProject section */
@@ -430,7 +430,7 @@
 /* Begin PBXTargetDependency section */
 		119EF69A1912B28200A3DCCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 119EF6691912B28200A3DCCB /* iLadenburg */;
+			target = 119EF6691912B28200A3DCCB /* Ladenburg */;
 			targetProxy = 119EF6991912B28200A3DCCB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -564,9 +564,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Ladenburg/iLadenburg-Prefix.pch";
-				INFOPLIST_FILE = "Ladenburg/iLadenburg-Info.plist";
-				PRODUCT_NAME = iLadenburg;
+				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
+				INFOPLIST_FILE = "Ladenburg/Ladenburg-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -581,9 +581,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Ladenburg/iLadenburg-Prefix.pch";
-				INFOPLIST_FILE = "Ladenburg/iLadenburg-Info.plist";
-				PRODUCT_NAME = iLadenburg;
+				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
+				INFOPLIST_FILE = "Ladenburg/Ladenburg-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -605,8 +605,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "LadenburgTests/iLadenburgTests-Info.plist";
-				PRODUCT_NAME = iLadenburgTests;
+				INFOPLIST_FILE = "LadenburgTests/LadenburgTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -623,8 +623,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ladenburg/Ladenburg-Prefix.pch";
-				INFOPLIST_FILE = "LadenburgTests/iLadenburgTests-Info.plist";
-				PRODUCT_NAME = iLadenburgTests;
+				INFOPLIST_FILE = "LadenburgTests/LadenburgTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -633,7 +633,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		119EF6651912B28200A3DCCB /* Build configuration list for PBXProject "iLadenburg" */ = {
+		119EF6651912B28200A3DCCB /* Build configuration list for PBXProject "Ladenburg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119EF6A31912B28200A3DCCB /* Debug */,
@@ -642,7 +642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		119EF6A51912B28200A3DCCB /* Build configuration list for PBXNativeTarget "iLadenburg" */ = {
+		119EF6A51912B28200A3DCCB /* Build configuration list for PBXNativeTarget "Ladenburg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119EF6A61912B28200A3DCCB /* Debug */,
@@ -651,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "iLadenburgTests" */ = {
+		119EF6A81912B28200A3DCCB /* Build configuration list for PBXNativeTarget "LadenburgTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119EF6A91912B28200A3DCCB /* Debug */,
