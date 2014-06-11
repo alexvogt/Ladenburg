@@ -10,6 +10,7 @@
 #import "ladSightListView.h"
 #import "Sight.h"
 #import "ladDetailViewController.h"
+#import "ladBeaconTracker.h"
 
 @interface MapViewController (){
     
@@ -191,6 +192,18 @@
         // detail view controller loads, it can access that property to get the feeditem obj
         ladVC.selectedSight = _selectedSight;
     }
+}
+
+#pragma mark AlertView Delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        _selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        NSLog(@"DetailView called from List, Selected Sight is: %@", _selectedSight.name);
+        [self performSegueWithIdentifier:@"DetailViewMap" sender:self];
+    }
+    
 }
 
 

@@ -7,6 +7,9 @@
 //
 
 #import "ladAboutViewController.h"
+#import "Sight.h"
+#import "ladDetailViewController.h"
+#import <objc/runtime.h>
 
 @interface ladAboutViewController ()
 
@@ -148,6 +151,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark AlertView Delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        Sight *_selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+        ladDetailViewController *destinationVC = [storyboard instantiateViewControllerWithIdentifier:@"ladDetailViewController"];
+        destinationVC.selectedSight=_selectedSight;
+        [self.navigationController pushViewController:destinationVC animated:YES];
+    }
 }
 
 /*

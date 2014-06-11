@@ -16,9 +16,9 @@
 #import "ladBeaconTracker.h"
 #import "ladDetailViewController.h"
 #import "Sight.h"
+#import <objc/runtime.h>
 
 @interface ladBeaconTracker ()
-
 {
     CLBeacon *lastBeacon;
     
@@ -36,6 +36,7 @@
     BOOL isRangingAndMonitoring;
     BOOL didNotifyAboutUnsupportedDevice;
     BOOL bluetoothIsOn;
+    
 };
 
 //Properties
@@ -57,8 +58,11 @@
 
 @end
 
+const char MyConstantKey;
 
 @implementation ladBeaconTracker
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -339,6 +343,13 @@
 }
 
 - (void)sendNotification {
+    
+        NSLog(@"Current Navcontroller: %@" ,(self.tabBarController.selectedViewController));
+        UINavigationController *currentNavController = self.tabBarController.selectedViewController;
+        NSLog(@"Current Viewcontroller: %@", currentNavController.visibleViewController);
+        NSLog(@"Self: %@", self);
+    
+    
 
         //Send Alert
         NSString *beaconAlertTitle = _selectedSight.name;
@@ -346,10 +357,13 @@
         
         UIAlertView *rangedBeaconAlert = [[UIAlertView alloc] initWithTitle:beaconAlertTitle
                                                                 message:message
-                                                                delegate:self
+                                                                delegate:currentNavController.visibleViewController
                                                                 cancelButtonTitle:NSLocalizedString(@"No", nil)
                                                                 otherButtonTitles:NSLocalizedString(@"Yes", nil),
                                                                 nil];
+    
+        objc_setAssociatedObject(rangedBeaconAlert, &MyConstantKey, _selectedSight, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
         [rangedBeaconAlert show];
       
         //Send Notification
@@ -532,6 +546,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get reference to the destination view controller
+    
+    NSLog(@"DetailView called from Home, Selected Sight is: %@", _selectedSight.name);
     ladDetailViewController *ladVC = segue.destinationViewController;
     
     

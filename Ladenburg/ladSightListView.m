@@ -10,6 +10,7 @@
 #import "Sight.h"
 #import "MapViewController.h"
 #import "ladDetailViewController.h"
+#import <objc/runtime.h>
 
 
 @interface ladSightListView ()
@@ -307,6 +308,18 @@
     // Set the property to the selected sight so when the view for
     // detail view controller loads, it can access that property to get the feeditem obj
     ladVC.selectedSight = _selectedSight;
+}
+
+#pragma mark AlertView Delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        _selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        NSLog(@"DetailView called from List, Selected Sight is: %@", _selectedSight.name);
+        [self performSegueWithIdentifier:@"detailSegue" sender:self];
+    }
+    
 }
 
 

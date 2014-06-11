@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import "Sight.h"
 #import "HomeModel.h"
+#import <objc/runtime.h>
 
 @interface MapViewController : UIViewController <CLLocationManagerDelegate, UIAlertViewDelegate, HomeModelProtocol, MKMapViewDelegate>
 

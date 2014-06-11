@@ -7,7 +7,7 @@
 //
 
 #import "ladDetailViewController.h"
-
+#import <objc/runtime.h>
 
 @interface ladDetailViewController ()
 
@@ -270,6 +270,34 @@ BOOL speechPaused = 0;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark AlertView Delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        _selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+        ladDetailViewController *destinationVC = [storyboard instantiateViewControllerWithIdentifier:@"ladDetailViewController"];
+        destinationVC.selectedSight=_selectedSight;
+        [self.navigationController pushViewController:destinationVC animated:YES];
+    }
+}
+
+/*
+#pragma mark Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get reference to the destination view controller
+    
+    NSLog(@"DetailView called from Home, Selected Sight is: %@", _selectedSight.name);
+    ladDetailViewController *ladVC = segue.destinationViewController;
+    
+    
+    ladVC.selectedSight = _selectedSight;
+}*/
 
 
 /*

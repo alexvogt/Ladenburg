@@ -10,8 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "HomeModel.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Sight.h"
+#import "ladBeaconTracker.h"
 
-@interface ladSightListView : UIViewController <UITableViewDataSource, UITableViewDelegate, HomeModelProtocol, CLLocationManagerDelegate>
+@interface ladSightListView : UIViewController <UITableViewDataSource, UITableViewDelegate, HomeModelProtocol, CLLocationManagerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *sightListView;
 @property (strong, nonatomic) CLLocationManager *locationManager;

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Sight.h"
 #import <AVFoundation/AVFoundation.h>
+#import "ladBeaconTracker.h"
 
-@interface ladDetailViewController : UIViewController <UIScrollViewDelegate, AVSpeechSynthesizerDelegate>
+@interface ladDetailViewController : UIViewController <UIScrollViewDelegate, AVSpeechSynthesizerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) Sight *selectedSight;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
