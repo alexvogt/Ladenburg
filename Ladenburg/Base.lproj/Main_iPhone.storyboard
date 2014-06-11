@@ -275,7 +275,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_dhbw" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo_dhbw" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
                                                     <rect key="frame" x="60" y="49" width="200" height="92"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -517,7 +517,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="LVc-IT-KZl">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="aPu-Kl-vy3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ika-ul-xWn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ika-ul-xWn">
                                 <rect key="frame" x="255" y="12" width="49" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Play_icons">
@@ -707,7 +707,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DHBW_Logo" width="1069" height="641"/>
         <image name="Kursbild" width="320" height="214"/>
         <image name="Maps_Icons" width="22" height="21"/>
         <image name="Play_icons" width="20" height="20"/>
