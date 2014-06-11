@@ -95,6 +95,14 @@
         [_beaconTrackingSwitch setOn:NO animated:YES];
     }
     
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
+        
+        self.setBackNotificationsSwitch.on=YES;
+        
+    }else{
+        [_setBackNotificationsSwitch setOn:NO animated:YES];
+    }
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

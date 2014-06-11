@@ -35,7 +35,7 @@
 
     
         // Download german json file
-        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
+        // jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
         
         // Lokale Installation
         //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-de.php"];
@@ -46,13 +46,13 @@
         
         
         // Huawei
-        //jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-de.php"];
+        jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-de.php"];
         
         
     } else {
         
         // Download german json file
-        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
+        //jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
         
         // Lokale Installation
         //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-en.php"];
@@ -63,7 +63,7 @@
         
         
         // Huawei
-        //jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-en.php"];
+        jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-en.php"];
     }
     
     
@@ -137,7 +137,7 @@
         // baseURL = @"http://ladenburg.timhartl.de";
         
         // m-ladenburg server
-         baseURL = @"http://m-ladenburg.de";
+         //baseURL = @"http://m-ladenburg.de";
         
         // Lokale Installation
         // baseURL = @"http://localhost:8888/";
@@ -148,7 +148,7 @@
         // baseURL = @"http://192.168.100.100:8888/";
         
         // Huawei
-        //baseURL = @"http://192.168.1.150:8888/";
+        baseURL = @"http://192.168.1.150:8888/";
         
         
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
