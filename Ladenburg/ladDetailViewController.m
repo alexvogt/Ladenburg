@@ -245,12 +245,17 @@ BOOL speechPaused = 0;
 
 - (IBAction)playPauseButtonPressed:(UIButton *)sender {
     [self.detailTextView resignFirstResponder];
+    
+    UIImage * buttonImagePlay = [UIImage imageNamed:@"Play_icons"];
+    UIImage * buttonImagePause = [UIImage imageNamed:@"Pause_icons"];
+    
     if (speechPaused == NO) {
-        [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+        //[self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.playPauseButton setImage:buttonImagePause forState:UIControlStateNormal];
         [self.synthesizer continueSpeaking];
         speechPaused = YES;
     } else {
-        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        [self.playPauseButton setImage:buttonImagePlay forState:UIControlStateNormal];
         speechPaused = NO;
         [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
     }
@@ -271,13 +276,15 @@ BOOL speechPaused = 0;
 }
 
 -(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
-    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    UIImage * buttonImagePlay1 = [UIImage imageNamed:@"Play_icons"];
+    [self.playPauseButton setImage:buttonImagePlay1 forState:UIControlStateNormal];
     speechPaused = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    UIImage * buttonImagePlay2 = [UIImage imageNamed:@"Play_icons"];
     [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
-    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    [self.playPauseButton setImage:buttonImagePlay2 forState:UIControlStateNormal];
     speechPaused = NO;
 }
 
