@@ -268,7 +268,7 @@
                                             <segue destination="1O3-l4-oaP" kind="push" id="mCm-Le-tpS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="191" id="Vqn-8j-0du">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="191" id="Vqn-8j-0du">
                                         <rect key="frame" x="0.0" y="240" width="320" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vqn-8j-0du" id="NbZ-IY-MUW">
@@ -278,6 +278,9 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DHBW_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
                                                     <rect key="frame" x="59" y="36" width="203" height="118"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                                    </accessibility>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="203" id="LZc-4J-9II"/>
                                                         <constraint firstAttribute="height" constant="118" id="wkO-CY-LWY"/>
@@ -289,6 +292,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="MK8-rL-p3P" secondAttribute="centerY" id="shd-Oz-08r"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                        </accessibility>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -424,7 +430,7 @@
         <!--Lad Detail View Controller - ladDetailViewController-->
         <scene sceneID="EZ3-6y-X3E">
             <objects>
-                <viewController title="ladDetailViewController" id="buz-qi-qqg" customClass="ladDetailViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ladDetailViewController" storyboardIdentifier="ladDetailViewController" title="ladDetailViewController" id="buz-qi-qqg" customClass="ladDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rkw-CK-bld"/>
                         <viewControllerLayoutGuide type="bottom" id="7cK-Ea-nq3"/>
@@ -532,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQn-Vh-t5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3494" y="332"/>
+            <point key="canvasLocation" x="3546" y="396"/>
         </scene>
         <!--Navigation Controller - Sights-->
         <scene sceneID="vQP-Ti-RKw">
@@ -699,7 +705,7 @@
     </scenes>
     <resources>
         <image name="DHBW_Logo" width="1069" height="641"/>
-        <image name="Kursbild" width="4842" height="3228"/>
+        <image name="Kursbild" width="320" height="214"/>
         <image name="Maps_Icons" width="22" height="21"/>
         <image name="Scan_Icons" width="21" height="20"/>
         <image name="Settings_Icons" width="21" height="21"/>
@@ -712,6 +718,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GyG-ys-8B8"/>
+        <segue reference="NxK-U1-7Pj"/>
     </inferredMetricsTieBreakers>
 </document>
