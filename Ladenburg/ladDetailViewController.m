@@ -152,9 +152,6 @@ BOOL speechPaused = 0;
 //Change Layout on scrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    //Turn off Bounce on Top of View
-    self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
-    
     draggedOffsetY = self.detailScrollView.contentOffset.y;
     
     NSLog(@"View was dragged to: %f", draggedOffsetY);
@@ -188,6 +185,10 @@ BOOL speechPaused = 0;
             }
     }
     else if (draggedOffsetY <= previousDraggedOffsetY){
+        
+        //Turn off Bounce on Top of View
+        self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
+        
         //scrolling backwards
         NSLog(@"scrolling backwards");
 
@@ -226,6 +227,21 @@ BOOL speechPaused = 0;
     previousDraggedOffsetY = draggedOffsetY;
 }
 
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{}
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    self.detailScrollView.delegate = nil;
+    self.detailScrollView.scrollEnabled = NO;
+    self.detailScrollView.scrollEnabled = YES;
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+    }
+    [super viewWillDisappear:animated];
+}
 
 - (IBAction)playPauseButtonPressed:(UIButton *)sender {
     [self.detailTextView resignFirstResponder];
