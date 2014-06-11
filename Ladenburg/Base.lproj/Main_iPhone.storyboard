@@ -275,8 +275,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DHBW_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
-                                                    <rect key="frame" x="59" y="36" width="203" height="118"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_dhbw" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
+                                                    <rect key="frame" x="60" y="49" width="200" height="92"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -288,8 +288,12 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="MK8-rL-p3P" secondAttribute="centerX" constant="-0.5" id="a5M-nj-pds"/>
-                                                <constraint firstAttribute="centerY" secondItem="MK8-rL-p3P" secondAttribute="centerY" id="shd-Oz-08r"/>
+                                                <constraint firstItem="MK8-rL-p3P" firstAttribute="leading" secondItem="NbZ-IY-MUW" secondAttribute="leading" constant="60" id="L4x-rj-6wH"/>
+                                                <constraint firstAttribute="centerX" secondItem="MK8-rL-p3P" secondAttribute="centerX" id="Nqk-rQ-paY"/>
+                                                <constraint firstAttribute="bottom" secondItem="MK8-rL-p3P" secondAttribute="bottom" constant="49" id="hP8-aA-JST"/>
+                                                <constraint firstAttribute="trailing" secondItem="MK8-rL-p3P" secondAttribute="trailing" constant="60" id="iy3-M6-Zkr"/>
+                                                <constraint firstAttribute="centerY" secondItem="MK8-rL-p3P" secondAttribute="centerY" id="kLI-9t-6ja"/>
+                                                <constraint firstItem="MK8-rL-p3P" firstAttribute="top" secondItem="NbZ-IY-MUW" secondAttribute="top" constant="49" id="lSS-yD-Cmj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration">
