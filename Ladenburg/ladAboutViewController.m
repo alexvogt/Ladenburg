@@ -143,9 +143,16 @@
     previousDraggedOffsetY = draggedOffsetY;
 }
 
-
-
-
+-(void) viewWillDisappear:(BOOL)animated {
+    self.aboutScrollView.delegate = nil;
+    self.aboutScrollView.scrollEnabled = NO;
+    self.aboutScrollView.scrollEnabled = YES;
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+    }
+    [super viewWillDisappear:animated];
+}
 
 - (void)didReceiveMemoryWarning
 {
