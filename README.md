@@ -1,15 +1,33 @@
-App "Ensemble Ladenburg"
+Ladenburg Guide App
 =========
-A project of course WMPG11 - Digital Media at DHBW Mannheim (Cooperative State University Baden-Württemberg Mannheim)
-Supervising professors: Prof. Dr. Jürgen Redelius, Prof. Peter Mayr
+Native iOS Application for the [Ladenburg](http://en.wikipedia.org/wiki/Ladenburg) City. Created as part of the Digital Media degree program at [DHBW Mannheim](http://www.dhbw-mannheim.de/en/faculty-of-business/digital-media/)
 
-For support please visit our Wiki. 
-If there are any open questions feel free to contact us via email.
+## Features
 
-Sonja Ka - s110917@student.dhbw-mannheim.de <br />
-Tim Hartl - s110676@student.dhbw-mannheim.de <br />
-Sergej Lotz - <br />
-Alexander Vogt - <br />
+- discover facts about historical places simple by passing them by
+- find the important places of the town on a map
+- select the places from a rich image list
+- get detailed information about the place
+- multilingual ability
 
-For information about our university course please visit: <br />
-http://www.dm.dhbw-mannheim.de/
+## Requirements
+
+Software:
+- iOS 7.1+
+- Xcode 5+
+
+Hardware:
+- Bluetooth 4 LE
+- iBeacons (estimote)
+
+##Credits
+
+Created by:
+- Tim Hartl
+- Sonja Karl
+- Sergej Lotz
+- Alex Vogt
+
+Supervised by:
+- Prof. Dr. Jürgen Redelius
+- Prof. Peter Mayr
