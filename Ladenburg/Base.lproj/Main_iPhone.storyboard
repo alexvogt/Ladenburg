@@ -275,21 +275,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_dhbw" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-rL-p3P">
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeU-Lf-jIA">
                                                     <rect key="frame" x="60" y="49" width="200" height="92"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
-                                                    </accessibility>
-                                                </imageView>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="logo_dhbw">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="logo:" destination="bSu-hB-KjA" eventType="touchUpInside" id="XTl-nS-t7R"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="MK8-rL-p3P" firstAttribute="leading" secondItem="NbZ-IY-MUW" secondAttribute="leading" constant="60" id="L4x-rj-6wH"/>
-                                                <constraint firstAttribute="centerX" secondItem="MK8-rL-p3P" secondAttribute="centerX" id="Nqk-rQ-paY"/>
-                                                <constraint firstAttribute="bottom" secondItem="MK8-rL-p3P" secondAttribute="bottom" constant="49" id="hP8-aA-JST"/>
-                                                <constraint firstAttribute="trailing" secondItem="MK8-rL-p3P" secondAttribute="trailing" constant="60" id="iy3-M6-Zkr"/>
-                                                <constraint firstAttribute="centerY" secondItem="MK8-rL-p3P" secondAttribute="centerY" id="kLI-9t-6ja"/>
-                                                <constraint firstItem="MK8-rL-p3P" firstAttribute="top" secondItem="NbZ-IY-MUW" secondAttribute="top" constant="49" id="lSS-yD-Cmj"/>
+                                                <constraint firstAttribute="centerY" secondItem="HeU-Lf-jIA" secondAttribute="centerY" id="7ab-UN-qza"/>
+                                                <constraint firstItem="HeU-Lf-jIA" firstAttribute="leading" secondItem="NbZ-IY-MUW" secondAttribute="leading" constant="60" id="8yA-48-6Qc"/>
+                                                <constraint firstItem="HeU-Lf-jIA" firstAttribute="top" secondItem="NbZ-IY-MUW" secondAttribute="top" constant="49" id="BTW-BD-Bqj"/>
+                                                <constraint firstAttribute="trailing" secondItem="HeU-Lf-jIA" secondAttribute="trailing" constant="60" id="K68-jN-Xb2"/>
+                                                <constraint firstAttribute="bottom" secondItem="HeU-Lf-jIA" secondAttribute="bottom" constant="49" id="Q2F-vc-qxL"/>
+                                                <constraint firstAttribute="centerX" secondItem="HeU-Lf-jIA" secondAttribute="centerX" id="dhS-1X-OKx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration">

@@ -51,6 +51,8 @@
     }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    
+
 }
 
 
@@ -113,6 +115,12 @@
         [self.navigationController pushViewController:destinationVC animated:YES];
     }
 }
+
+-(IBAction)logo:(id)sender{
+    NSURL *url = [ [ NSURL alloc ] initWithString: @"http://www.dm.dhbw-mannheim.de" ];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 
 /*
 #pragma mark - Table view data source
