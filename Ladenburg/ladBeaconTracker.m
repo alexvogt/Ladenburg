@@ -149,7 +149,7 @@ const char sightAlertConstantKey;
 
 -(void)itemsDownloaded:(NSArray *)items
 {
-    NSLog(@"Items downloaded called");
+    //NSLog(@"Items downloaded called");
     // This delegate method will get called when the items are finished downloading
     // It turns the downloaded data into a dictionary used to identify the beacons
     for (Sight* currentSight in items)

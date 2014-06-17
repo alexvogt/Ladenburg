@@ -56,11 +56,11 @@
     
     // Create the request
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
-    NSLog(@"Request Created");
+    //NSLog(@"Request Created");
 
     // Create the NSURLConnection
     [NSURLConnection connectionWithRequest:urlRequest delegate:self];
-    NSLog(@"Connection created");
+    //NSLog(@"Connection created");
 }
 
 #pragma mark NSURLConnectionDataProtocol Methods
@@ -70,7 +70,7 @@
  
     // Initialize the data object
     _downloadedData = [[NSMutableData alloc] init];
-           NSLog(@"Response received");
+    //NSLog(@"Response received");
 
 }
 
@@ -79,13 +79,13 @@
     
     // Append the newly downloaded data
     [_downloadedData appendData:data];
-    NSLog(@"Data received");
+    //NSLog(@"Data received");
 
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finishedLoading called \nDownloaded Data: %@", _downloadedData);
+    //NSLog(@"finishedLoading called \nDownloaded Data: %@", _downloadedData);
     // Create an array to store the sights
     NSMutableArray *_sights = [[NSMutableArray alloc] init];
     
@@ -93,9 +93,10 @@
     NSError *error;
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
     
-    NSLog(@"error: %@", error);
+    //NSLog(@"error: %@", error);
     
-    NSLog(@"Json Array: %@", jsonArray);
+    //NSLog(@"Json Array: %@", jsonArray);
+    
     // Loop through Json objects, create question objects and add them to our questions array
     for (int i = 0; i < jsonArray.count; i++)
     {

@@ -176,9 +176,9 @@
     
     
     // Determining Location of the Cell/Sight
-    double testLatitude = [item.latitude doubleValue];
-    double testLongitude = [item.longitude doubleValue];
-    CLLocation *sightLoc = [[CLLocation alloc] initWithLatitude:testLatitude longitude:testLongitude];
+    double sightLatitude = [item.latitude doubleValue];
+    double sightLongitude = [item.longitude doubleValue];
+    CLLocation *sightLoc = [[CLLocation alloc] initWithLatitude:sightLatitude longitude:sightLongitude];
 
     
     // Determining user Location

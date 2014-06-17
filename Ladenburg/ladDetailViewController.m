@@ -154,7 +154,7 @@ BOOL speechPaused = 0;
     
     draggedOffsetY = self.detailScrollView.contentOffset.y;
     
-    NSLog(@"View was dragged to: %f", draggedOffsetY);
+    //NSLog(@"View was dragged to: %f", draggedOffsetY);
     newImageHeight = self.detailImageView.frame.size.height-draggedOffsetY;
     minImageHeight = 115;
     maxImageHeight = 220;
@@ -190,7 +190,7 @@ BOOL speechPaused = 0;
         self.detailScrollView.bounces = (self.detailScrollView.contentOffset.y > 60);
         
         //scrolling backwards
-        NSLog(@"scrolling backwards");
+        //NSLog(@"scrolling backwards");
 
         if(draggedOffsetY > 0){
         

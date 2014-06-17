@@ -69,7 +69,6 @@
     // Set the downloaded items to the array
     
     // test = [ladSightListView sortDownloadedArray:items];
-    //NSLog(@"ficker");
     _sightArray = items;
     annotationMuArr = [[NSMutableArray alloc] init];
     
@@ -94,7 +93,6 @@
     }
     
     //[mapVC showSightsOnMap];
-    //NSLog(@"Bitch1: %lu",(unsigned long)count);
     
 }
 
@@ -200,7 +198,7 @@
     if (buttonIndex != alertView.cancelButtonIndex)
     {
         _selectedSight = objc_getAssociatedObject(alertView, &sightAlertConstantKey);
-        NSLog(@"DetailView called from List, Selected Sight is: %@", _selectedSight.name);
+        //NSLog(@"DetailView called from List, Selected Sight is: %@", _selectedSight.name);
         [self performSegueWithIdentifier:@"DetailViewMap" sender:self];
     }
     
