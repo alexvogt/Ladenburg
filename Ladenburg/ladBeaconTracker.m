@@ -303,8 +303,7 @@ const char sightAlertConstantKey;
 }
 
 - (void)identifyDetectedBeacon:beacon{
-    
-        self.beaconFoundLabel.text =@"Yes";
+        //self.beaconFoundLabel.text =@"Yes";
     
         NSNumber *beaconMinor = _nearestBeacon.minor;
         NSNumber *beaconMajor = _nearestBeacon.major;

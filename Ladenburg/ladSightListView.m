@@ -237,12 +237,6 @@
     MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
     df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
     
-    if ([item.major isEqual:@"1337"]){
-        [myCell.detailTextLabel setText:@"Lobdengau-Museum"];
-    } else {
-        [myCell.detailTextLabel setText:[df stringFromDistance: meters]];
-    }
-    
     
     //[myCell.detailTextLabel setText:[df stringFromDistance: meters]];
     

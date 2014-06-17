@@ -35,7 +35,7 @@
 
     
         // Download german json file
-         jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
+        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
         
         // Lokale Installation
         //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-de.php"];
@@ -47,8 +47,8 @@
         jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
         
         // Lokale Installation
-        // jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-en.php"];
-    
+        //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-en.php"];
+
     }
     
     
@@ -115,12 +115,13 @@
         
         
         //set image property of newSight to image
-
+        
         // m-ladenburg server
         baseURL = @"http://m-ladenburg.de";
         
         // Lokale Installation
         //baseURL = @"http://localhost:8888/";
+        
         
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
         fullURL = [baseURL stringByAppendingString:shortenedImageURL];
