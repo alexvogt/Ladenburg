@@ -16,7 +16,10 @@
 @interface ladSightListView ()
 {
     HomeModel *_homeModel;
-    NSArray *_feedItems;
+    NSMutableArray *_sightsFeedItems;
+    NSMutableArray *_exhibitsFeedItems;
+    NSMutableArray *_selectedFeed;
+    
     Sight *_selectedSight;
 }
 
@@ -53,7 +56,16 @@
     self.sightListView.dataSource = self;
     
     // Create array object and assign it to _feedItems variable
-    _feedItems = [[NSArray alloc] init];
+    _sightsFeedItems = [[NSMutableArray alloc] init];
+    _exhibitsFeedItems = [[NSMutableArray alloc] init];
+    _selectedFeed = [[NSMutableArray alloc] init];
+    
+    if(self.listSegmentedControl.selectedSegmentIndex == 0){
+        _selectedFeed = _sightsFeedItems;
+    } else if (self.listSegmentedControl.selectedSegmentIndex == 1){
+        _selectedFeed = _exhibitsFeedItems;
+    }
+    [_sightListView reloadData];
     
     // Create new HomeModel object and assign it to _homeModel variable
     _homeModel = [[HomeModel alloc] init];
@@ -111,23 +123,56 @@
     NSLog(@"Error: %@",error.description);
 }
 
--(void)itemsDownloaded:(NSArray *)items
+-(void)sightsDownloaded:(NSArray *)sights
 {
-    NSLog(@"Items downloaded called");
+    NSLog(@"Sights downloaded called");
     // This delegate method will get called when the items are finished downloading
     // Set the downloaded items to the array
-    _feedItems = items;
+    
+    for(int i=0; i < [sights count]; i++ ){
+        [_sightsFeedItems addObject:sights[i]];
+    }
     
     // Reload the table view
     [self.sightListView reloadData];
+}
+
+-(void)exhibitsDownloaded:(NSArray *)exhibitsArray
+{
+    NSLog(@" downloaded called");
+    
+    for(int i=0; i < [exhibitsArray count]; i++ ){
+        [_exhibitsFeedItems addObject:exhibitsArray[i]];
+    }
+    
+    // Reload the table view
+    [self.sightListView reloadData];
+}
+
+- (IBAction)segmentedControlSelected:(id)sender{
+    
+    if(self.listSegmentedControl.selectedSegmentIndex == 0){
+        _selectedFeed = _sightsFeedItems;
+    } else if (self.listSegmentedControl.selectedSegmentIndex == 1){
+        _selectedFeed = _exhibitsFeedItems;
+    }
+    
+    [_sightListView reloadData];
 }
 
 #pragma mark Table View Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of feed items (initially 0)
-    return _feedItems.count;
+    /*
+    if(self.listSegmentedControl.selectedSegmentIndex == 0){
+        // Return the number of feed items (initially 0)
+        _selectedFeed = _sightsFeedItems;
+    } else if (self.listSegmentedControl.selectedSegmentIndex == 1){
+        _selectedFeed = _exhibitsFeedItems;
+    }*/
+    
+    return _selectedFeed.count;
 }
 
 
@@ -154,7 +199,7 @@
 
     
     // Get the sight to be shown
-    Sight *item = _feedItems[indexPath.row];
+    Sight *item = _selectedFeed[indexPath.row];
     
     // Get references to labels of cell
     myCell.textLabel.text = item.name;
@@ -191,6 +236,12 @@
     
     MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
     df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+    
+    if ([item.major isEqual:@"1337"]){
+        [myCell.detailTextLabel setText:@"Lobdengau-Museum"];
+    } else {
+        [myCell.detailTextLabel setText:[df stringFromDistance: meters]];
+    }
     
     
     [myCell.detailTextLabel setText:[df stringFromDistance: meters]];
@@ -277,7 +328,6 @@
     
     [myCell.backgroundView.layer insertSublayer:gradient atIndex:1];
 
-
     
     return myCell;
 }
@@ -286,7 +336,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set selected sight to var
-    _selectedSight = _feedItems[indexPath.row];
+    _selectedSight = _selectedFeed[indexPath.row];
     
     // Manually call segue to detail view controller
     [self performSegueWithIdentifier:@"detailSegue" sender:self];

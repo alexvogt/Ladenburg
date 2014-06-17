@@ -35,35 +35,20 @@
 
     
         // Download german json file
-        // jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
+         jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
         
         // Lokale Installation
         //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-de.php"];
-       
-        // Locale Nework Installation
-        // Replace URL with IP of Network Server
-        //jsonFileUrl = [NSURL URLWithString:@"http://192.168.100.100:8888/ladenburg/service-lb-de.php"];
-        
-        
-        // Huawei
-        jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-de.php"];
         
         
     } else {
         
-        // Download german json file
-        //jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
+        // Download english json file
+        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
         
         // Lokale Installation
-        //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-en.php"];
-        
-        // Locale Nework Installation
-        // Replace URL with IP of Network Server
-        //jsonFileUrl = [NSURL URLWithString:@"http://192.168.100.100:8888/ladenburg/service-lb-en.php"];
-        
-        
-        // Huawei
-        jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-en.php"];
+        // jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-en.php"];
+    
     }
     
     
@@ -103,6 +88,7 @@
     NSLog(@"finishedLoading called \nDownloaded Data: %@", _downloadedData);
     // Create an array to store the sights
     NSMutableArray *_sights = [[NSMutableArray alloc] init];
+    NSMutableArray *_exhibits = [[NSMutableArray alloc] init];
     
     // Parse the JSON that came in
     NSError *error;
@@ -118,38 +104,23 @@
         
         // Create a new sight object and set its props to JsonElement properties
         Sight *newSight = [[Sight alloc] init];
-        newSight.identifier = jsonElement[@"ID"];
+        newSight.identifier = jsonElement[@"ID"]; //This is the minor of the beacon
+        newSight.major = jsonElement[@"ID_MAJOR"]; //This is the major of the beacon
         newSight.name = jsonElement[@"Name"];
-        newSight.address = jsonElement[@"Address"];
         newSight.latitude = jsonElement[@"LOC_LATITUDE"];
         newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
-        //newSight.latitude = jsonElement[@"LOC_LATITUDE"];
         newSight.kurzbeschreibung = jsonElement[@"Kurzbeschreibung"];
         newSight.geschichte = jsonElement[@"Geschichte"];
-        newSight.besonderheiten = jsonElement[@"Besonderheiten"];
-        newSight.sonstiges = jsonElement[@"Oeffnungszeiten"];
         newSight.imageUrl = jsonElement[@"bild_url"];
         
         
         //set image property of newSight to image
 
-        // Webspace Tim
-        // baseURL = @"http://ladenburg.timhartl.de";
-        
         // m-ladenburg server
-         //baseURL = @"http://m-ladenburg.de";
+        baseURL = @"http://m-ladenburg.de";
         
         // Lokale Installation
-        // baseURL = @"http://localhost:8888/";
-        
-        // Locale Nework Installation
-        // Replace URL with IP of Network Server
-        
-        // baseURL = @"http://192.168.100.100:8888/";
-        
-        // Huawei
-        baseURL = @"http://192.168.1.150:8888/";
-        
+        //baseURL = @"http://localhost:8888/";
         
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];
         fullURL = [baseURL stringByAppendingString:shortenedImageURL];
@@ -157,14 +128,19 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         newSight.image = [[UIImage alloc] initWithData:data];
         
-        // Add this question to the sights array
-        [_sights addObject:newSight];
+        // Add this sight to the corresponding array
+        if([newSight.major isEqualToString:@"2012"]){
+            [_sights addObject:newSight];
+        }else if ([newSight.major isEqualToString:@"1337"]){
+            [_exhibits addObject:newSight];
+        }
     }
     
     // Ready to notify delegate that data is ready and pass back items
     if (self.delegate)
     {
-        [self.delegate itemsDownloaded:_sights];
+        [self.delegate sightsDownloaded:_sights];
+        [self.delegate exhibitsDownloaded:_exhibits];
     }
 }
 

@@ -10,7 +10,8 @@
 
 @protocol HomeModelProtocol <NSObject>
 
-- (void)itemsDownloaded:(NSArray *)items;
+- (void)sightsDownloaded:(NSArray *)sightsArray ;
+- (void)exhibitsDownloaded:(NSArray *)exhibitsArray;
 
 @end
 

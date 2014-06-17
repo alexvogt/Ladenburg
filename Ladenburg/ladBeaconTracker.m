@@ -25,6 +25,7 @@
     //Variables for Notification Timout
     NSMutableDictionary *shownBeacons;
     NSString *beaconIdentifierKey;
+    
     NSTimeInterval timeInSecUntilNextNotification;
     
     //Animation Outlets
@@ -136,6 +137,7 @@ const char MyConstantKey;
     
     // Create dictionary object and assign it to _sightsDict variable
     _sightsDict = [[NSMutableDictionary alloc] init];
+    _exhibitsDict = [[NSMutableDictionary alloc] init];
 
     _beaconRegions = [[NSMutableArray alloc] init];
     
@@ -152,7 +154,7 @@ const char MyConstantKey;
 
 }
 
-
+/*
 -(void)itemsDownloaded:(NSArray *)items
 {
     NSLog(@"Items downloaded called");
@@ -161,6 +163,22 @@ const char MyConstantKey;
     for (Sight* currentSight in items)
     {
         [_sightsDict setObject:currentSight forKey:currentSight.identifier];
+    }
+}*/
+
+-(void)sightsDownloaded:(NSArray *)sightsArray{
+    NSLog(@"Sights downloaded called");
+    for (Sight* currentSight in sightsArray)
+    {
+        [_sightsDict setObject:currentSight forKey:currentSight.identifier];
+    }
+}
+
+-(void)exhibitsDownloaded:(NSArray *)exhibitsArray{
+    NSLog(@"Exhibits downloaded called");
+    for (Sight* currentSight in exhibitsArray)
+    {
+        [_exhibitsDict setObject:currentSight forKey:currentSight.identifier];
     }
 }
 
@@ -291,8 +309,10 @@ const char MyConstantKey;
         self.beaconFoundLabel.text =@"Yes";
     
         NSNumber *beaconMinor = _nearestBeacon.minor;
+        NSNumber *beaconMajor = _nearestBeacon.major;
         NSLog(@"beaconMinor: %@", beaconMinor);
         NSString *beaconMinorString = [beaconMinor stringValue];
+        NSString *beaconMajorString = [beaconMajor stringValue];
 
         //Variables for time out
         NSDate *now = [[NSDate alloc] init];
@@ -311,8 +331,12 @@ const char MyConstantKey;
             //If Beacon hasn't been seen in a certain time interval
             if (secondsSinceLastSeen > timeInSecUntilNextNotification)
             {
+                if([beaconMajorString isEqualToString:@"2012"]){
+                    _selectedSight=[_sightsDict objectForKey:beaconMinorString];
+                }else if([beaconMajorString isEqualToString:@"1337"]){
+                    _selectedSight=[_exhibitsDict objectForKey:beaconMinorString];
+                }
                 
-                _selectedSight=[_sightsDict objectForKey:beaconMinorString];
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
                 
                 //set new time for this object in beaconShown array
@@ -329,14 +353,30 @@ const char MyConstantKey;
             //set time for this object in beaconShown array
             [shownBeacons setObject:now forKey:beaconIdentifierKey];
             
+            
             //Figure out which beacon was found by attributing Minor to Object-ID
-            if ([_sightsDict objectForKey:beaconMinorString]) {
+            
+            if ([beaconMajorString isEqualToString:@"2012"] && [_sightsDict objectForKey:beaconMinorString]) {
                 
                 _selectedSight=[_sightsDict objectForKey:beaconMinorString];
                 NSLog(@"Selected Sight ist %@", _selectedSight.name);
                 [self sendNotification];
                 
-            } else {
+            }else if([beaconMajorString isEqualToString:@"1337"] && [_exhibitsDict objectForKey:beaconMinorString]){
+                _selectedSight=[_exhibitsDict objectForKey:beaconMinorString];
+                NSLog(@"Selected Sight ist %@", _selectedSight.name);
+                [self sendNotification];
+            }else if([_exhibitsDict objectForKey:beaconMinorString]){
+                    _selectedSight=[_exhibitsDict objectForKey:beaconMinorString];
+                    NSLog(@"Selected Sight ist %@", _selectedSight.name);
+                    [self sendNotification];
+
+            }else if([_sightsDict objectForKey:beaconMinorString]){
+                _selectedSight=[_exhibitsDict objectForKey:beaconMinorString];
+                NSLog(@"Selected Sight ist %@", _selectedSight.name);
+                [self sendNotification];
+                
+            }else {
                 NSLog(@"No object set for key @\"b\"");
             }
         }

@@ -25,6 +25,7 @@ extern const char MyConstantKey;
 @property (strong, nonatomic) CBCentralManager *bluetoothManager;
 
 @property (nonatomic, strong) NSMutableDictionary *sightsDict;
+@property (nonatomic, strong) NSMutableDictionary *exhibitsDict;
 
 
 

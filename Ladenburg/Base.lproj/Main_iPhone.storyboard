@@ -407,6 +407,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KBf-yV-wzp">
+                                <rect key="frame" x="193" y="23" width="119" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="City"/>
+                                    <segment title="Museum"/>
+                                </segments>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <action selector="segmentedControlSelected:" destination="qr1-jh-S9C" eventType="valueChanged" id="3SI-Lm-e1d"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -416,9 +428,12 @@
                             <constraint firstAttribute="trailing" secondItem="9Yr-y1-C5o" secondAttribute="trailing" id="THD-k4-ueq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1QS-aH-G5F"/>
+                    <navigationItem key="navigationItem" id="1QS-aH-G5F">
+                        <nil key="title"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="listSegmentedControl" destination="KBf-yV-wzp" id="xKh-A1-oAx"/>
                         <outlet property="sightListView" destination="9Yr-y1-C5o" id="n2f-Zl-8hF"/>
                         <segue destination="buz-qi-qqg" kind="push" identifier="detailSegue" id="NxK-U1-7Pj"/>
                     </connections>
@@ -543,7 +558,7 @@
         <scene sceneID="vQP-Ti-RKw">
             <objects>
                 <navigationController title="Sights" automaticallyAdjustsScrollViewInsets="NO" id="gBt-Nk-SOL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="POIs" image="Sights_Icons" id="6I9-Z7-eKa"/>
+                    <tabBarItem key="tabBarItem" title="POI" image="Sights_Icons" id="6I9-Z7-eKa"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="990-9m-Wfn">

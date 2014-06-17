@@ -20,5 +20,9 @@
 @property (strong, nonatomic) CLLocation *location;
 @property (weak, nonatomic) NSTimer *timer;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *listSegmentedControl;
+
+
+- (IBAction)segmentedControlSelected:(id)sender;
 
 @end
