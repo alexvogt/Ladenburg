@@ -20,7 +20,8 @@
 
 @interface ladBeaconTracker ()
 {
-    CLBeacon *lastBeacon;
+    //Variables for finding and tracking beacons
+    CLBeacon *nearestBeacon;
     
     //Variables for Notification Timout
     NSMutableDictionary *shownBeacons;
@@ -41,11 +42,7 @@
 
 //Properties
 @property (nonatomic, strong) NSUUID *uuid;
-@property (nonatomic) NSInteger *countRangedBeacon;
 @property (nonatomic) HomeModel *homeModel;
-@property (nonatomic, strong)CLBeacon *beacon;
-@property (nonatomic, strong)CLBeacon *nearestBeacon;
-@property (nonatomic, strong)CLBeacon *lastIdentifiedBeacon;
 
 //Utility-Methods
 - (void) startTrackingBeacons;
@@ -58,11 +55,12 @@
 
 @end
 
-const char MyConstantKey;
+//Constant Key needed to send attributed Object with Beacon-Alert
+const char sightAlertConstantKey;
+
+
 
 @implementation ladBeaconTracker
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,7 +85,7 @@ const char MyConstantKey;
         
         //Remove Beacons shown
         [shownBeacons removeAllObjects];
-        //set back standardUserDefaults
+        //set back standardUserDefaults & corresponding switches
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"setBackNotifications"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -126,6 +124,13 @@ const char MyConstantKey;
     //set Application BAdge to 0
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
+    //Set up Dictionaries and Variables
+    timeInSecUntilNextNotification = 900; //15Min * 60 Sec = 900 sec
+    
+    shownBeacons = [[NSMutableDictionary alloc] init];
+    _sightsDict = [[NSMutableDictionary alloc] init];
+    _beaconRegions = [[NSMutableArray alloc] init];
+    
     // Initialize Location Manager for Beacon Functionality
     // and Bluetooth Manager to check bluetooth status
     self.locationManager = [[CLLocationManager alloc] init];
@@ -134,21 +139,10 @@ const char MyConstantKey;
     self.locationManager.delegate = self;
     self.bluetoothManager.delegate = self;
     
-    // Create dictionary object and assign it to _sightsDict variable
-    _sightsDict = [[NSMutableDictionary alloc] init];
-
-    _beaconRegions = [[NSMutableArray alloc] init];
-    
-    // Create new HomeModel object and assign it to _homeModel variable
+    //Set up the Data Model and download the data
     _homeModel = [[HomeModel alloc] init];
-    
-    // Set this view controller object as the delegate for the home model object
     _homeModel.delegate = self;
-    
-    // Call the download items method of the home model object
     [_homeModel downloadItems];
-    
-    shownBeacons = [[NSMutableDictionary alloc] init];
 
 }
 
@@ -240,7 +234,6 @@ const char MyConstantKey;
     //Debugging Log
     NSLog(@"Region %@ entered", _beaconRegion.identifier);
     
-    _countRangedBeacon = 0;
 }
 
 
@@ -271,33 +264,29 @@ const char MyConstantKey;
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region{
     
     //Find the first (closest) beacon in Array
-    _nearestBeacon = [[CLBeacon alloc]init];
+    nearestBeacon = [[CLBeacon alloc]init];
      beacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity != %d", CLProximityUnknown]];
-    _nearestBeacon = [beacons firstObject];
+    nearestBeacon = [beacons firstObject];
     
     // Figure out which sight that beacon corresponds with
-    if(_nearestBeacon.minor == NULL || _nearestBeacon.major == NULL){
+    if(nearestBeacon.minor == NULL || nearestBeacon.major == NULL){
         //Do nothing. This is just used for debugging
     }
     else{
         //set an identifierKey and call identifyDetectedBeacon to figure out corresponding sight
-        beaconIdentifierKey = [NSString stringWithFormat:@"%@-%@-%@", [_nearestBeacon.proximityUUID UUIDString], [_nearestBeacon.major stringValue], [_nearestBeacon.minor stringValue]];
-        [self identifyDetectedBeacon:_nearestBeacon];
+        beaconIdentifierKey = [NSString stringWithFormat:@"%@-%@-%@", [nearestBeacon.proximityUUID UUIDString], [nearestBeacon.major stringValue], [nearestBeacon.minor stringValue]];
+        [self identifyDetectedBeacon:nearestBeacon];
     }
 }
 
 - (void)identifyDetectedBeacon:beacon{
     
-        self.beaconFoundLabel.text =@"Yes";
-    
-        NSNumber *beaconMinor = _nearestBeacon.minor;
+        NSNumber *beaconMinor = nearestBeacon.minor;
         NSLog(@"beaconMinor: %@", beaconMinor);
         NSString *beaconMinorString = [beaconMinor stringValue];
 
         //Variables for time out
         NSDate *now = [[NSDate alloc] init];
-        timeInSecUntilNextNotification = 300; //5Min * 60 Sec = 300 sec
-
     
         if ([shownBeacons objectForKey:beaconIdentifierKey]){
             
@@ -344,12 +333,9 @@ const char MyConstantKey;
 
 - (void)sendNotification {
     
-        NSLog(@"Current Navcontroller: %@" ,(self.tabBarController.selectedViewController));
+        //A warning is shown here but is irrelevant because of the Apps SetUp
+        //But: All viewControllers that are children of the main tabbarcontrollers are navigation controllers
         UINavigationController *currentNavController = self.tabBarController.selectedViewController;
-        NSLog(@"Current Viewcontroller: %@", currentNavController.visibleViewController);
-        NSLog(@"Self: %@", self);
-    
-    
 
         //Send Alert
         NSString *beaconAlertTitle = _selectedSight.name;
@@ -362,7 +348,7 @@ const char MyConstantKey;
                                                                 otherButtonTitles:NSLocalizedString(@"Yes", nil),
                                                                 nil];
     
-        objc_setAssociatedObject(rangedBeaconAlert, &MyConstantKey, _selectedSight, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(rangedBeaconAlert, &sightAlertConstantKey, _selectedSight, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
         [rangedBeaconAlert show];
       

@@ -35,15 +35,8 @@
 {
     [super viewDidLoad];
     
-    /* _tutorialPageTitles = @[@"Tutorial Page 1",
-                            @"More Tutorial",
-                            @"And still more"]; */
     _tutorialPageTexts = @[[NSString stringWithFormat:NSLocalizedString(@"Tutorial Page 1", nil)],
                            [NSString stringWithFormat:NSLocalizedString(@"Tutorial Page 2", nil)]
-                           /* @"Sobald du in der Nähe einer Sehenswürdigkeit bist, benachrichtigt dich iLadenburg automatisch darüber. \n \n Damit das funktioniert, benötigt die App Bluetooth und Zugriff auf deine Standortinformationen.",
-                           @"Wenn du wissen willst was es um dich herum zu sehen gibt, zeigt dir iLadenburg die Sehenswürdigkeiten in einer Liste oder auf der Karte an. \n \n Auf Wunsch kann dich dein iPhone dann sogar zu ihnen führen." */
-                           /*,
-                           @"Text" */
                            ];
     _tutorialPageImages = @[@"Tut_1", @"Tut_2"];
     
@@ -62,12 +55,6 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    
-    
-    // AM BESTEN HIER DATEN LADEN LASSEN - IM HINTERGRUND
-    // WENN IM ARRAY BEREITS WAS STEHT NUR DIE GEÄNDERTEN DATEN ZIEHEN
-    
-    // WENN ARRAY LEER UND KEIN INTERET HINWEIS
     
 }
 

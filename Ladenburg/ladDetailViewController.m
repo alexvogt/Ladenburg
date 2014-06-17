@@ -227,10 +227,11 @@ BOOL speechPaused = 0;
     previousDraggedOffsetY = draggedOffsetY;
 }
 
+/*
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{}
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 
-}
+}*/
 
 -(void) viewWillDisappear:(BOOL)animated {
     self.detailScrollView.delegate = nil;
@@ -300,7 +301,7 @@ BOOL speechPaused = 0;
 {
     if (buttonIndex != alertView.cancelButtonIndex)
     {
-        _selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        _selectedSight = objc_getAssociatedObject(alertView, &sightAlertConstantKey);
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
         ladDetailViewController *destinationVC = [storyboard instantiateViewControllerWithIdentifier:@"ladDetailViewController"];
         destinationVC.selectedSight=_selectedSight;

@@ -199,7 +199,7 @@
 {
     if (buttonIndex != alertView.cancelButtonIndex)
     {
-        _selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        _selectedSight = objc_getAssociatedObject(alertView, &sightAlertConstantKey);
         NSLog(@"DetailView called from List, Selected Sight is: %@", _selectedSight.name);
         [self performSegueWithIdentifier:@"DetailViewMap" sender:self];
     }

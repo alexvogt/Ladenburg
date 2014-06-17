@@ -35,35 +35,20 @@
 
     
         // Download german json file
-        // jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
+        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-de.php"];
         
         // Lokale Installation
         //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-de.php"];
-       
-        // Locale Nework Installation
-        // Replace URL with IP of Network Server
-        //jsonFileUrl = [NSURL URLWithString:@"http://192.168.100.100:8888/ladenburg/service-lb-de.php"];
-        
-        
-        // Huawei
-        jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-de.php"];
         
         
     } else {
         
-        // Download german json file
-        //jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
+        // Download english json file
+        jsonFileUrl = [NSURL URLWithString:@"http://m-ladenburg.de/service-lb-en.php"];
         
         // Lokale Installation
         //jsonFileUrl = [NSURL URLWithString:@"http://localhost:8888/ladenburg/service-lb-en.php"];
-        
-        // Locale Nework Installation
-        // Replace URL with IP of Network Server
-        //jsonFileUrl = [NSURL URLWithString:@"http://192.168.100.100:8888/ladenburg/service-lb-en.php"];
-        
-        
-        // Huawei
-        jsonFileUrl = [NSURL URLWithString:@"http://192.168.1.150:8888/ladenburg/service-lb-en.php"];
+
     }
     
     
@@ -119,36 +104,22 @@
         // Create a new sight object and set its props to JsonElement properties
         Sight *newSight = [[Sight alloc] init];
         newSight.identifier = jsonElement[@"ID"];
+        newSight.major = jsonElement[@"ID_MAJOR"];
         newSight.name = jsonElement[@"Name"];
-        newSight.address = jsonElement[@"Address"];
         newSight.latitude = jsonElement[@"LOC_LATITUDE"];
         newSight.longitude = jsonElement[@"LOC_LONGITUDE"];
-        //newSight.latitude = jsonElement[@"LOC_LATITUDE"];
         newSight.kurzbeschreibung = jsonElement[@"Kurzbeschreibung"];
         newSight.geschichte = jsonElement[@"Geschichte"];
-        newSight.besonderheiten = jsonElement[@"Besonderheiten"];
-        newSight.sonstiges = jsonElement[@"Oeffnungszeiten"];
         newSight.imageUrl = jsonElement[@"bild_url"];
         
         
         //set image property of newSight to image
-
-        // Webspace Tim
-        // baseURL = @"http://ladenburg.timhartl.de";
         
         // m-ladenburg server
-         //baseURL = @"http://m-ladenburg.de";
+        baseURL = @"http://m-ladenburg.de";
         
         // Lokale Installation
         // baseURL = @"http://localhost:8888/";
-        
-        // Locale Nework Installation
-        // Replace URL with IP of Network Server
-        
-        // baseURL = @"http://192.168.100.100:8888/";
-        
-        // Huawei
-        baseURL = @"http://192.168.1.150:8888/";
         
         
         shortenedImageURL = [newSight.imageUrl substringFromIndex:2];

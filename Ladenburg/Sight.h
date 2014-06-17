@@ -12,19 +12,12 @@
 @interface Sight : NSObject
 
 @property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, strong) NSString *major;
 @property (nonatomic, strong) NSString *latitude;
 @property (nonatomic, strong) NSString *longitude;
-
-//@property double latitude;
-//@property double longitude;
-//@property CLLocationDegrees latitude;
-//@property CLLocationDegrees longitude;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *kurzbeschreibung;
 @property (nonatomic, strong) NSString *geschichte;
-@property (nonatomic, strong) NSString *besonderheiten;
-@property (nonatomic, strong) NSString *sonstiges;
 @property (nonatomic, strong) NSString *imageUrl;
 @property (nonatomic, strong) UIImage *image;
 

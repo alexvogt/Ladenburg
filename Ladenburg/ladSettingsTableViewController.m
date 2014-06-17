@@ -26,9 +26,37 @@
     }
     return self;
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    //Set Switches according to UserDefaults from SettingsApp
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"showTutorial"]){
+        [_showTutorialSwitch setOn:YES animated:YES];
+    }else{
+        [_showTutorialSwitch setOn:NO animated:YES];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
+        [_beaconTrackingSwitch setOn:YES animated:YES];
+    }else{
+        [_beaconTrackingSwitch setOn:NO animated:YES];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
+        [_setBackNotificationsSwitch setOn:YES animated:YES];
+    }else{
+        [_setBackNotificationsSwitch setOn:NO animated:YES];
+    }
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+}
+
+
+//Methods to set Settings on User Interaction
 - (IBAction)changeTutorialSettings:(id)sender {
     if ([_showTutorialSwitch isOn]){
-        
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showTutorial"];
     }
     else {
@@ -38,12 +66,10 @@
     //Debugging Log
     [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"set showTutorial to %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"showTutorial"] ? @"YES" : @"NO");
-
 }
 
 - (IBAction)changeBeaconSettings:(id)sender {
     if ([_beaconTrackingSwitch isOn]){
-        
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enableBeaconTracking"];
     }
     else {
@@ -53,13 +79,11 @@
     //Debugging Log
     NSLog(@"set beaconTracking to %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"] ? @"YES" : @"NO");
     [[NSUserDefaults standardUserDefaults] synchronize];
-
 }
 
 - (IBAction)setBackNotifications:(id)sender {
     
     if ([_setBackNotificationsSwitch isOn]){
-        
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"setBackNotifications"];
     }
     else {
@@ -68,47 +92,7 @@
     
     //Debugging Log
     NSLog(@"set back Notifications to %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"] ? @"YES" : @"NO");
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-}
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    //Set Switches according to UserDefaults from SettingsApp
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"showTutorial"]){
-        self.showTutorialSwitch.on=YES;
-    }else{
-        [_showTutorialSwitch setOn:NO animated:YES];
-    }
-
-    //Debugging Log
-    NSLog(@"View loaded with beacon tracking on:  %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"] ? @"YES" : @"NO");
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableBeaconTracking"]){
-        self.beaconTrackingSwitch.on=YES;
-        
-    }else{
-        [_beaconTrackingSwitch setOn:NO animated:YES];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"setBackNotifications"]){
-        
-        self.setBackNotificationsSwitch.on=YES;
-        
-    }else{
-        [_setBackNotificationsSwitch setOn:NO animated:YES];
-    }
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,7 +106,7 @@
 {
     if (buttonIndex != alertView.cancelButtonIndex)
     {
-        Sight *_selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        Sight *_selectedSight = objc_getAssociatedObject(alertView, &sightAlertConstantKey);
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
         ladDetailViewController *destinationVC = [storyboard instantiateViewControllerWithIdentifier:@"ladDetailViewController"];
         destinationVC.selectedSight=_selectedSight;

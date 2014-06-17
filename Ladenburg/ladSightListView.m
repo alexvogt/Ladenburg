@@ -193,7 +193,15 @@
     df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
     
     
-    [myCell.detailTextLabel setText:[df stringFromDistance: meters]];
+    //[myCell.detailTextLabel setText:[df stringFromDistance: meters]];
+    
+    // If it's a sight, the distance isn't displayed (due to the massive amount of exhibits which would be on the same spot on the map
+    // Therefore the detail Label shows the location ( "Lobdengau-Museum" )
+    if ([item.major isEqual: @"1337"]) {
+        [myCell.detailTextLabel setText:@"Lobdengau-Museum"];
+    } else {
+        [myCell.detailTextLabel setText:[df stringFromDistance: meters]];
+    }
     
     // Changing color to White and set Fontsize
     [myCell.detailTextLabel setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
@@ -315,11 +323,10 @@
 {
     if (buttonIndex != alertView.cancelButtonIndex)
     {
-        _selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        _selectedSight = objc_getAssociatedObject(alertView, &sightAlertConstantKey);
         NSLog(@"DetailView called from List, Selected Sight is: %@", _selectedSight.name);
         [self performSegueWithIdentifier:@"detailSegue" sender:self];
     }
-    
 }
 
 

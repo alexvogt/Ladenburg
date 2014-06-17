@@ -34,15 +34,6 @@
     return self;
 }
 
-- (void)openLink:(UIButton *)sender forURL:(NSURL *)url{
-    
-    if (![[UIApplication sharedApplication] openURL:url])
-        
-        NSLog(@"%@%@",@"Failed to open url:",[url description]);
-    
-};
-
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
@@ -50,13 +41,9 @@
     self.aboutScrollView.delegate = self;
     [self.aboutScrollView setContentSize:self.aboutContainerView.frame.size];
     
-    //Debugging Log
-    //NSLog(@"ContentHeight: %e", self.detailScrollView.contentSize.height);
-    
     //Inset Content so white bar on top isn't shown
     UIEdgeInsets inset = UIEdgeInsetsMake(-65, 0, 0, 0) ;
     [self.aboutScrollView setContentInset:inset];
-    
     
     // Customize NavigationBar on DetailView
     // Set NavigationBar to invisible
@@ -86,44 +73,41 @@
     //set text as hyphenated text and add linespacing.
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.hyphenationFactor = 1;
-    //    paragraph.minimumLineHeight = 23.4;
+    //paragraph.minimumLineHeight = 23.4;
     paragraph.lineSpacing = 1.6;
     self.aboutText.attributedText = [[NSMutableAttributedString alloc] initWithString:self.aboutText.text attributes:[NSDictionary dictionaryWithObjectsAndKeys:paragraph, NSParagraphStyleAttributeName, nil]];
     
     // Set Fontsize of Content to 18px = 36px retina.
     [_aboutText setFont:[UIFont systemFontOfSize:18.0]];
     
-    // Center background image
+    // Center & scale background image
     self.aboutImageView.contentMode = UIViewContentModeCenter;
-    // Scale background image to fill container
     self.aboutImageView.contentMode = UIViewContentModeScaleAspectFill;
-    // Switch off clipping
     self.aboutImageView.clipsToBounds = true;
-    
-    // Do any additional setup after loading the view.
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    //Turn of bounce effect on Top of ImageView
     self.aboutScrollView.bounces = (self.aboutScrollView.contentOffset.y > 60);
     
+    //Set up Variables to resize image on scrolling
     draggedOffsetY = self.aboutScrollView.contentOffset.y;
-    
-    NSLog(@"View was dragged to: %f", draggedOffsetY);
-    newImageHeight = self.aboutImageView.frame.size.height-draggedOffsetY;
+    newImageHeight = self.aboutImageView.frame.size.height-draggedOffsetY;  //Calculate new imageHeight from scrolled space
     minImageHeight = 115;
     maxImageHeight = 220;
     
     //Check if scrolling forwards or backwards
     if( draggedOffsetY > previousDraggedOffsetY){
         //scrolling forwards
+        //Resize Image if newImageHight is greater than minimum height
         if (newImageHeight > minImageHeight){
-            
             [UIView animateWithDuration:0.1
                              animations:^{
-                                 [self.aboutImageView setFrame:CGRectMake(self.aboutImageView.frame.origin.x, self.aboutImageView.frame.origin.y, self.aboutImageView.frame.size.width, newImageHeight)];
-                                 CGFloat textStartTop = self.aboutImageView.frame.size.height;
-                                 self.aboutText.frame = CGRectMake(self.aboutText.frame.origin.x, textStartTop, self.aboutText.frame.size.width, self.aboutText.frame.size.height);
-                                 
+                                            //Resize ImageView and make TextViewStick to bottom of ImageView
+                                            [self.aboutImageView setFrame:CGRectMake(self.aboutImageView.frame.origin.x, self.aboutImageView.frame.origin.y, self.aboutImageView.frame.size.width, newImageHeight)];
+                                            CGFloat textStartTop = self.aboutImageView.frame.size.height;
+                                            self.aboutText.frame = CGRectMake(self.aboutText.frame.origin.x, textStartTop, self.aboutText.frame.size.width, self.aboutText.frame.size.height);
                              }
                              completion:^(BOOL finished){
                              }];
@@ -133,24 +117,23 @@
     }
     else if (draggedOffsetY <= previousDraggedOffsetY){
         //scrolling backwards
-        NSLog(@"scrolling backwards");
-        
         if(draggedOffsetY > 0){
             
             [self.aboutImageView setFrame:CGRectMake(0, (0+draggedOffsetY), self.aboutImageView.frame.size.width, minImageHeight)];
         }
     }
+    
+    //reset draggedOffset
     previousDraggedOffsetY = draggedOffsetY;
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
     self.aboutScrollView.delegate = nil;
-    self.aboutScrollView.scrollEnabled = NO;
+    /* self.aboutScrollView.scrollEnabled = NO;
     self.aboutScrollView.scrollEnabled = YES;
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        // back button was pressed.  We know this is true because self is no longer
-        // in the navigation stack.
-    }
+        //Do nothing
+    } */
     [super viewWillDisappear:animated];
 }
 
@@ -165,7 +148,7 @@
 {
     if (buttonIndex != alertView.cancelButtonIndex)
     {
-        Sight *_selectedSight = objc_getAssociatedObject(alertView, &MyConstantKey);
+        Sight *_selectedSight = objc_getAssociatedObject(alertView, &sightAlertConstantKey);
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
         ladDetailViewController *destinationVC = [storyboard instantiateViewControllerWithIdentifier:@"ladDetailViewController"];
         destinationVC.selectedSight=_selectedSight;
